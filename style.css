@@ -158,14 +158,14 @@ input:hover{
 
 .poljeA{
     
-    background-image: url(Slike/Realistic_White_Go_Stone.svg.png);
+    background-image: url(Realistic_White_Go_Stone.svg.png);
     background-size: cover;
     opacity:1;
 }
 
 .poljeB{
    
-    background-image: url(Slike/Realistic_Go_Stone.svg.png);
+    background-image: url(Realistic_Go_Stone.svg.png);
     background-size: cover;
 }
 .poljeN{
@@ -176,12 +176,12 @@ input:hover{
     
 }
 .poljeN2{
-    background-image: url(Slike/220px-Taegeuk.svg.png);
+    background-image: url(220px-Taegeuk.svg.png);
     background-size: cover;
 }
 
 body{
-    background-image: url(Slike/Yut-nori.jpg);
+    background-image: url(Yut-nori.jpg);
 }
 
 footer{
