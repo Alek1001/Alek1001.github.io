@@ -177,6 +177,7 @@ input:hover{
 }
 .poljeN2{
     background-image: url(220px-Taegeuk.svg.png);
+    background-color: red;
     background-size: cover;
 }
 
