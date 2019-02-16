@@ -320,6 +320,7 @@ Igra.prototype.pomerajMal=function(element) {
       var h=that.skupMal[ind].pos;
       var t=that.kretanje(h,that.zadnjeBacanje);
       if(t>=29) t=0;
+      if(h>=29) h=0;
       if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvir2");
       if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
 
