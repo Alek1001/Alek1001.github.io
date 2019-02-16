@@ -36,7 +36,7 @@ class Mal{ //formiranje zetona za igru
 
 //Bacaju se 4 Jut stapa.
 Igra.prototype.bacanje=function(){
-    if(!this.blokadaBacanja){
+    if(!this.blokadaBacanja && this.blokadaMala){
         this.obavestenje="";
     var s="",
         br=0;
