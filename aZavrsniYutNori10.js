@@ -57,6 +57,10 @@ Igra.prototype.bacanje=function(){
     this.blokadaZavrsenogPoteza=false;
         }
     }
+    else{
+        if(this.blokadaBacanja) this.obavestenje="Jutovi su vec baceni!";
+        else if(!this.blokadaMala) this.obavestenje="Treba da se odigra sa malom!";
+    }
 }
 
 //funkcija za promenu poteza igraca
@@ -71,7 +75,8 @@ Igra.prototype.zavrsenPotez=function(){
             this.obavestenje="";
         }
         else{
-            this.obavestenje="Igrac mora da baci jutove i odigra malom.";
+            if(!this.blokadaMala) this.obavestenje="Treba da se odigra sa malom!";
+            else if(this.blokadaZavrsenogPoteza) this.obavestenje="Igrac mora da baci jutove i onda da odigra malom.";
         }
 }
 
