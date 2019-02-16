@@ -505,7 +505,7 @@ Igra.prototype.animeBacanje=function(){
             document.querySelector('.animacija').classList.remove('mo');
             document.querySelector('.animacija').classList.add('hidden');
             document.querySelector('#korejski').innerHTML="";
-        },this.trajanjeAnimacije);
+        },this.trajanjeAnimacija);
     }
 
     else if(this.zadnjeBacanje==-1 && this.anime==true){
