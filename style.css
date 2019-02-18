@@ -23,71 +23,251 @@ ol,ul,li{
     list-style-type: none;
 }
 
+
+
+
+body{
+    background-image: linear-gradient(white,lightblue);
+}
 html{
     font-size: 62.5%;
 }
 
 div{
-    font-size:3rem;
+    font-size:2.5rem;
 }
 
-div.polje{
-    /* border: 1px solid black; */
-    border-radius: 4rem;
-    width: 8rem;
-    height: 8rem;
+
+
+h1{
+    font-size: 3rem;
     text-align: center;
-    line-height: 8rem;
-    font-size: 8rem;
-    opacity:1;
+    margin-bottom: 3rem;
+}
+
+h3{
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 3rem;
+
+}
+
+div.pravila{
+    font-size:2rem;
+}
+
+a:link{
+    color:blue;
+}
+a:hover{
+    color:red;
+}
+a:active{
+    color:red;
+}
+a:visited{
+    color:blue
+}
+a.poseban:link{
+    color:blue;
+}
+a.poseban:visited{
+    color:blue;
+}
+
+header{
+    width:100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    background-color: lightblue;
+}
+
+.settings_wraper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 2rem;
+    font-size: 2rem;
+    margin-left: 3rem;
+    position:relative;
+}
+
+.settings_wraper{
+    cursor: pointer;
+}
+
+.settings{
+    position:absolute;
+    background-color:lightblue;
+    width: 35rem;
+    top:2rem;
+    font-size: 2rem;
+    z-index:1000;
+    border-top:1px solid black;
+    line-height: 4rem;
+    display:none;
+}
+
+.settings_wraper:hover .settings{
+    display:block;
+}
+
+#dodatna_podesavanja{
+    color:blue;
+}
+
+#podesavanje_kartica{
+    border: 0.25rem solid black;
+    background-color: lightblue;
+    width: 75rem;
+    height: 40rem;
+    position:absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index:8;
+   
+}
+
+.kartica_header{
+    position: relative;
+    top: 0rem;
+    height: 3rem;
+    width: 100%;
+    background-color:blue;
+    color: white;
+    padding: 0rem;
+
+}
+
+.opcije{
+    padding: 2rem;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.dugmePodesavanje{
+    width:12rem;
+    height: 4rem;
+    background-color: deepskyblue;
+    box-shadow: 0.3rem 0.3rem grey;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.dugmePodesavanje:hover{
+    background-color: white;
+    box-shadow: none;
 }
 
 .meni{
     display:flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
-.rezultatPocetno{
-    display:none;
+.meniA{
+    display:flex;
 }
+
+.meniC{
+    display:flex;
+}
+
+.meniB{
+    display:flex;
+}
+
+
+
+
+.dugmeMeni{
+    width:12rem;
+    height: 4rem;
+    background-color: deepskyblue;
+    box-shadow: 0.3rem 0.3rem grey;
+    margin: 1rem;
+    cursor: pointer;
+    margin-left: 2rem;  
+    transition: all 0.3s;
+   
+}
+
+.dugmeMeni:hover{
+    background-color: white;
+    transform: scale(1.1);
+    box-shadow: none;
+}
+
+.dugmeA{
+    width:12rem;
+    height: 4rem;
+    margin:1rem;
+    box-shadow: 0.3rem 0.3rem grey;
+    cursor: pointer;
+    transition: all 0.3s;
+    
+}
+
+.dugmeA:hover{
+    background-color: deepskyblue;
+    transform: scale(1.1);
+    box-shadow: none;
+}
+
+.dugmeB{
+    width:12rem;
+    height: 4rem;
+    margin:1rem;
+    color:white;
+    background: rgb(82, 81, 81);
+    box-shadow: 0.3rem 0.3rem rgb(63, 62, 62);
+    cursor: pointer;
+    transition: all 0.3s;
+    border-color: rgb(53, 52, 52);
+}
+
+.dugmeB:hover{
+    background-color: blue;
+    transform: scale(1.1);
+    box-shadow: none;
+}
+
 .rezultat{
     display:flex;
     justify-content: space-evenly;
 }
 
-input{
-    width:8rem;
-    height: 4rem;
-    box-shadow: 0.3rem 0.3rem lightsteelblue;
-    margin: 1rem;
-    cursor: pointer;
-    
-}
-input:hover{
-    background-color: deepskyblue;
-}
-
 .statusA{
-    display:inline-block;
-    background-color: whitesmoke;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(247, 235, 235);
     color:blue;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 1rem;
+    width: 30rem;
    
 }
 
 .statusB{
-    display:inline-block;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     background-color: dimgray;
     color:blue;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 1rem;
+    width: 30rem;
 
 }
 
@@ -98,30 +278,46 @@ input:hover{
     justify-content: center;
     padding: 1rem;
     font-style: italic;
+    text-align: center;
+    width: 35rem;
+}
+
+div.polje{
+    /* border: 1px solid black; */
+    border-radius: 4.5rem;
+    width: 9rem;
+    height: 9rem;
+    text-align: center;
+    line-height: 9rem;
+    font-size: 9rem;
+    opacity:1;
 }
 
 .gornji_donji{
     display:flex;
-    width: 60rem;
-    height: 8rem;
+    width: 67.5rem;
+    height: 9rem;
     justify-content: space-between;
     
 }
 
 .wraper{
-    width: 60rem; 
-    height: 60rem;
+    width: 67.5rem; 
+    height: 67.5rem;
     background-color: blue;
     text-align: center; 
-    opacity: 0.8;
+    opacity: 0.9;
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.5rem rgb(31, 31, 31);
+    position:relative;
 }
 
 .srednji{
     display:flex;
     justify-content: space-between;
     justify-items: center;
-    width: 60rem; 
-    height: 44rem;
+    width: 67.5rem; 
+    height: 49.5rem;
     
 }
 
@@ -130,13 +326,13 @@ input:hover{
     flex-direction: column;
     justify-content: space-evenly;
    
-    width: 8rem;
-    height: 44rem;
+    width: 9rem;
+    height: 49.5rem;
   
 }
 .u_sredini{
-    width: 40rem; 
-    height: 44rem;
+    width: 45rem; 
+    height: 49.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -144,8 +340,8 @@ input:hover{
 .centralni{
     display:grid;
     
-    grid-template-columns:repeat(5, 8rem);
-    grid-template-rows:repeat(5, 8rem);
+    grid-template-columns:repeat(5, 9rem);
+    grid-template-rows:repeat(5, 9rem);
     justify-items: center;
     align-items: center;
 }
@@ -153,21 +349,10 @@ input:hover{
 .tabla{
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
-.poljeA{
-    
-    background-image: url(Realistic_White_Go_Stone.svg.png);
-    background-size: cover;
-    opacity:1;
-}
 
-.poljeB{
-   
-    background-image: url(Realistic_Go_Stone.svg.png);
-    background-size: cover;
-}
 .poljeN{
     /* background-color: cyan; */
     background-color: rgb(154, 209, 228);
@@ -180,35 +365,151 @@ input:hover{
     background-size: cover;
 }
 
-body{
+
+.mal{
+    background-size: cover;
+    opacity:1;
+    z-index:100;
+    border-radius: 3rem;
+    width: 6rem;
+    height: 6rem;
+    text-align: center;
+    line-height: 6rem;
+    font-size: 6rem;
+    position:absolute;
+    top:60rem;
+    
+}
+
+.malA{
+    
+    background-image: url(Realistic_White_Go_Stone.svg.png);
+    right:1.5rem;
+    color: black;
+}
+
+.malB{
+   
+    background-image: url(Realistic_Go_Stone.svg.png);
+    right:1.5rem;
+    color: white;
+}
+
+
+
+#igra{
     background-image: url(Yut-nori.jpg);
+    opacity: 0.85;
+    position:relative;
+    
+}
+
+#obavestenje{
+    color: red;
+    font-weight: bold;
 }
 
 footer{
-    position: absolute;
-    bottom: 0;
+    
+    background-color: lightblue;
+    height: auto;
+    width: 100%;
 }
 
-@media screen and (max-width:800px){
+
+
+figure{
+    text-align: center;
+}
+figure img{
+    width: 60%;
+    height: auto;
+}
+
+.okvirT{
+    border: 0.5rem solid red;
+}
+
+.okvir{
+    border: 0.5rem solid red;
+}
+
+.okvir2{
+    border: 0.5rem solid green;
+}
+
+.animacija{
+    width:50rem;
+    height: 50rem;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index:10;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    
+}
+
+#korejski{
+    color:red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 5rem;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.do{
+    background-image: url('Do.jpg');
+}
+
+.ge{
+    background-image: url('Ge.jpg');
+}
+
+.geol{
+    background-image: url('Geol.jpg');
+}
+
+.yut{
+    background-image: url('Yut.jpg');
+}
+
+.mo{
+    background-image: url('Mo.jpg');
+}
+
+.back{
+    background-image: url('Back.jpg');
+}
+
+@media screen and (max-width:1000px){
     html{
         font-size: 50%;
     }
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-height:930px){
     html{
-        font-size: 37.5%;
+        font-size: 50%;
     }
 }
 
-@media screen and (max-width:450px){
+@media screen and (max-width:800px){
     html{
-        font-size: 25%;
+        font-size: 35%;
     }
 }
 
-@media screen and (max-width:300px){
+@media screen and (max-height:744px){
     html{
-        font-size: 12.5%;
+        font-size: 35%;
     }
 }
+

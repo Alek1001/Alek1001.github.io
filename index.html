@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Yut Nori</title>
-    <link rel="stylesheet" href="aZavrsniYutNori10.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
@@ -13,15 +13,31 @@
         Meni
         <div class="settings">
             <ul><input type="checkbox" name="Pravilo-1" id="praviloMinus1"> Da li zelite pravilo -1?</ul>
-            <ul><input type="checkbox" name="Hint" id="checkHintT"> Da li zelite sugestije vezane za tablu?</ul>
-            <ul><input type="checkbox" name="Hint" id="checkHint"> Da li zelite sugestije vezane za tablu kada pokrecete mal?</ul>
             <ul><input type="checkbox" name="Hint" id="checkHint2"> Da li ne zelite sugestije vezane za mal?</ul>
             <ul><input type="checkbox" name="Anime" id="anime"> Da li zelite prikaz bacanja?</ul>
-            <ul><a href="aZavrsniYutNori10Pravila.html" target="_blank">Pravila igre</a></ul>
+            <ul><p id="dodatna_podesavanja">Dodatna podesavanja</p></ul>
+            <ul><a href="Pravila.html" target="_blank">Pravila igre</a></ul>
         </div>
         
     </div>
 </header>
+
+<div id="podesavanje_kartica" class="hidden">
+    <div class="kartica_header">Dodatna podesavanja</div>
+    <div class="opcije">
+        <label for=""><input type="radio" name="hintTabla" value="none">Bez sugestije vezane za tablu</label> <br>
+        <label for=""><input type="radio" name="hintTabla" value="opcija0">Sugestija vezana za tablu</label> <br>
+        <label for=""><input type="radio" name="hintTabla" value="opcija1">Sugestija vezana za tablu sa trajanjem</label> <br> <br>
+        <label for=""><input type="number" id="duzinaSugestije" value="4">Koliko sekundi zelite da traje sugestija?</label> <br> <br>
+        <label for=""><input type="number" id="duzinaAnimacije" value="2">Koliko sekundi zelite da traje prikaz bacanja?</label> <br> <br>
+    </div>
+    <div class="center"><input type="button" id="zavrseno_podesavanje" value="Gotovo" class="dugmePodesavanje"></div> 
+
+    
+
+</div>
+
+
 <section id="igra">
         <section class="tabla">
             <div class="wraper">
@@ -100,6 +116,6 @@
     
          <br> <a href="https://en.wikipedia.org/wiki/Yut">Wikipedia Yut</a>
     </footer>
-    <script src="aZavrsniYutNori10.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
