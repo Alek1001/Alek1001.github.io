@@ -453,11 +453,11 @@ Igra.prototype.hint1=function(){
         });
     } 
 
-    for(let i=0;i<=28;i++){
+    // for(let i=0;i<=28;i++){
         window.addEventListener('mouseup',function(){
             ocistiHint();
         });
-    }  
+    // }  
 }
 
 Igra.prototype.animeBacanje=function(){
