@@ -39,28 +39,32 @@ class Mal{ //formiranje zetona za igru
 Igra.prototype.bacanje=function(){
     if(!this.blokadaBacanja && this.blokadaMala){
         this.obavestenje="";
-    var s="",
-        br=0;
-    for (let i=1;i<=4;i++){
-        t=parseInt(Math.random()*2);
-        br+=t;
-        s+=t;
-    }
-    if (br==0) br=5;
-    if (s=="1000" && this.pravilo_minus_1==true) br=-1; //-1 specijalno pravilo
-    this.zadnjeBacanje=br;
-    this.prikaz=true;
-    this.blokadaMala=false;
-    this.baceno.push(this.zadnjeBacanje);
-    this.animeBacanje();
-    if(this.zadnjeBacanje<=3){
-    this.blokadaBacanja=true;
-    this.blokadaZavrsenogPoteza=false;
+        var s="",
+            br=0;
+        for (let i=1;i<=4;i++){
+            t=parseInt(Math.random()*2);
+            br+=t;
+            s+=t;
         }
+        if (br==0) br=5;
+        if (s=="1000" && this.pravilo_minus_1==true) br=-1; //-1 specijalno pravilo
+        this.zadnjeBacanje=br;
+        this.prikaz=true;
+        this.blokadaMala=false;
+        this.baceno.push(this.zadnjeBacanje);
+        if(this.anime) this.animeBacanje(); //animacija bacanja
+        if(this.zadnjeBacanje<=3){
+        this.blokadaBacanja=true;
+        this.blokadaZavrsenogPoteza=false;
+            }
     }
     else{
-        if(this.blokadaBacanja) this.obavestenje="Jutovi su vec baceni!";
-        else if(!this.blokadaMala) this.obavestenje="Treba da se odigra sa malom!";
+        if(this.blokadaBacanja) {
+            this.obavestenje="Jutovi su vec baceni!"; 
+        }
+        else if(!this.blokadaMala) {
+            this.obavestenje="Treba da se odigra sa malom!";
+        }
     }
 }
 
@@ -146,18 +150,16 @@ Igra.prototype.kretanje=function(predhodno,bacanje){
     return sledece;
 }
 
-//Stampanje rezultata
-Igra.prototype.stampa=function(){
-
+//Izgled table
+Igra.prototype.stampaTable=function(){
     //Stampanje izgleda polja start
     document.querySelector("div.polje[data-imePolja='"+0+"']").innerHTML="S";
     document.querySelector("div.polje[data-imePolja='"+0+"']").classList.add("poljeN");
 
-    //Stampanje polja po tabli. Ako je neki Mal na nekom polju, onda se ovde to pokaze. 
+    //Sampanje ostalih polja
     for(i=1;i<=28;i++){
        
         document.querySelector("div.polje[data-imePolja='"+i+"']").innerHTML=" ";    
-        document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("poljeN2");
         document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN");
 
         if(i==5) {
@@ -180,7 +182,10 @@ Igra.prototype.stampa=function(){
             document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN2");
         }
     }
+}
 
+//Stampanje rezultata
+Igra.prototype.stampa=function(){
     document.querySelector('#naPotezu').innerHTML="Na potezu je igrac "+this.naPotezu;
     document.querySelector('#rezultatA').innerHTML="Rezultat A je: "+this.scoreA;
     document.querySelector('#rezultatB').innerHTML="Rezultat B je: "+this.scoreB;
@@ -208,7 +213,6 @@ Igra.prototype.stampa=function(){
         document.querySelector('#bacanje').innerHTML="";
     }
     document.querySelector('#obavestenje').innerHTML=this.obavestenje;
-
 }
 
 //Resetovanje rezultata
@@ -268,6 +272,9 @@ Igra.prototype.dodajMalA=function(){
             this.obavestenje="Igrac A je dodao sve malove!";
         }
     }
+    else{
+        this.obavestenje="Igrac A nije na potezu!";
+    }
 }
 
 Igra.prototype.dodajMalB=function(){
@@ -288,6 +295,9 @@ Igra.prototype.dodajMalB=function(){
         else{
             this.obavestenje="Igrac B je dodao sve malove!";
         }
+    }
+    else{
+        this.obavestenje="Igrac B nije na potezu!";
     }
 }
 
@@ -453,11 +463,9 @@ Igra.prototype.hint1=function(){
         });
     } 
 
-    // for(let i=0;i<=28;i++){
-        window.addEventListener('mouseup',function(){
-            ocistiHint();
-        });
-    // }  
+    window.addEventListener('mouseup',function(){
+        ocistiHint();
+    });
 }
 
 Igra.prototype.animeBacanje=function(){
@@ -531,7 +539,7 @@ Igra.prototype.animeBacanje=function(){
 //pozivamo objekat igra
 var igra=new Igra();
 
-//podesavanje menija za podesavanje
+//meni za podesavanje
 document.querySelector('.settings').addEventListener('mouseleave',function(){
 
     var p=document.querySelector('#praviloMinus1').checked;
@@ -545,10 +553,12 @@ document.querySelector('.settings').addEventListener('mouseleave',function(){
     
 });
 
+//aktiiranje dodatnih podesavanja
 document.querySelector('#dodatna_podesavanja').addEventListener("click" ,function(){
     document.querySelector('#podesavanje_kartica').classList.remove('hidden');
 });
 
+//dodatno podesavanje
 document.querySelector('#zavrseno_podesavanje').onclick=function(){
 
     if(document.querySelector("input[name='hintTabla']:checked") !==null)
@@ -574,25 +584,22 @@ document.querySelector('#zavrseno_podesavanje').onclick=function(){
     igra.trajanjeAnimacija=t2*1000;
 
     var control=true;
-    if (isNaN(t1) || t1<0) control=false;
+    if (isNaN(t1) || t1<0 || t1>10) control=false;
     if (isNaN(t2) || t2<0 || t2>10) control=false;
 
    if(control){ document.querySelector('#podesavanje_kartica').classList.add('hidden'); }
 }
 
-
-
 //pozivamo sve potrebne funkcije
+igra.stampaTable();
 igra.stampa();
 igra.hint0();
 igra.hint1();
 
 //povezivanje funkcija sa tasterima
 document.querySelector('#potez').onclick=function(){
-    if(!igra.blokadaBacanja){
     igra.bacanje();
     igra.stampa();
-    }
 }
 
 document.querySelector('#zavrsen_potez').onclick=function(){
@@ -637,17 +644,13 @@ document.querySelector('#dodajMalB').onclick=function(){
     igra.stampa();
 }
 
-
-
 //Kako bi igra mogla da se igra i preko tastature. Space za odigraj i Enter za reset. 
 window.addEventListener('keyup',function(e){
     var key=e.keyCode;
     e.preventDefault();
-    if (key==66){
-        if(!igra.blokadaBacanja){
+    if (key==66 || key==32){
             igra.bacanje();
             igra.stampa();
-        }
     }
     if (key==13){
         igra.zavrsenPotez();
@@ -658,6 +661,29 @@ window.addEventListener('keyup',function(e){
         igra.reset();
         igra.stampa();
         }
+
+    if (key==65){
+        igra.dodajMalA();
+        for(var i=0;i<igra.skupMal.length;i++){
+                igra.pomerajMal(igra.skupMal[i].doc);
+                igra.obrisiMal(igra.skupMal[i].doc);
+                igra.duplirajMal(igra.skupMal[i].doc);
+                
+        }
+        igra.stampa();
+        }
+
+    if (key==68){
+        igra.dodajMalB();
+        for(var i=0;i<igra.skupMal.length;i++){
+            igra.pomerajMal(igra.skupMal[i].doc);
+            igra.obrisiMal(igra.skupMal[i].doc);
+            igra.duplirajMal(igra.skupMal[i].doc);
+       
+        }
+        igra.stampa();
+    }
+
 });
 
 
