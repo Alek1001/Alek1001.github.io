@@ -327,15 +327,19 @@ Igra.prototype.pomerajMal=function(element) {
       // pozicija misa na pocetku:
       p3 = e.clientX;
       p4 = e.clientY;
-    
       var ind=that.nadjiMalind(element);
       var h=that.skupMal[ind].pos;
-      var t=that.kretanje(h,that.zadnjeBacanje);
       if(h>=29) h=0; //trenutno
-      if(t>=29) t=0; //buduce
-      if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvir2");
-      if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
-
+      var p=that.skupMal[ind].pripadnost;
+      if(p==that.naPotezu) {
+            var t=that.kretanje(h,that.zadnjeBacanje);
+            if(t>=29) t=0; //buduce
+            if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvir2");
+            if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
+        }
+        else{
+            if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
+        }
       document.onmouseup = pustanje_misa;
       // pozovi funkciju kada se mis pomera:
       document.onmousemove = pomeraj;
@@ -358,14 +362,20 @@ Igra.prototype.pomerajMal=function(element) {
       /* zavrsi operaciju prevlacenja:*/
     
       var ind=that.nadjiMalind(element);
+      var p=that.skupMal[ind].pripadnost;
       var h=that.skupMal[ind].pos;
-        var t=that.kretanje(h,that.zadnjeBacanje);
-        if (!that.blokadaMala) that.skupMal[ind].pos=t;
-        if(h>=29) h=0; //trenutno
-        if(t>=29) t=0; //buduce
-        if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.remove("okvir2");
-        if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
+      if(h>=29) h=0; //trenutno
+        if(p==that.naPotezu){
+            var t=that.kretanje(h,that.zadnjeBacanje);
+            if (!that.blokadaMala) that.skupMal[ind].pos=t;
+            if(t>=29) t=0; //buduce
+            if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.remove("okvir2");
+            if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
         that.blokadaMala=true;
+        }
+        else{
+            if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
+        }
       document.onmouseup = null;
       document.onmousemove = null;
         }
