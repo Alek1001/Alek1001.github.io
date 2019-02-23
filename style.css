@@ -23,7 +23,6 @@ ol,ul,li{
     list-style-type: none;
 }
 
-
 body{
     background-image: linear-gradient(white,lightblue);
 }
@@ -33,18 +32,29 @@ html{
 
 div{
     font-size:2.5rem;
+    font-family: 'Cabin',
+    sans-serif;
+}
+
+button{
+    font-family: 'Cabin',
+    sans-serif;
 }
 
 h1{
     font-size: 3rem;
     text-align: center;
     margin-bottom: 3rem;
+    font-family: 'Cabin',
+    sans-serif;
 }
 
 h3{
     font-size: 2.5rem;
     text-align: center;
     margin: 3rem;
+    font-family: 'Cabin',
+    sans-serif;
 }
 
 div.pravila{
@@ -122,7 +132,6 @@ header{
     left: 50%;
     transform: translate(-50%,-50%);
     z-index:8;
-   
 }
 
 .kartica_header{
@@ -132,8 +141,7 @@ header{
     width: 100%;
     background-color:blue;
     color: white;
-    padding: 0rem;
-
+    padding-left: 1rem;
 }
 
 .opcije{
@@ -157,6 +165,140 @@ header{
 .dugmePodesavanje:hover{
     background-color: white;
     box-shadow: none;
+}
+
+.igra{
+    background-image: url(Yut-nori.jpg);
+    opacity: 0.85;
+    position:relative;
+    }
+
+.tabla{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.wraper{
+    width: 67.5rem; 
+    height: 67.5rem;
+    background-color:lightskyblue;
+    text-align: center; 
+    opacity: 0.9;
+    border-radius: 3rem;
+    box-shadow: 0.5rem 0.5rem rgb(173, 145, 145);
+    position:relative;
+}
+
+.gornji_donji{
+    display:flex;
+    width: 67.5rem;
+    height: 9rem;
+    justify-content: space-between;
+    
+}
+
+.srednji{
+    display:flex;
+    justify-content: space-between;
+    justify-items: center;
+    width: 67.5rem; 
+    height: 49.5rem;
+    
+}
+
+.levi_desni{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 9rem;
+    height: 49.5rem;
+}
+
+.u_sredini{
+    width: 45rem; 
+    height: 49.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.centralni{
+    display:grid;
+    grid-template-columns:repeat(5, 9rem);
+    grid-template-rows:repeat(5, 9rem);
+    justify-items: center;
+    align-items: center;
+}
+
+div.polje{
+    border-radius: 4.5rem;
+    width: 9rem;
+    height: 9rem;
+    text-align: center;
+    line-height: 9rem;
+    font-size: 9rem;
+    opacity:1;
+}
+
+.poljeN{
+    background-color: rgb(20, 20, 236);
+    color:red;
+    opacity:1;
+    }
+
+.poljeN2{
+    background-image: url(220px-Taegeuk.svg.png);
+    background-size: cover;
+}
+
+.mal{
+    background-size: cover;
+    opacity:1;
+    z-index:100;
+    border-radius: 3rem;
+    width: 6rem;
+    height: 6rem;
+    text-align: center;
+    line-height: 6rem;
+    font-size: 6rem;
+    position:absolute;
+    top:60rem;
+    }
+
+.malA{
+    background-image: url(Realistic_White_Go_Stone.svg.png);
+    right:1.5rem;
+    color: black;
+}
+
+.malA:hover::after{
+    content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:100%;
+    left:-50%;
+    background-color: rgb(170, 228, 243);
+    width: 30rem;
+}
+
+.malB{
+    background-image: url(Realistic_Go_Stone.svg.png);
+    right:1.5rem;
+    color: white;
+}
+
+.malB:hover::after{
+    content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:100%;
+    left:-50%;
+    background-color: rgb(6, 105, 129);
+    color:white;
+    width: 30rem;
 }
 
 .meni{
@@ -187,7 +329,6 @@ header{
     cursor: pointer;
     margin-left: 2rem;  
     transition: all 0.3s;
-   
 }
 
 .dugmeMeni:hover{
@@ -205,6 +346,7 @@ header{
     left:20%;
     background-color: rgb(165, 220, 238);
     width: auto;
+    padding: 0.7rem;
 }
 
 #zavrsen_potez:hover::after{
@@ -216,6 +358,7 @@ header{
     left:35%;
     background-color: rgb(165, 220, 238);
     width: auto;
+    padding: 0.7rem;
 }
 
 #reset:hover::after{
@@ -227,6 +370,7 @@ header{
     left:30%;
     background-color: rgb(165, 220, 238);
     width: auto;
+    padding: 0.7rem;
 }
 
 .dugmeA{
@@ -254,6 +398,7 @@ header{
     left:45%;
     background-color: rgb(165, 220, 238);
     width: auto;
+    padding: 0.7rem;
 }
 
 #dodajA:hover::after{
@@ -265,6 +410,7 @@ header{
     left:45%;
     background-color: rgb(165, 220, 238);
     width: auto;
+    padding: 0.7rem;
 }
 
 .dugmeB{
@@ -295,6 +441,7 @@ header{
     background-color: rgb(47, 92, 107);
     color:white;
     width: auto;
+    padding: 0.7rem;
 }
 
 #dodajB:hover::after{
@@ -307,6 +454,7 @@ header{
     background-color: rgb(47, 92, 107);
     color:white;
     width: auto;
+    padding: 0.7rem;
 }
 
 .rezultat{
@@ -326,7 +474,7 @@ header{
     padding: 1rem;
     width: 30rem;
     border-radius: 10rem;
-   }
+}
 
 .statusB{
     display:flex;
@@ -343,7 +491,6 @@ header{
 }
 
 .potez{
-    /* background-color: rgb(105, 181, 206); */
     background-color: lightskyblue;
     display: flex;
     flex-direction: column;
@@ -355,155 +502,13 @@ header{
     border-radius: 10rem;
 }
 
-div.polje{
-    /* border: 1px solid black; */
-    border-radius: 4.5rem;
-    width: 9rem;
-    height: 9rem;
-    text-align: center;
-    line-height: 9rem;
-    font-size: 9rem;
-    opacity:1;
-}
-
-.gornji_donji{
-    display:flex;
-    width: 67.5rem;
-    height: 9rem;
-    justify-content: space-between;
-    
-}
-
-.wraper{
-    width: 67.5rem; 
-    height: 67.5rem;
-    /* background-color: rgb(0, 0, 70); */
-    /* background-color: blue; */
-    background-color:lightskyblue;
-    text-align: center; 
-    opacity: 0.9;
-    border-radius: 3rem;
-    /* box-shadow: 0.5rem 0.5rem rgb(31, 31, 31); */
-    box-shadow: 0.5rem 0.5rem rgb(173, 145, 145);
-    position:relative;
-}
-
-.srednji{
-    display:flex;
-    justify-content: space-between;
-    justify-items: center;
-    width: 67.5rem; 
-    height: 49.5rem;
-    
-}
-
-.levi_desni{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-   
-    width: 9rem;
-    height: 49.5rem;
-  
-}
-.u_sredini{
-    width: 45rem; 
-    height: 49.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.centralni{
-    display:grid;
-    
-    grid-template-columns:repeat(5, 9rem);
-    grid-template-rows:repeat(5, 9rem);
-    justify-items: center;
-    align-items: center;
-}
-
-.tabla{
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-
-.poljeN{
-    /* background-color: cyan; */
-    /* background-color: rgb(154, 209, 228); */
-    background-color: rgb(20, 20, 236);
-    color:red;
-    opacity:1;
-    
-}
-.poljeN2{
-    background-image: url(220px-Taegeuk.svg.png);
-    background-size: cover;
-}
-
-.mal{
-    background-size: cover;
-    opacity:1;
-    z-index:100;
-    border-radius: 3rem;
-    width: 6rem;
-    height: 6rem;
-    text-align: center;
-    line-height: 6rem;
-    font-size: 6rem;
-    position:absolute;
-    top:60rem;
-    }
-
-.malA{
-        background-image: url(Realistic_White_Go_Stone.svg.png);
-    right:1.5rem;
-    color: black;
-}
-
-.malA:hover::after{
-    content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-    position:absolute;
-    top:100%;
-    left:-50%;
-    background-color: rgb(170, 228, 243);
-    width: 30rem;
-}
-
-.malB{
-       background-image: url(Realistic_Go_Stone.svg.png);
-    right:1.5rem;
-    color: white;
-}
-
-.malB:hover::after{
-    content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-    position:absolute;
-    top:100%;
-    left:-50%;
-    background-color: rgb(6, 105, 129);
-    color:white;
-    width: 30rem;
-}
-
-#igra{
-    background-image: url(Yut-nori.jpg);
-    opacity: 0.85;
-    position:relative;
-    }
-
 #obavestenje{
     color: red;
     font-weight: bold;
 }
 
 footer{
-        background-color: lightblue;
+    background-color: lightblue;
     height: auto;
     width: 100%;
 }

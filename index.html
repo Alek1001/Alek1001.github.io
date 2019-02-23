@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Yut Nori</title>
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,400i" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,11 +13,13 @@
     <div class="settings_wraper">
         Meni
         <div class="settings">
-            <ul><input type="checkbox" name="Pravilo-1" id="praviloMinus1"> Da li zelite pravilo -1?</ul>
-            <ul><input type="checkbox" name="Hint" id="checkHint2"> Da li ne zelite sugestije vezane za mal?</ul>
-            <ul><input type="checkbox" name="Anime" id="anime"> Da li zelite prikaz bacanja?</ul>
-            <ul><p id="dodatna_podesavanja">Dodatna podesavanja</p></ul>
-            <ul><a href="pravila.html" target="_blank">Pravila igre</a></ul>
+            <ul>
+                <li><input type="checkbox" name="Pravilo-1" id="praviloMinus1"> Da li zelite pravilo -1?</li>
+                <li><input type="checkbox" name="Hint" id="checkHint2"> Da li ne zelite sugestije vezane za mal?</li>
+                <li><input type="checkbox" name="Anime" id="anime"> Da li zelite prikaz bacanja?</li>
+            </ul>
+            <p id="dodatna_podesavanja">Dodatna podesavanja</p> 
+            <a href="pravila.html" target="_blank">Pravila igre</a>
         </div>
         
     </div>
@@ -25,40 +28,36 @@
 <div id="podesavanje_kartica" class="hidden">
     <div class="kartica_header">Dodatna podesavanja</div>
     <div class="opcije">
-        <label for=""><input type="radio" name="hintTabla" value="none">Bez sugestije vezane za tablu</label> <br>
-        <label for=""><input type="radio" name="hintTabla" value="opcija0">Sugestija vezana za tablu</label> <br>
-        <label for=""><input type="radio" name="hintTabla" value="opcija1">Sugestija vezana za tablu sa trajanjem</label> <br> <br>
-        <label for=""><input type="number" id="duzinaSugestije" value="4">Koliko sekundi zelite da traje sugestija?</label> <br> <br>
-        <label for=""><input type="number" id="duzinaAnimacije" value="2">Koliko sekundi zelite da traje prikaz bacanja?</label> <br> <br>
-    </div>
+        <label><input type="radio" name="hintTabla" value="none">Bez sugestije vezane za tablu</label> <br>
+        <label><input type="radio" name="hintTabla" value="opcija0">Sugestija vezana za tablu</label> <br>
+        <label><input type="radio" name="hintTabla" value="opcija1">Sugestija vezana za tablu sa trajanjem</label> <br> <br>
+        <label><input type="number" id="duzinaSugestije" value="4"> Koliko sekundi zelite da traje sugestija?</label> <br> <br>
+        <label><input type="number" id="duzinaAnimacije" value="2"> Koliko sekundi zelite da traje prikaz bacanja?</label> <br> <br>
+    </div> 
     <div class="center"><input type="button" id="zavrseno_podesavanje" value="Gotovo" class="dugmePodesavanje"></div> 
-
-    
 
 </div>
 
-
-<section id="igra">
-        <section class="tabla">
+<div class="igra">
+        <div class="tabla">
             <div class="wraper">
-                <div class="gornji_donji"><div class="polje" data-imePolja="10">10</div><div div class="polje" data-imePolja="9">9</div><div div class="polje" data-imePolja="8">8</div><div div class="polje" data-imePolja="7">7</div><div div class="polje" data-imePolja="6">6</div><div div class="polje" data-imePolja="5">5</div> </div>
+                <div class="gornji_donji"><div class="polje" data-imePolja="10">10</div><div class="polje" data-imePolja="9">9</div><div class="polje" data-imePolja="8">8</div><div class="polje" data-imePolja="7">7</div><div class="polje" data-imePolja="6">6</div><div class="polje" data-imePolja="5">5</div> </div>
                 <div class="srednji">
-                    <div class="levi_desni"> <div class="polje" data-imePolja="18">18</div> <div div class="polje" data-imePolja="19">19</div> <div div class="polje" data-imePolja="20">20</div> <div class="polje" data-imePolja="21">21</div></div>
+                    <div class="levi_desni"> <div class="polje" data-imePolja="18">18</div> <div class="polje" data-imePolja="19">19</div> <div class="polje" data-imePolja="20">20</div> <div class="polje" data-imePolja="21">21</div></div>
                     <div class="u_sredini">
                     <div class="centralni">
-                        <div class="polje" data-imePolja="13">13</div><div></div><div></div><div></div><div div class="polje" data-imePolja="11">11</div>
+                        <div class="polje" data-imePolja="13">13</div><div></div><div></div><div></div><div class="polje" data-imePolja="11">11</div>
                         <div></div><div class="polje" data-imePolja="14">14</div><div></div><div class="polje" data-imePolja="12">12</div><div></div>
-                        <div></div><div></div><div div class="polje" data-imePolja="15">15</div><div></div><div></div>
+                        <div></div><div></div><div class="polje" data-imePolja="15">15</div><div></div><div></div>
                         <div></div><div class="polje" data-imePolja="16">16</div><div></div><div class="polje" data-imePolja="27">27</div><div></div>
-                        <div class="polje" data-imePolja="17">17</div><div></div><div></div><div></div><div div class="polje" data-imePolja="28">28</div>
+                        <div class="polje" data-imePolja="17">17</div><div></div><div></div><div></div><div class="polje" data-imePolja="28">28</div>
                         </div>
                     </div>
-                    <div class="levi_desni"><div div class="polje" data-imePolja="4">4</div><div class="polje" data-imePolja="3">3</div><div class="polje" data-imePolja="2">2</div><div div class="polje" data-imePolja="1">1</div></div>
+                    <div class="levi_desni"><div class="polje" data-imePolja="4">4</div><div class="polje" data-imePolja="3">3</div><div class="polje" data-imePolja="2">2</div><div class="polje" data-imePolja="1">1</div></div>
                     </div>
-                <div class="gornji_donji"> <div class="polje" data-imePolja="22">22</div><div div class="polje" data-imePolja="23">23</div><div div class="polje" data-imePolja="24">24</div><div div class="polje" data-imePolja="25">25</div><div div class="polje" data-imePolja="26">26</div><div div class="polje" data-imePolja="0">0</div>  </div>
+                <div class="gornji_donji"> <div class="polje" data-imePolja="22">22</div><div class="polje" data-imePolja="23">23</div><div class="polje" data-imePolja="24">24</div><div class="polje" data-imePolja="25">25</div><div class="polje" data-imePolja="26">26</div><div class="polje" data-imePolja="0">0</div>  </div>
             </div>
-        </section>
-
+        </div>
 
         <div class="meni">
             <div class="meniA">
@@ -77,7 +76,6 @@
                 <button id="dodajB" class="dugmeB">Dodaj poen B</button>
             </div>
         </div>
-
 
         <div id="rezultat" class="rezultat">
             <div class="statusA">
@@ -102,12 +100,12 @@
             <p id="korejski"></p>
         </div>
         <br> <br>
-</section>
+    </div>
 
     <footer>By <a rel="nofollow" class="external text" href="https://www.korean.go.kr/">National Institute of Korean Language</a> - <a rel="nofollow" class="external free" href="https://krdict.korean.go.kr/eng/dicSearch/viewImageConfirm?nation=eng&amp;searchKindValue=image&amp;ParaWordNo=70856&amp;ParaSenseSeq=1&amp;multiMediaSeq=2">https://krdict.korean.go.kr/eng/dicSearch/viewImageConfirm?nation=eng&amp;searchKindValue=image&amp;ParaWordNo=70856&amp;ParaSenseSeq=1&amp;multiMediaSeq=2</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/kr/deed.en" title="Creative Commons Attribution-Share Alike 2.0 kr">CC BY-SA 2.0 kr</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=61569830">링크 <br>
         By Life of Riley - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=11003677</a>
     
-         <br> <a href="https://en.wikipedia.org/wiki/Yut">Stranica Vikipedije za igru Jut Nori na engleskom jeziku</a>
+        <br> <a href="https://en.wikipedia.org/wiki/Yut">Stranica Vikipedije za igru Jut Nori na engleskom jeziku</a>
     </footer>
     <script src="script.js"></script>
 </body>

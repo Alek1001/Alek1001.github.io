@@ -22,7 +22,6 @@ class Igra{ //formiranje igre
         this.trajanjeHinta=4000; //duzina trjanja sugestije
         this.trajanjeAnimacija=2000; //duzina trajanja animacije bacanja
         this.obavestenje=""; //obavestenje o pobedniku ili o greskama
-       
     }
 }
 
@@ -158,7 +157,6 @@ Igra.prototype.stampaTable=function(){
 
     //Sampanje ostalih polja
     for(i=1;i<=28;i++){
-       
         document.querySelector("div.polje[data-imePolja='"+i+"']").innerHTML=" ";    
         document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN");
 
@@ -255,18 +253,18 @@ Igra.prototype.dodajB=function(){
 //Pozivanje mala od strane igraca A i B
 Igra.prototype.dodajMalA=function(){
     if(this.naPotezu == "A"){
-         if(this.brojMalA>0){  
-            var e=document.createElement('div');
-            e.setAttribute("id","id"+this.malID+"");
-            e.classList.add("malA");
-            e.classList.add("mal");
-            document.querySelector('div.wraper').appendChild(e);
-            var t=document.getElementById("id"+this.malID+"");
-            var l=new Mal(t,"A");
-            this.skupMal.push(l);
-            this.malID++;
-            this.brojMalA--;
-            this.obavestenje="";
+            if(this.brojMalA>0){  
+                var e=document.createElement('div');
+                e.setAttribute("id","id"+this.malID+"");
+                e.classList.add("malA");
+                e.classList.add("mal");
+                document.querySelector('div.wraper').appendChild(e);
+                var t=document.getElementById("id"+this.malID+"");
+                var l=new Mal(t,"A");
+                this.skupMal.push(l);
+                this.malID++;
+                this.brojMalA--;
+                this.obavestenje="";
         }
         else{
             this.obavestenje="Igrac A je dodao sve malove!";
@@ -319,67 +317,67 @@ Igra.prototype.pomerajMal=function(element) {
         that=this;
         
     element.onmousedown = klik_na_mis;
-      
+
     function klik_na_mis(e) {
-      e = e || window.event;
-      e.preventDefault();
-    //   console.log("onmouse down");
-      // pozicija misa na pocetku:
-      p3 = e.clientX;
-      p4 = e.clientY;
-      var ind=that.nadjiMalind(element);
-      var h=that.skupMal[ind].pos;
-      if(h>=29) h=0; //trenutno
-      var p=that.skupMal[ind].pripadnost;
-      if(p==that.naPotezu) {
-            var t=that.kretanje(h,that.zadnjeBacanje);
-            if(t>=29) t=0; //buduce
-            if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvir2");
-            if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
-        }
-        else{
-            if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
-        }
-      document.onmouseup = pustanje_misa;
-      // pozovi funkciju kada se mis pomera:
-      document.onmousemove = pomeraj;
+        e = e || window.event;
+        e.preventDefault();
+        //   console.log("onmouse down");
+        // pozicija misa na pocetku:
+        p3 = e.clientX;
+        p4 = e.clientY;
+        var ind=that.nadjiMalind(element);
+        var h=that.skupMal[ind].pos;
+        if(h>=29) h=0; //trenutno
+        var p=that.skupMal[ind].pripadnost;
+        if(p==that.naPotezu) {
+                var t=that.kretanje(h,that.zadnjeBacanje);
+                if(t>=29) t=0; //buduce
+                if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvir2");
+                if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
+            }
+            else{
+                if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
+            }
+        document.onmouseup = pustanje_misa;
+        // pozovi funkciju kada se mis pomera:
+        document.onmousemove = pomeraj;
     }
-  
+
     function pomeraj(e) {
-      e = e || window.event;
-      e.preventDefault();
-      // izracunaj novu poziciju misa:
-      p1 = p3 - e.clientX;
-      p2 = p4 - e.clientY;
-      p3 = e.clientX;
-      p4 = e.clientY;
-      // postavi novu poziciju elementa:
-      element.style.top = (element.offsetTop - p2) + "px";
-      element.style.left = (element.offsetLeft - p1) + "px";
+        e = e || window.event;
+        e.preventDefault();
+        // izracunaj novu poziciju misa:
+        p1 = p3 - e.clientX;
+        p2 = p4 - e.clientY;
+        p3 = e.clientX;
+        p4 = e.clientY;
+        // postavi novu poziciju elementa:
+        element.style.top = (element.offsetTop - p2) + "px";
+        element.style.left = (element.offsetLeft - p1) + "px";
     }
-  
+
     function pustanje_misa() {
       /* zavrsi operaciju prevlacenja:*/
     
-      var ind=that.nadjiMalind(element);
-      var p=that.skupMal[ind].pripadnost;
-      var h=that.skupMal[ind].pos;
-      if(h>=29) h=0; //trenutno
-        if(p==that.naPotezu){
-            var t=that.kretanje(h,that.zadnjeBacanje);
-            if (!that.blokadaMala) that.skupMal[ind].pos=t;
-            if(t>=29) t=0; //buduce
-            if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.remove("okvir2");
-            if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
-        that.blokadaMala=true;
-        }
-        else{
-            if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
-        }
-      document.onmouseup = null;
-      document.onmousemove = null;
-        }
-  }
+        var ind=that.nadjiMalind(element);
+        var p=that.skupMal[ind].pripadnost;
+        var h=that.skupMal[ind].pos;
+        if(h>=29) h=0; //trenutno
+            if(p==that.naPotezu){
+                var t=that.kretanje(h,that.zadnjeBacanje);
+                if (!that.blokadaMala) that.skupMal[ind].pos=t;
+                if(t>=29) t=0; //buduce
+                if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.remove("okvir2");
+                if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
+            that.blokadaMala=true;
+            }
+            else{
+                if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
+            }
+        document.onmouseup = null;
+        document.onmousemove = null;
+            }
+}
 
 //funkcija za brisanje mala iz HTML-a
 Igra.prototype.obrisiMal=function(element){
@@ -402,13 +400,12 @@ Igra.prototype.obrisiMal=function(element){
         }
         that.stampa();
     }
-    
 }
 
 //funkcija za dupliranje malova
 Igra.prototype.duplirajMal=function(element){
     element.ondblclick=dupliraj; 
-   var that=this;
+    var that=this;
     function dupliraj(e){
         e = e || window.event;
         e.preventDefault();
@@ -560,7 +557,6 @@ document.querySelector('.settings').addEventListener('mouseleave',function(){
 
     var p4=document.querySelector('#anime').checked;
     (p4)? igra.anime=true:igra.anime=false;
-    
 });
 
 //aktiiranje dodatnih podesavanja
@@ -597,7 +593,7 @@ document.querySelector('#zavrseno_podesavanje').onclick=function(){
     if (isNaN(t1) || t1<0 || t1>10) control=false;
     if (isNaN(t2) || t2<0 || t2>10) control=false;
 
-   if(control){ document.querySelector('#podesavanje_kartica').classList.add('hidden'); }
+    if(control){ document.querySelector('#podesavanje_kartica').classList.add('hidden'); }
 }
 
 //pozivamo sve potrebne funkcije
@@ -649,7 +645,6 @@ document.querySelector('#dodajMalB').onclick=function(){
         igra.pomerajMal(igra.skupMal[i].doc);
         igra.obrisiMal(igra.skupMal[i].doc);
         igra.duplirajMal(igra.skupMal[i].doc);
-   
     }
     igra.stampa();
 }
@@ -692,7 +687,6 @@ window.addEventListener('keyup',function(e){
             igra.pomerajMal(igra.skupMal[i].doc);
             igra.obrisiMal(igra.skupMal[i].doc);
             igra.duplirajMal(igra.skupMal[i].doc);
-       
         }
         igra.stampa();
     }
@@ -707,12 +701,3 @@ window.addEventListener('keyup',function(e){
         igra.stampa();
         }
 });
-
-
-   
-
-
-
-
-
-  
