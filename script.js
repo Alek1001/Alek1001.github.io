@@ -656,12 +656,15 @@ document.querySelector('#dodajMalB').onclick=function(){
 
 //Kako bi igra mogla da se igra i preko tastature. Space za odigraj i Enter za reset. 
 window.addEventListener('keyup',function(e){
+    //https://keycode.info
+
     var key=e.keyCode;
     e.preventDefault();
     if (key==66 || key==32){
             igra.bacanje();
             igra.stampa();
     }
+
     if (key==13){
         igra.zavrsenPotez();
         igra.stampa();
@@ -681,7 +684,7 @@ window.addEventListener('keyup',function(e){
                 
         }
         igra.stampa();
-        }
+    }
 
     if (key==68){
         igra.dodajMalB();
@@ -694,6 +697,15 @@ window.addEventListener('keyup',function(e){
         igra.stampa();
     }
 
+    if (key==49){
+        igra.dodajA();
+        igra.stampa();
+        }
+
+    if (key==51){
+        igra.dodajB();
+        igra.stampa();
+        }
 });
 
 

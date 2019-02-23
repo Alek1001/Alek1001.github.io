@@ -24,8 +24,6 @@ ol,ul,li{
 }
 
 
-
-
 body{
     background-image: linear-gradient(white,lightblue);
 }
@@ -37,8 +35,6 @@ div{
     font-size:2.5rem;
 }
 
-
-
 h1{
     font-size: 3rem;
     text-align: center;
@@ -49,7 +45,6 @@ h3{
     font-size: 2.5rem;
     text-align: center;
     margin: 3rem;
-
 }
 
 div.pravila{
@@ -183,9 +178,6 @@ header{
     display:flex;
 }
 
-
-
-
 .dugmeMeni{
     width:12rem;
     height: 4rem;
@@ -204,6 +196,39 @@ header{
     box-shadow: none;
 }
 
+#potez:hover::after{
+    content:"B ili Space";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:120%;
+    left:20%;
+    background-color: rgb(165, 220, 238);
+    width: auto;
+}
+
+#zavrsen_potez:hover::after{
+    content:"Enter";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:120%;
+    left:35%;
+    background-color: rgb(165, 220, 238);
+    width: auto;
+}
+
+#reset:hover::after{
+    content:"Escepe";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:120%;
+    left:30%;
+    background-color: rgb(165, 220, 238);
+    width: auto;
+}
+
 .dugmeA{
     width:12rem;
     height: 4rem;
@@ -218,6 +243,28 @@ header{
     background-color: deepskyblue;
     transform: scale(1.1);
     box-shadow: none;
+}
+
+#dodajMalA:hover::after{
+    content:"A";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:120%;
+    left:45%;
+    background-color: rgb(165, 220, 238);
+    width: auto;
+}
+
+#dodajA:hover::after{
+    content:"1";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:120%;
+    left:45%;
+    background-color: rgb(165, 220, 238);
+    width: auto;
 }
 
 .dugmeB{
@@ -238,6 +285,30 @@ header{
     box-shadow: none;
 }
 
+#dodajMalB:hover::after{
+    content:"D";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:120%;
+    left:45%;
+    background-color: rgb(47, 92, 107);
+    color:white;
+    width: auto;
+}
+
+#dodajB:hover::after{
+    content:"3";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:120%;
+    left:45%;
+    background-color: rgb(47, 92, 107);
+    color:white;
+    width: auto;
+}
+
 .rezultat{
     display:flex;
     justify-content: space-evenly;
@@ -255,8 +326,7 @@ header{
     padding: 1rem;
     width: 30rem;
     border-radius: 10rem;
-   
-}
+   }
 
 .statusB{
     display:flex;
@@ -270,7 +340,6 @@ header{
     padding: 1rem;
     width: 30rem;
     border-radius: 10rem;
-
 }
 
 .potez{
@@ -373,7 +442,6 @@ div.polje{
     background-size: cover;
 }
 
-
 .mal{
     background-size: cover;
     opacity:1;
@@ -386,31 +454,48 @@ div.polje{
     font-size: 6rem;
     position:absolute;
     top:60rem;
-    
-}
+    }
 
 .malA{
-    
-    background-image: url(Realistic_White_Go_Stone.svg.png);
+        background-image: url(Realistic_White_Go_Stone.svg.png);
     right:1.5rem;
     color: black;
 }
 
+.malA:hover::after{
+    content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:100%;
+    left:-50%;
+    background-color: rgb(170, 228, 243);
+    width: 30rem;
+}
+
 .malB{
-   
-    background-image: url(Realistic_Go_Stone.svg.png);
+       background-image: url(Realistic_Go_Stone.svg.png);
     right:1.5rem;
     color: white;
 }
 
-
+.malB:hover::after{
+    content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position:absolute;
+    top:100%;
+    left:-50%;
+    background-color: rgb(6, 105, 129);
+    color:white;
+    width: 30rem;
+}
 
 #igra{
     background-image: url(Yut-nori.jpg);
     opacity: 0.85;
     position:relative;
-    
-}
+    }
 
 #obavestenje{
     color: red;
@@ -418,13 +503,10 @@ div.polje{
 }
 
 footer{
-    
-    background-color: lightblue;
+        background-color: lightblue;
     height: auto;
     width: 100%;
 }
-
-
 
 figure{
     text-align: center;
