@@ -204,7 +204,6 @@ header{
     justify-items: center;
     width: 67.5rem; 
     height: 49.5rem;
-    
 }
 
 .levi_desni{
@@ -245,7 +244,7 @@ div.polje{
     background-color: rgb(20, 20, 236);
     color:red;
     opacity:1;
-    }
+}
 
 .poljeN2{
     background-image: url(220px-Taegeuk.svg.png);
@@ -264,7 +263,7 @@ div.polje{
     font-size: 6rem;
     position:absolute;
     top:60rem;
-    }
+}
 
 .malA{
     background-image: url(Realistic_White_Go_Stone.svg.png);
@@ -380,7 +379,6 @@ div.polje{
     box-shadow: 0.3rem 0.3rem grey;
     cursor: pointer;
     transition: all 0.3s;
-    
 }
 
 .dugmeA:hover{
@@ -544,7 +542,6 @@ figure img{
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    
 }
 
 #korejski{
