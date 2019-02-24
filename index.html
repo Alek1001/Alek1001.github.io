@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Yut Nori</title>
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Scada:400,400i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,12 +17,12 @@
         Meni
         <div class="settings">
             <ul>
-                <li><input type="checkbox" name="Pravilo-1" id="praviloMinus1"> Da li zelite pravilo -1?</li>
-                <li><input type="checkbox" name="Hint" id="checkHint2"> Da li ne zelite sugestije vezane za mal?</li>
-                <li><input type="checkbox" name="Anime" id="anime"> Da li zelite prikaz bacanja?</li>
+                <li><input type="checkbox" name="Pravilo-1" id="praviloMinus1"> Da li zelite da igrate sa pravilom -1?</li>
+                <li><input type="checkbox" name="Hint" id="checkHint2"> Suspenzija sugestija vezane za mal?</li>
+                <li><input type="checkbox" name="Anime" id="anime"> Graficki prikaz bacanja?</li>
             </ul>
             <p id="dodatna_podesavanja">Dodatna podesavanja</p> 
-            <a href="pravila.html" target="_blank">Pravila igre</a>
+            <a href="pravila.html" target="_blank">Uputstvo za igru</a>
         </div>
         
     </div>
@@ -34,7 +37,9 @@
         <label><input type="number" id="duzinaSugestije" value="4"> Koliko sekundi zelite da traje sugestija?</label> <br> <br>
         <label><input type="number" id="duzinaAnimacije" value="2"> Koliko sekundi zelite da traje prikaz bacanja?</label> <br> <br>
     </div> 
-    <div class="center"><input type="button" id="zavrseno_podesavanje" value="Gotovo" class="dugmePodesavanje"></div> 
+    <div class="center">
+        <button id="zavrseno_podesavanje" class="dugmePodesavanje">Gotovo</button>
+    </div> 
 
 </div>
 

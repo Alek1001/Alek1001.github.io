@@ -185,10 +185,13 @@ Igra.prototype.stampaTable=function(){
 //Stampanje rezultata
 Igra.prototype.stampa=function(){
     document.querySelector('#naPotezu').innerHTML="Na potezu je igrac "+this.naPotezu;
-    document.querySelector('#rezultatA').innerHTML="Rezultat A je: "+this.scoreA;
-    document.querySelector('#rezultatB').innerHTML="Rezultat B je: "+this.scoreB;
-    document.querySelector('#rezultatA1').innerHTML="Ostalo malova: "+this.brojMalA;
-    document.querySelector('#rezultatB1').innerHTML="Ostalo malova: "+this.brojMalB;
+    document.querySelector('#rezultatA').innerHTML="Rezultat igraca A je: "+this.scoreA;
+    document.querySelector('#rezultatB').innerHTML="Rezultat igraca B je: "+this.scoreB;
+    
+    if(this.brojMalA==1) document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" mal!";
+    else document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" mala!";
+    if(this.brojMalB==1) document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" mal!";
+    else document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" mala!";
     
     if(igra.naPotezu=="A"){
         document.querySelector('.statusA').classList.add("okvir");
@@ -254,13 +257,13 @@ Igra.prototype.dodajB=function(){
 Igra.prototype.dodajMalA=function(){
     if(this.naPotezu == "A"){
             if(this.brojMalA>0){  
-                var e=document.createElement('div');
+                var e=document.createElement('div'); //kreiranje mal-a kao novi div
                 e.setAttribute("id","id"+this.malID+"");
                 e.classList.add("malA");
                 e.classList.add("mal");
-                document.querySelector('div.wraper').appendChild(e);
+                document.querySelector('div.wraper').appendChild(e); //vezan za tablu
                 var t=document.getElementById("id"+this.malID+"");
-                var l=new Mal(t,"A");
+                var l=new Mal(t,"A"); //dodavanje mala i kao objekat unutar skripta
                 this.skupMal.push(l);
                 this.malID++;
                 this.brojMalA--;

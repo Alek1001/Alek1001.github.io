@@ -30,31 +30,32 @@ html{
     font-size: 62.5%;
 }
 
-div{
-    font-size:2.5rem;
-    font-family: 'Cabin',
-    sans-serif;
+html, button{
+    font-family: 'Cabin', sans-serif;
 }
 
-button{
-    font-family: 'Cabin',
-    sans-serif;
+.statusA, .statusB, .rezultat{
+    font-family: 'Indie Flower', cursive;
+}
+
+.uputstvo{
+     font-family: 'Scada', sans-serif;
+}
+
+div{
+    font-size:2.5rem;
 }
 
 h1{
     font-size: 3rem;
     text-align: center;
     margin-bottom: 3rem;
-    font-family: 'Cabin',
-    sans-serif;
 }
 
 h3{
     font-size: 2.5rem;
     text-align: center;
     margin: 3rem;
-    font-family: 'Cabin',
-    sans-serif;
 }
 
 div.pravila{
@@ -126,7 +127,7 @@ header{
     border: 0.25rem solid black;
     background-color: lightblue;
     width: 75rem;
-    height: 40rem;
+    height: auto;
     position:absolute;
     top: 30%;
     left: 50%;
