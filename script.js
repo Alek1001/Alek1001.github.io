@@ -188,10 +188,10 @@ Igra.prototype.stampa=function(){
     document.querySelector('#rezultatA').innerHTML="Rezultat igraca A je: "+this.scoreA;
     document.querySelector('#rezultatB').innerHTML="Rezultat igraca B je: "+this.scoreB;
     
-    if(this.brojMalA==1) document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" mal!";
-    else document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" mala!";
-    if(this.brojMalB==1) document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" mal!";
-    else document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" mala!";
+    if(this.brojMalA==1) document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" mal";
+    else document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" mala";
+    if(this.brojMalB==1) document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" mal";
+    else document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" mala";
     
     if(igra.naPotezu=="A"){
         document.querySelector('.statusA').classList.add("okvir");
@@ -431,7 +431,7 @@ Igra.prototype.duplirajMal=function(element){
     }
 }
 
-//Slede dve metode za davanje sgestija vezanih za tablu
+//Slede dve metode za davanje sugestija vezanih za tablu
 Igra.prototype.hint0=function(){
     var that=this;
     for(let i=0;i<=28;i++){
@@ -456,7 +456,7 @@ Igra.prototype.hint1=function(){
     var that=this;
     function ocistiHint(){
         for(let i=0;i<=28;i++){
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("okvir");
+            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("okvirTT");
         }
     }
 
@@ -466,7 +466,7 @@ Igra.prototype.hint1=function(){
             var t=that.kretanje(i,that.zadnjeBacanje);
             if(t>=29) t=0;
 
-            if(that.hint_1) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvir");
+            if(that.hint_1) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvirTT");
 
             setTimeout(function(){
                 ocistiHint()}, that.trajanjeHinta); 
