@@ -39,7 +39,7 @@ html, button{
 }
 
 .uputstvo{
-     font-family: 'Scada', sans-serif;
+    font-family: 'Scada', sans-serif;
 }
 
 div{
@@ -181,13 +181,14 @@ header{
 }
 
 .wraper{
-    width: 67.5rem; 
-    height: 67.5rem;
+    width: 67.7rem; 
+    height: 67.7rem;
     background-color:lightskyblue;
     text-align: center; 
     opacity: 0.9;
     border-radius: 3rem;
-    box-shadow: 0.5rem 0.5rem rgb(173, 145, 145);
+    border: 0.1rem solid black;
+    box-shadow: 0.6rem 0.6rem rgb(67, 69, 90);
     position:relative;
 }
 
