@@ -198,7 +198,7 @@ header{
     opacity: 0.9;
     border-radius: 3rem;
     border: 0.1rem solid black;
-    box-shadow: 0.6rem 0.6rem 0.3rem rgb(67, 69, 90);
+    box-shadow: 0.6rem 0.6rem 0.2rem rgb(67, 69, 90);
     position:relative;
 }
 
@@ -390,6 +390,7 @@ div.polje{
     width:12rem;
     height: 4rem;
     margin:1rem;
+    color:blue;
     box-shadow: 0.3rem 0.3rem grey;
     cursor: pointer;
     transition: all 0.3s;
@@ -488,6 +489,7 @@ div.polje{
     padding: 1rem;
     width: 30rem;
     border-radius: 10rem;
+    box-shadow: 0.6rem 0.4rem 0.2rem rgb(73, 85, 88);
 }
 
 .statusB{
@@ -502,6 +504,7 @@ div.polje{
     padding: 1rem;
     width: 30rem;
     border-radius: 10rem;
+    box-shadow: 0.6rem 0.4rem 0.2rem rgb(73, 85, 88);
 }
 
 .potez{
@@ -514,6 +517,7 @@ div.polje{
     text-align: center;
     width: 35rem;
     border-radius: 10rem;
+    box-shadow: 0.6rem 0.4rem 0.2rem rgb(73, 85, 88);
 }
 
 #obavestenje{
