@@ -174,6 +174,16 @@ header{
     position:relative;
     }
 
+/* .igra::before{
+    content: "";
+    background-image: url(Yut-nori.jpg);
+    opacity: 0.5;
+    position:absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+} */
+
 .tabla{
     display: flex;
     justify-content: center;
@@ -188,7 +198,7 @@ header{
     opacity: 0.9;
     border-radius: 3rem;
     border: 0.1rem solid black;
-    box-shadow: 0.6rem 0.6rem rgb(67, 69, 90);
+    box-shadow: 0.6rem 0.6rem 0.3rem rgb(67, 69, 90);
     position:relative;
 }
 
@@ -305,8 +315,10 @@ div.polje{
 .meni{
     display:flex;
     justify-content: space-evenly;
+    align-content: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    /* background-color:white; */
 }
 
 .meniA{
@@ -460,6 +472,8 @@ div.polje{
 .rezultat{
     display:flex;
     justify-content: space-evenly;
+    align-content: center;
+    /* background-color:white; */
 }
 
 .statusA{
@@ -481,7 +495,7 @@ div.polje{
     flex-direction: column;
     align-items: center;
     background-color: dimgray;
-    color:blue;
+    color:white;
     display: flex;
     flex-direction: column;
     justify-content: center;
