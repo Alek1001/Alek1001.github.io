@@ -256,11 +256,14 @@ div.polje{
     background-color: rgb(20, 20, 236);
     color:red;
     opacity:1;
+    z-index:5;
 }
 
 .poljeN2{
     background-image: url(220px-Taegeuk.svg.png);
     background-size: cover;
+    opacity:1;
+    z-index:5;
 }
 
 .mal{
@@ -336,7 +339,7 @@ div.polje{
     width:12rem;
     height: 4rem;
     background-color: deepskyblue;
-    box-shadow: 0.3rem 0.3rem grey;
+    box-shadow: 0.3rem 0.3rem 0.1rem grey;
     margin: 1rem;
     cursor: pointer;
     margin-left: 2rem;  
@@ -390,7 +393,7 @@ div.polje{
     height: 4rem;
     margin:1rem;
     color:blue;
-    box-shadow: 0.3rem 0.3rem grey;
+    box-shadow: 0.3rem 0.3rem 0.1rem grey;
     cursor: pointer;
     transition: all 0.3s;
 }
@@ -431,7 +434,7 @@ div.polje{
     margin:1rem;
     color:white;
     background: rgb(82, 81, 81);
-    box-shadow: 0.3rem 0.3rem rgb(63, 62, 62);
+    box-shadow: 0.3rem 0.3rem 0.1rem rgb(63, 62, 62);
     cursor: pointer;
     transition: all 0.3s;
     border-color: rgb(53, 52, 52);
@@ -473,8 +476,7 @@ div.polje{
     display:flex;
     justify-content: space-evenly;
     align-content: center;
-    /* background-color:white; */
-}
+   }
 
 .statusA{
     display:flex;

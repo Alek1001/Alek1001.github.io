@@ -38,12 +38,14 @@ class Mal{ //formiranje zetona za igru
 Igra.prototype.bacanje=function(){
     if(!this.blokadaBacanja && this.blokadaMala){
         this.obavestenje="";
-        var s="",
+        var q,t,
+            s="",
             br=0;
         for (let i=1;i<=4;i++){
-            t=parseInt(Math.random()*2);
-            br+=t;
-            s+=t;
+                q=Math.random();
+                (q<=46)? t=0:t=1;
+                br+=t;
+                s+=t;
         }
         if (br==0) br=5;
         if (s=="1000" && this.pravilo_minus_1==true) br=-1; //-1 specijalno pravilo
@@ -537,7 +539,7 @@ Igra.prototype.animeBacanje=function(){
     else if(this.zadnjeBacanje==-1 && this.anime==true){
         document.querySelector('.animacija').classList.remove('hidden');
         document.querySelector('.animacija').classList.add('back');
-        document.querySelector('#korejski').innerHTML="nazad";
+        document.querySelector('#korejski').innerHTML="backdo";
         setTimeout(function(){
             document.querySelector('.animacija').classList.remove('back');
             document.querySelector('.animacija').classList.add('hidden');
@@ -633,7 +635,7 @@ document.querySelector('#dodajB').onclick=function(){
 
 document.querySelector('#dodajMalA').onclick=function(){
     igra.dodajMalA();
-    for(var i=0;i<igra.skupMal.length;i++){
+    for(let i=0;i<igra.skupMal.length;i++){
             igra.pomerajMal(igra.skupMal[i].doc);
             igra.obrisiMal(igra.skupMal[i].doc);
             igra.duplirajMal(igra.skupMal[i].doc);
@@ -644,7 +646,7 @@ document.querySelector('#dodajMalA').onclick=function(){
 
 document.querySelector('#dodajMalB').onclick=function(){
     igra.dodajMalB();
-    for(var i=0;i<igra.skupMal.length;i++){
+    for(let i=0;i<igra.skupMal.length;i++){
         igra.pomerajMal(igra.skupMal[i].doc);
         igra.obrisiMal(igra.skupMal[i].doc);
         igra.duplirajMal(igra.skupMal[i].doc);
@@ -675,7 +677,7 @@ window.addEventListener('keyup',function(e){
 
     if (key==65){
         igra.dodajMalA();
-        for(var i=0;i<igra.skupMal.length;i++){
+        for(let i=0;i<igra.skupMal.length;i++){
                 igra.pomerajMal(igra.skupMal[i].doc);
                 igra.obrisiMal(igra.skupMal[i].doc);
                 igra.duplirajMal(igra.skupMal[i].doc);
@@ -686,7 +688,7 @@ window.addEventListener('keyup',function(e){
 
     if (key==68){
         igra.dodajMalB();
-        for(var i=0;i<igra.skupMal.length;i++){
+        for(let i=0;i<igra.skupMal.length;i++){
             igra.pomerajMal(igra.skupMal[i].doc);
             igra.obrisiMal(igra.skupMal[i].doc);
             igra.duplirajMal(igra.skupMal[i].doc);
