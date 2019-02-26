@@ -43,7 +43,7 @@ Igra.prototype.bacanje=function(){
             br=0;
         for (let i=1;i<=4;i++){
                 q=Math.random();
-                (q<=46)? t=0:t=1;
+                (q<=0.46)? t=0:t=1;
                 br+=t;
                 s+=t;
         }
