@@ -1,161 +1,184 @@
-html{
+html {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     width: 100%;
     height: 100%;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
-*{
-    margin:0;
-    padding:0;
+
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
+
 a {
     text-decoration: none;
 }
-ol,ul,li{
+
+ol, ul, li {
     list-style-type: none;
 }
 
-body{
-    background-image: linear-gradient(white,lightblue);
+body {
+    background-image: linear-gradient(white, lightblue);
 }
-html{
+
+html {
     font-size: 62.5%;
 }
 
-html, button{
+html, button {
     font-family: 'Cabin', sans-serif;
 }
 
-.statusA, .statusB, .rezultat{
+.statusA, .statusB, .rezultat {
     font-family: 'Indie Flower', cursive;
 }
 
-.uputstvo{
+.uputstvo {
     font-family: 'Scada', sans-serif;
 }
 
-div{
-    font-size:2.5rem;
+div {
+    font-size: 2.5rem;
 }
 
-h1{
+h1 {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 3rem;
 }
 
-h3{
+h3 {
     font-size: 2.5rem;
     text-align: center;
     margin: 3rem;
 }
 
-div.pravila{
-    font-size:2rem;
+div.pravila {
+    font-size: 2rem;
 }
 
-a:link{
-    color:blue;
-}
-a:hover{
-    color:red;
-}
-a:active{
-    color:red;
-}
-a:visited{
-    color:blue
-}
-a.poseban:link{
-    color:blue;
-}
-a.poseban:visited{
-    color:blue;
+a:link {
+    color: blue;
 }
 
-header{
-    width:100%;
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: red;
+}
+
+a:visited {
+    color: blue
+}
+
+a.poseban:link {
+    color: blue;
+}
+
+a.poseban:visited {
+    color: blue;
+}
+
+header {
+    width: 100%;
     height: 2rem;
     display: flex;
     align-items: center;
     background-color: rgb(9, 171, 224);
 }
 
-.settings_wraper{
+.settings_wraper {
     display: flex;
     flex-direction: row;
     align-items: center;
     line-height: 2rem;
     font-size: 2rem;
     margin-left: 3rem;
-    position:relative;
+    position: relative;
 }
 
-.settings_wraper{
+.settings_wraper {
     cursor: pointer;
 }
 
-.settings{
-    position:absolute;
-    background-color:lightblue;
+.settings {
+    position: absolute;
+    background-color: lightblue;
     width: 35rem;
-    top:2rem;
+    top: 2rem;
     font-size: 2rem;
-    z-index:1000;
-    border-top:1px solid black;
+    z-index: 1000;
+    border-top: 1px solid black;
     line-height: 4rem;
-    display:none;
+    display: none;
 }
 
-.settings_wraper:hover .settings{
-    display:block;
+#uputstvo {
+    color: black;
+    padding-left: 3rem;
 }
 
-#dodatna_podesavanja{
-    color:blue;
+#uputstvo a:link {
+    color: black;
 }
 
-#podesavanje_kartica{
+#uputstvo a:visited {
+    color: black;
+}
+
+#meni_za_podesavanja:hover .settings {
+    display: block;
+}
+
+#dodatna_podesavanja {
+    color: blue;
+}
+
+#podesavanje_kartica {
     border: 0.25rem solid black;
     background-color: lightblue;
     width: 75rem;
     height: auto;
-    position:absolute;
+    position: absolute;
     top: 30%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    z-index:8;
+    transform: translate(-50%, -50%);
+    z-index: 8;
 }
 
-.kartica_header{
+.kartica_header {
     position: relative;
     top: 0rem;
     height: 3rem;
     width: 100%;
-    background-color:blue;
+    background-color: blue;
     color: white;
     padding-left: 1rem;
 }
 
-.opcije{
+.opcije {
     padding: 2rem;
 }
 
-.center{
+.center {
     display: flex;
     justify-content: center;
 }
 
-.dugmePodesavanje{
-    width:12rem;
+.dugmePodesavanje {
+    width: 12rem;
     height: 4rem;
     background-color: deepskyblue;
     box-shadow: 0.3rem 0.3rem grey;
@@ -163,276 +186,275 @@ header{
     cursor: pointer;
 }
 
-.dugmePodesavanje:hover{
+.dugmePodesavanje:hover {
     background-color: white;
     box-shadow: none;
 }
 
-.igra{
-    position:relative;
-    }
+.igra {
+    position: relative;
+}
 
-.igra::before{
+.igra::before {
     content: "";
     background-image: url(Yut-nori.jpg);
     opacity: 0.6;
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    z-index:-1000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1000;
 }
 
-.tabla{
+.tabla {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
 }
 
-.wraper{
-    width: 67.7rem; 
+.wraper {
+    width: 67.7rem;
     height: 67.7rem;
-    background-color:lightskyblue;
-    text-align: center; 
+    background-color: lightskyblue;
+    text-align: center;
     opacity: 0.9;
     border-radius: 3rem;
     border: 0.1rem solid black;
     box-shadow: 0.6rem 0.6rem 0.2rem rgb(67, 69, 90);
-    position:relative;
+    position: relative;
 }
 
-.gornji_donji{
-    display:flex;
+.gornji_donji {
+    display: flex;
     width: 67.5rem;
     height: 9rem;
     justify-content: space-between;
-    
 }
 
-.srednji{
-    display:flex;
+.srednji {
+    display: flex;
     justify-content: space-between;
     justify-items: center;
-    width: 67.5rem; 
+    width: 67.5rem;
     height: 49.5rem;
 }
 
-.levi_desni{
-    display:flex;
+.levi_desni {
+    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     width: 9rem;
     height: 49.5rem;
 }
 
-.u_sredini{
-    width: 45rem; 
+.u_sredini {
+    width: 45rem;
     height: 49.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.centralni{
-    display:grid;
-    grid-template-columns:repeat(5, 9rem);
-    grid-template-rows:repeat(5, 9rem);
+.centralni {
+    display: grid;
+    grid-template-columns: repeat(5, 9rem);
+    grid-template-rows: repeat(5, 9rem);
     justify-items: center;
     align-items: center;
 }
 
-div.polje{
+div.polje {
     border-radius: 4.5rem;
     width: 9rem;
     height: 9rem;
     text-align: center;
     line-height: 9rem;
     font-size: 9rem;
-    opacity:1;
+    opacity: 1;
 }
 
-.poljeN{
+.poljeN {
     background-color: rgb(20, 20, 236);
-    color:red;
-    opacity:1;
-    z-index:5;
+    color: red;
+    opacity: 1;
+    z-index: 5;
 }
 
-.poljeN2{
+.poljeN2 {
     background-image: url(220px-Taegeuk.svg.png);
     background-size: cover;
-    opacity:1;
-    z-index:5;
+    opacity: 1;
+    z-index: 5;
 }
 
-.mal{
+.mal {
     background-size: cover;
-    opacity:1;
-    z-index:100;
+    opacity: 1;
+    z-index: 100;
     border-radius: 3rem;
     width: 6rem;
     height: 6rem;
     text-align: center;
     line-height: 6rem;
     font-size: 6rem;
-    position:absolute;
-    top:60rem;
+    position: absolute;
+    top: 60rem;
 }
 
-.malA{
+.malA {
     background-image: url(Realistic_White_Go_Stone.svg.png);
-    right:1.5rem;
+    right: 1.5rem;
     color: black;
 }
 
-.malA:hover::after{
+.malA:hover::after {
     content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
     font-size: 1.5rem;
     line-height: 1.5rem;
-    position:absolute;
-    top:100%;
-    left:-50%;
+    position: absolute;
+    top: 100%;
+    left: -50%;
     background-color: rgb(170, 228, 243);
     width: 30rem;
 }
 
-.malB{
+.malB {
     background-image: url(Realistic_Go_Stone.svg.png);
-    right:1.5rem;
+    right: 1.5rem;
     color: white;
 }
 
-.malB:hover::after{
+.malB:hover::after {
     content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
     font-size: 1.5rem;
     line-height: 1.5rem;
-    position:absolute;
-    top:100%;
-    left:-50%;
+    position: absolute;
+    top: 100%;
+    left: -50%;
     background-color: rgb(6, 105, 129);
-    color:white;
+    color: white;
     width: 30rem;
 }
 
-.meni{
-    display:flex;
+.meni {
+    display: flex;
     justify-content: space-evenly;
     align-content: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
- }
-
-.meniA{
-    display:flex;
 }
 
-.meniC{
-    display:flex;
+.meniA {
+    display: flex;
 }
 
-.meniB{
-    display:flex;
+.meniC {
+    display: flex;
 }
 
-.dugmeMeni{
-    width:12rem;
+.meniB {
+    display: flex;
+}
+
+.dugmeMeni {
+    width: 12rem;
     height: 4rem;
     background-color: deepskyblue;
     box-shadow: 0.3rem 0.3rem 0.1rem grey;
     margin: 1rem;
     cursor: pointer;
-    margin-left: 2rem;  
+    margin-left: 2rem;
     transition: all 0.3s;
 }
 
-.dugmeMeni:hover{
+.dugmeMeni:hover {
     background-color: white;
     transform: scale(1.1);
     box-shadow: none;
 }
 
-#potez:hover::after{
-    content:"B ili Space";
+#potez:hover::after {
+    content: "B ili Space";
     font-size: 1.5rem;
     line-height: 1.5rem;
-    position:absolute;
-    top:120%;
-    left:20%;
+    position: absolute;
+    top: 120%;
+    left: 20%;
     background-color: rgb(165, 220, 238);
     width: auto;
     padding: 0.7rem;
 }
 
-#zavrsen_potez:hover::after{
-    content:"Enter";
+#zavrsen_potez:hover::after {
+    content: "Enter";
     font-size: 1.5rem;
     line-height: 1.5rem;
-    position:absolute;
-    top:120%;
-    left:35%;
+    position: absolute;
+    top: 120%;
+    left: 35%;
     background-color: rgb(165, 220, 238);
     width: auto;
     padding: 0.7rem;
 }
 
-#reset:hover::after{
-    content:"Escepe";
+#reset:hover::after {
+    content: "Escepe";
     font-size: 1.5rem;
     line-height: 1.5rem;
-    position:absolute;
-    top:120%;
-    left:30%;
+    position: absolute;
+    top: 120%;
+    left: 30%;
     background-color: rgb(165, 220, 238);
     width: auto;
     padding: 0.7rem;
 }
 
-.dugmeA{
-    width:12rem;
+.dugmeA {
+    width: 12rem;
     height: 4rem;
-    margin:1rem;
-    color:blue;
+    margin: 1rem;
+    color: blue;
     box-shadow: 0.3rem 0.3rem 0.1rem grey;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.dugmeA:hover{
+.dugmeA:hover {
     background-color: deepskyblue;
     transform: scale(1.1);
     box-shadow: none;
 }
 
-#dodajMalA:hover::after{
-    content:"A";
+#dodajMalA:hover::after {
+    content: "A";
     font-size: 1.5rem;
     line-height: 1.5rem;
-    position:absolute;
-    top:120%;
-    left:45%;
+    position: absolute;
+    top: 120%;
+    left: 45%;
     background-color: rgb(165, 220, 238);
     width: auto;
     padding: 0.7rem;
 }
 
-#dodajA:hover::after{
-    content:"1";
+#dodajA:hover::after {
+    content: "1";
     font-size: 1.5rem;
     line-height: 1.5rem;
-    position:absolute;
-    top:120%;
-    left:45%;
+    position: absolute;
+    top: 120%;
+    left: 45%;
     background-color: rgb(165, 220, 238);
     width: auto;
     padding: 0.7rem;
 }
 
-.dugmeB{
-    width:12rem;
+.dugmeB {
+    width: 12rem;
     height: 4rem;
-    margin:1rem;
-    color:white;
+    margin: 1rem;
+    color: white;
     background: rgb(82, 81, 81);
     box-shadow: 0.3rem 0.3rem 0.1rem rgb(63, 62, 62);
     cursor: pointer;
@@ -440,46 +462,46 @@ div.polje{
     border-color: rgb(53, 52, 52);
 }
 
-.dugmeB:hover{
+.dugmeB:hover {
     background-color: blue;
     transform: scale(1.1);
     box-shadow: none;
 }
 
-#dodajMalB:hover::after{
-    content:"D";
+#dodajMalB:hover::after {
+    content: "D";
     font-size: 1.5rem;
     line-height: 1.5rem;
-    position:absolute;
-    top:120%;
-    left:45%;
+    position: absolute;
+    top: 120%;
+    left: 45%;
     background-color: rgb(47, 92, 107);
-    color:white;
+    color: white;
     width: auto;
     padding: 0.7rem;
 }
 
-#dodajB:hover::after{
-    content:"3";
+#dodajB:hover::after {
+    content: "3";
     font-size: 1.5rem;
     line-height: 1.5rem;
-    position:absolute;
-    top:120%;
-    left:45%;
+    position: absolute;
+    top: 120%;
+    left: 45%;
     background-color: rgb(47, 92, 107);
-    color:white;
+    color: white;
     width: auto;
     padding: 0.7rem;
 }
 
-.rezultat{
-    display:flex;
+.rezultat {
+    display: flex;
     justify-content: space-evenly;
     align-content: center;
-   }
+}
 
-.statusA{
-    display:flex;
+.statusA {
+    display: flex;
     flex-direction: column;
     align-items: center;
     background-color: rgb(247, 235, 235);
@@ -493,12 +515,12 @@ div.polje{
     box-shadow: 0.6rem 0.4rem 0.2rem rgb(179, 179, 219);
 }
 
-.statusB{
-    display:flex;
+.statusB {
+    display: flex;
     flex-direction: column;
     align-items: center;
     background-color: dimgray;
-    color:white;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -508,7 +530,7 @@ div.polje{
     box-shadow: 0.6rem 0.4rem 0.2rem rgb(47, 54, 56);
 }
 
-.potez{
+.potez {
     background-color: lightskyblue;
     display: flex;
     flex-direction: column;
@@ -521,112 +543,112 @@ div.polje{
     box-shadow: 0.6rem 0.4rem 0.2rem rgb(114, 117, 138);
 }
 
-#obavestenje{
+#obavestenje {
     color: red;
     font-weight: bold;
 }
 
-footer{
+footer {
     background-color: lightblue;
     height: auto;
     width: 100%;
 }
 
-figure{
+figure {
     text-align: center;
 }
-figure img{
+
+figure img {
     width: 60%;
     height: auto;
 }
 
-.okvir{
+.okvir {
     border: 0.2rem solid red;
 }
 
-.okvirT{
+.okvirT {
     border: 0.4rem solid red;
 }
 
-.okvirTT{
+.okvirTT {
     border: 0.4rem solid red;
 }
 
-.okvir2{
+.okvir2 {
     border: 0.5rem solid rgb(73, 252, 73);
 }
 
-.animacija{
-    width:50rem;
+.animacija {
+    width: 50rem;
     height: 50rem;
-    position:absolute;
+    position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    z-index:10;
+    transform: translate(-50%, -50%);
+    z-index: 10;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
-#korejski{
-    color:red;
+#korejski {
+    color: red;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     font-size: 5rem;
 }
 
-.hidden{
+.hidden {
     visibility: hidden;
 }
 
-.do{
+.do {
     background-image: url('Do.jpg');
 }
 
-.ge{
+.ge {
     background-image: url('Ge.jpg');
 }
 
-.geol{
+.geol {
     background-image: url('Geol.jpg');
 }
 
-.yut{
+.yut {
     background-image: url('Yut.jpg');
 }
 
-.mo{
+.mo {
     background-image: url('Mo.jpg');
 }
 
-.back{
+.back {
     background-image: url('Back.jpg');
 }
 
-@media screen and (max-width:1000px){
-    html{
+@media screen and (max-width:1000px) {
+    html {
         font-size: 50%;
     }
 }
 
-@media screen and (max-height:930px){
-    html{
+@media screen and (max-height:930px) {
+    html {
         font-size: 50%;
     }
 }
 
-@media screen and (max-width:800px){
-    html{
+@media screen and (max-width:800px) {
+    html {
         font-size: 35%;
     }
 }
 
-@media screen and (max-height:744px){
-    html{
+@media screen and (max-height:744px) {
+    html {
         font-size: 35%;
     }
 }
-
