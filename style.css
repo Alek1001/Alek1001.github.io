@@ -148,13 +148,17 @@ header {
     cursor: pointer;
 }
 
-#podesavanje_kartica {
+label{
+    padding-left: 0.5rem;
+}
+
+.podesavanje_kartica {
     border: 0.25rem solid black;
     background-color: lightblue;
-    width: 75rem;
+    width: 80rem;
     height: auto;
     position: absolute;
-    top: 30%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 8;
@@ -170,7 +174,7 @@ header {
 }
 
 .opcije {
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .center {
@@ -649,6 +653,10 @@ figure img {
 
 .nabrajanje li{
     list-style-type: decimal;
+}
+
+.veliko_dugme{
+    width: 30rem;
 }
 
 @media screen and (max-width:1000px) {

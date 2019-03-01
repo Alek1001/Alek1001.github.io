@@ -28,7 +28,7 @@
     </div>
 </header>
 
-<div id="podesavanje_kartica" class="hidden">
+<div id="podesavanje_kartica" class="podesavanje_kartica hidden">
     <div class="kartica_header">Dodatna podesavanja</div>
     <div class="opcije">
         <label for="hintTabla0"><input type="radio" name="hintTabla" value="none" id="hintTabla0">Bez sugestije vezane za tablu</label> <br>
@@ -38,10 +38,36 @@
         <label><input type="number" id="duzinaAnimacije" value="2"> Koliko sekundi zelite da traje prikaz bacanja?</label> <br> <br>
     </div> 
     <div class="center">
+            <button id="ocisti_ls" class="dugmePodesavanje veliko_dugme">Ponovo pokazi kratko uputstvo</button>
+    </div>
+    <br>
+    <div class="center">
         <button id="zavrseno_podesavanje" class="dugmePodesavanje">Gotovo</button>
     </div> 
 
 </div>
+
+<div id="kratko_uputstvo" class="podesavanje_kartica hidden">
+        <div class="kartica_header">Kratko uputstvo</div>
+        <div class="opcije">
+                <ol class="nabrajanje">
+                        <li>Dodaj zeton, beli za igraca A i tamni za igraca B</li>
+                        <li>Stisni taster Bacaj!</li>
+                        <li>Prevuci zeton u smeru suprotonom od kazaljek na satu za onoliko polja koliko je baceno.</li>
+                        <li>Ako zeton stane na cosak, imas opciju da krenes precicom <a href="pravila.html#slika_2" target="_blank">(slika 2)</a>.</li>
+                        <li>Ako zeton stane na svoj zeton, imas opciju da ga udvojis. Dvoklik na jedan zeton, onaj sa vecim brojem, a drugi obrisi desnim klikom!</li>
+                        <li>Ako zeton stane na protivnicki zeton, ili vise njih, obrisi ih desnim klikom na njihov zeton.</li>
+                        <li>Kada zeton prodje polje start (S) dodaj sebi jedan poen pritiskom na taster dodaj poen i onda obrisi zeton desnim klikom na njega.</li>
+                        <li>Klikom na taster reset, resetuje se igra. Onda povratka nema.</li>
+                        <li>U meniju postoje bas kul podesavanja. :)</li>
+                    </ol>
+        </div> 
+        <div class="center">
+                <button id="ne_zavrseno_kratko_uputstvo" class="dugmePodesavanje veliko_dugme">Zelim ponovo da vidim kratko uputstvo!</button>
+            <button id="zavrseno_kratko_uputstvo" class="dugmePodesavanje veliko_dugme">Ne zelim ponovo da vidim kratko uputstvo!</button>
+        </div> 
+    
+    </div>
 
 <div class="igra">
     <div class="tabla">

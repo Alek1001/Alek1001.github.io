@@ -554,15 +554,42 @@ Igra.prototype.animeBacanje=function(){
     }
 }
 
+//Prvi put kada koristnik ucita igru, dobice kratko uputstvo. Moze da ponovi to pritiskom na odgovarajuci taster. 
+
+try{
+    if(localStorage.getItem('visited')==undefined) var visited=false;
+    else var visited = localStorage.getItem('visited');
+    if (!visited) {
+    document.querySelector('#kratko_uputstvo').classList.toggle("hidden");
+    }
+} catch(e) {
+    console.log(e,"Local storage ne radi!");
+}
+
+document.querySelector('#zavrseno_kratko_uputstvo').onclick=function(){
+    document.querySelector('#kratko_uputstvo').classList.toggle("hidden");
+    try{
+        localStorage.setItem('visited', true);
+    }  catch(e) {
+        console.log(e,"Local storage ne radi!");
+    }
+}
+
+document.querySelector('#ne_zavrseno_kratko_uputstvo').onclick=function(){
+    document.querySelector('#kratko_uputstvo').classList.toggle("hidden");
+}
+
+document.querySelector('#ocisti_ls').onclick=function(){
+    document.querySelector('#kratko_uputstvo').classList.toggle("hidden");
+    try{
+    localStorage.clear(); 
+    } catch(e) {
+        console.log(e,"Local storage ne radi!");
+    }
+}
+
 //pozivamo objekat igra
 var igra=new Igra();
-
-// if(localStorage.getItem('visited')==undefined) var visited=false;
-// else var visited = localStorage.getItem('visited');
-// if (!visited) {
-//   alert("Pre pocetka igre molimo Vas da pogledate uputstv za igru! Link se nalazi u gornjem levom uglu ekrana.");
-//   localStorage.setItem('visited', true);
-// }
 
 //meni za podesavanje
 document.querySelector('.settings').addEventListener('mouseleave',function(){
