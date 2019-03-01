@@ -165,8 +165,7 @@ header {
     top: 0rem;
     height: 3rem;
     width: 100%;
-    background-color: blue;
-    color: white;
+    background-color: rgb(9, 171, 224);
     padding-left: 1rem;
 }
 
@@ -182,7 +181,7 @@ header {
 .dugmePodesavanje {
     width: 12rem;
     height: 4rem;
-    background-color: deepskyblue;
+    background-color: rgb(9, 171, 224);
     box-shadow: 0.3rem 0.3rem grey;
     margin: 1rem;
     cursor: pointer;
