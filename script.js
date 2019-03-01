@@ -1,4 +1,5 @@
 class Igra{ //formiranje igre
+    //mal=zeton, jut stapovi=kockice za bacanje
     constructor(){
         this.name="Yut Nuri";
         this.naPotezu="A"; //ko je na potezu
@@ -61,10 +62,10 @@ Igra.prototype.bacanje=function(){
     }
     else{
         if(this.blokadaBacanja) {
-            this.obavestenje="Jutovi su vec baceni!"; 
+            this.obavestenje="Bacanje je vec obavljeno!"; 
         }
         else if(!this.blokadaMala) {
-            this.obavestenje="Treba da se odigra sa malom!";
+            this.obavestenje="Igrac treba da odigra potez sa zetonom!";
         }
     }
 }
@@ -81,8 +82,8 @@ Igra.prototype.zavrsenPotez=function(){
             this.obavestenje="";
         }
         else{
-            if(!this.blokadaMala) this.obavestenje="Treba da se odigra sa malom!";
-            else if(this.blokadaZavrsenogPoteza) this.obavestenje="Igrac mora da baci jutove i onda da odigra malom.";
+            if(!this.blokadaMala) this.obavestenje="Igrac treba da odigra potez sa zetonom!";
+            else if(this.blokadaZavrsenogPoteza) this.obavestenje="Igrac mora da baci i onda da odigra potez sa zetonom!";
         }
 }
 
@@ -190,10 +191,10 @@ Igra.prototype.stampa=function(){
     document.querySelector('#rezultatA').innerHTML="Rezultat igraca A je: "+this.scoreA;
     document.querySelector('#rezultatB').innerHTML="Rezultat igraca B je: "+this.scoreB;
     
-    if(this.brojMalA==1) document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" mal";
-    else document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" mala";
-    if(this.brojMalB==1) document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" mal";
-    else document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" mala";
+    if(this.brojMalA==1) document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" zeton";
+    else document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" zetona";
+    if(this.brojMalB==1) document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" zeton";
+    else document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" zetona";
     
     if(igra.naPotezu=="A"){
         document.querySelector('.statusA').classList.add("okvir");
@@ -263,6 +264,7 @@ Igra.prototype.dodajMalA=function(){
                 e.setAttribute("id","id"+this.malID+"");
                 e.classList.add("malA");
                 e.classList.add("mal");
+                e.classList.add("ruka");
                 document.querySelector('div.wraper').appendChild(e); //vezan za tablu
                 var t=document.getElementById("id"+this.malID+"");
                 var l=new Mal(t,"A"); //dodavanje mala i kao objekat unutar skripta
@@ -272,7 +274,7 @@ Igra.prototype.dodajMalA=function(){
                 this.obavestenje="";
         }
         else{
-            this.obavestenje="Igrac A je dodao sve malove!";
+            this.obavestenje="Igrac A je dodao svih 4 zetona!";
         }
     }
     else{
@@ -287,6 +289,7 @@ Igra.prototype.dodajMalB=function(){
             e.setAttribute("id","id"+this.malID+"");
             e.classList.add("malB");
             e.classList.add("mal");
+            e.classList.add("ruka");
             document.querySelector('div.wraper').appendChild(e);
             var t=document.getElementById("id"+this.malID+"");
             var l=new Mal(t,"B");
@@ -296,7 +299,7 @@ Igra.prototype.dodajMalB=function(){
             this.obavestenje="";
         }
         else{
-            this.obavestenje="Igrac B je dodao sve malove!";
+            this.obavestenje="Igrac B je dodao svih 4 zetona!";
         }
     }
     else{
@@ -328,6 +331,8 @@ Igra.prototype.pomerajMal=function(element) {
         e.preventDefault();
         //   console.log("onmouse down");
         // pozicija misa na pocetku:
+        element.classList.remove("ruka");
+        element.classList.add("vuci_rukom");
         p3 = e.clientX;
         p4 = e.clientY;
         var ind=that.nadjiMalind(element);
@@ -363,7 +368,8 @@ Igra.prototype.pomerajMal=function(element) {
 
     function pustanje_misa() {
       /* zavrsi operaciju prevlacenja:*/
-    
+      element.classList.remove("vuci_rukom");
+      element.classList.add("ruka");
         var ind=that.nadjiMalind(element);
         var p=that.skupMal[ind].pripadnost;
         var h=that.skupMal[ind].pos;
@@ -550,6 +556,13 @@ Igra.prototype.animeBacanje=function(){
 
 //pozivamo objekat igra
 var igra=new Igra();
+
+// if(localStorage.getItem('visited')==undefined) var visited=false;
+// else var visited = localStorage.getItem('visited');
+// if (!visited) {
+//   alert("Pre pocetka igre molimo Vas da pogledate uputstv za igru! Link se nalazi u gornjem levom uglu ekrana.");
+//   localStorage.setItem('visited', true);
+// }
 
 //meni za podesavanje
 document.querySelector('.settings').addEventListener('mouseleave',function(){

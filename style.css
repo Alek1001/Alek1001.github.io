@@ -93,7 +93,7 @@ a.poseban:visited {
 
 header {
     width: 100%;
-    height: 2rem;
+    height: 3rem;
     display: flex;
     align-items: center;
     background-color: rgb(9, 171, 224);
@@ -109,25 +109,24 @@ header {
     position: relative;
 }
 
-.settings_wraper {
-    cursor: pointer;
-}
 
 .settings {
     position: absolute;
-    background-color: lightblue;
+    background-color: rgb(9, 171, 224);
     width: 35rem;
-    top: 2rem;
+    top: 2.5rem;
     font-size: 2rem;
     z-index: 1000;
     border-top: 1px solid black;
     line-height: 4rem;
     display: none;
+    cursor: context-menu;
 }
 
 #uputstvo {
     color: black;
     padding-left: 3rem;
+    cursor: pointer;
 }
 
 #uputstvo a:link {
@@ -140,10 +139,13 @@ header {
 
 #meni_za_podesavanja:hover .settings {
     display: block;
+    
 }
 
 #dodatna_podesavanja {
-    color: blue;
+    color: darkblue;
+    padding-left: 1.5rem;
+    cursor: pointer;
 }
 
 #podesavanje_kartica {
@@ -335,6 +337,14 @@ div.polje {
     background-color: rgb(6, 105, 129);
     color: white;
     width: 30rem;
+}
+
+.ruka{
+    cursor: grab;
+}
+
+.vuci_rukom{
+    cursor: grabbing;
 }
 
 .meni {
@@ -627,6 +637,19 @@ figure img {
 
 .back {
     background-image: url('Back.jpg');
+}
+
+#slika_stapova{
+    height: 30rem;
+    width: auto;
+}
+
+.nabrajanje{
+    list-style-type: decimal;
+}
+
+.nabrajanje li{
+    list-style-type: decimal;
 }
 
 @media screen and (max-width:1000px) {

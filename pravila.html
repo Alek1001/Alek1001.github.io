@@ -14,13 +14,28 @@
             
                 <div class="pravila">
 
+                        <h3>Kratko uputstvo</h3>
+
+                        <ol class="nabrajanje">
+                            <li>Dodaj zeton, beli za igraca A i tamni za igraca B</li>
+                            <li>Stisni taster Bacaj!</li>
+                            <li>Prevuci zeton u smeru suprotonom od kazaljek na satu za onoliko polja koliko je baceno.</li>
+                            <li>Ako zeton stane na cosak, imas opciju da krenes precicom <a href="#slika_2">(slika 2)</a>.</li>
+                            <li>Ako zeton stane na svoj zeton, imas opciju da ga udvojis. Dvoklik na jedan zeton, onaj sa vecim brojem, a drugi obrisi desnim klikom!</li>
+                            <li>Ako zeton stane na protivnicki zeton, ili vise njih, obrisi ih desnim klikom na njihov zeton.</li>
+                            <li>Kada zeton prodje polje start (S) dodaj sebi jedan poen pritiskom na taster dodaj poen i onda obrisi zeton desnim klikom na njega.</li>
+                            <li>Klikom na taster reset, resetuje se igra. Onda povratka nema.</li>
+                            <li>U meniju postoje bas kul podesavanja. :)</li>
+                        </ol>
+
+
                         <h3>Podesavanja</h3>
 
                         Cekiranjem opcije pravilo -1 dozvoljavata da se baci i -1. U suprotnom, za bacanje se dobija 1.
         
                         <br>
         
-                        Cekiranjem opcije ,,Da li ne zelite sugestije vezane za mal?" iskljucujete sugestiju da svaki put kada kliknete na mal, u zavisnosti od poslednjeg bacanja, igra proracunava njegovu sledecu poziciju u zavisnosti od poslednjeg bacanja pod uslovom da igrac izabere najkraci put i obelezi je zelenim okvirom. Obelezavanje se gubi pustanjem misa. U slucaju da pozovete novi mal, koji onda zelite da duplirate, prvo odigrajte potez novim malom, pa onda duplirajte i obrisite jedan od dupliranih. 
+                        Cekiranjem opcije ,,Da li ne zelite sugestije vezane za zeton?" iskljucujete sugestiju da svaki put kada kliknete na zeton, u zavisnosti od poslednjeg bacanja, igra proracunava njegovu sledecu poziciju u zavisnosti od poslednjeg bacanja pod uslovom da igrac izabere najkraci put i obelezi je zelenim okvirom. Obelezavanje se gubi pustanjem misa. U slucaju da pozovete novi zeton, koji onda zelite da duplirate, prvo odigrajte potez novim zetonom, pa onda duplirajte i obrisite jedan od dupliranih. 
                         
                         <br>
         
@@ -36,7 +51,7 @@
         
                         <br>
         
-                        Opciju ,,Da li zelite sugestije vezane za tablu kada pokrecete mal?" kojom svaki put kada udjete misom u polje table, u zavisnoti od poslednjeg bacanja, bice oznaceno sledece polje crvenim okvirom na koje bi mal stao ukoliko igrac izabere najkraci moguci put u trajanju od 4 sekunde. Klikom misa se oznacavanje gubi pre vremenskog roka.
+                        Opciju ,,Da li zelite sugestije vezane za tablu sa trajanjem?" kojom svaki put kada udjete misom u polje table, u zavisnoti od poslednjeg bacanja, bice oznaceno sledece polje crvenim okvirom na koje bi mal stao ukoliko igrac izabere najkraci moguci put u trajanju od 4 sekunde. Klikom misa se oznacavanje gubi pre vremenskog roka.
         
                         Mozete da podesite i trajanje to opcije u sekundama u intervalu 0-10 sekundi. 
         
@@ -49,16 +64,16 @@
                     <h3>Opis igre</h3>
 
                     Ovo je tradicionalna Korejska igra Yut Nori koju igraju dva igraca. Neki istrazivaci kazu da se ona igrala jos od vremena Tri kraljevstva (57 p.n.e - 668).
-                    Svaki igrac ima 4 zetona, zvana mal, i cilj igre je da sva cetiri mala predju preko kraja (polje S). 
+                    Svaki igrac ima 4 zetona, zvana mal, i cilj igre je da sva cetiri zetona predju preko kraja (polje S). 
                     Igrac A igra belim malovima, a igrac B tamnim. <br>
             
                     Igraci igraju naizmenicno, a prvo igra igrac A. Igrac koji je na potezu je obelezen i crvenim okvirom. <br>
 
                     Potez se sastoji iz vise delova. 
-                    <ol>
-                        <li>Igrac baci jut stapove.</li>
-                        <li>Igrac izabere mal kojim ce igrati ili doda novi mal.</li>
-                        <li>Igrac odigra izabranim malom prema pravilima.</li>
+                    <ol class="nabrajanje">
+                        <li>Igrac baci jut stapove, koji su Korejska verzija kockica.</li>
+                        <li>Igrac izabere zeton kojim ce igrati ili doda novi zeton.</li>
+                        <li>Igrac odigra izabranim zetonom prema pravilima.</li>
                     </ol>
 
                     Bacaju se 4 jut stapa (slika 1), tako sto se pritisne na taster ili pritiskom na B ili space na tastaturi. 
@@ -66,27 +81,27 @@
                     ukoliko je samo taj stap okrenut zadnjom stranom, bacanje se racuna kao -1). 
                                       
                     <figure>
-                        <img src="Yunnori_en.svg.png" alt="slika se nazalost nije ucitala"> <br>
+                        <img src="Yunnori_en.svg.png" alt="slika se nazalost nije ucitala" id="slika_stapova"> <br>
                         Slika 1: Broj poena u zavisnosti od toga kako su stapovi pali, i imena tih poteza na Korejskom jeziku. 
                     </figure>
                     <br>
 
-                    Igrac ima slobodu da odigra potez malom koji je na tabli, ili da doda novi pritiskom na taster ili preko tastature (A na tastaturi za igraca A, ili D za igraca B).
-                    Mal pocinje kretanje iz polja S, i krece se u smeru suprotnom u odnosu na kretanje kazljke sata. Mal se krece po tabli za onoliko polja koliko je baceno. Ukoliko igrac nije siguran gde treba da stane na tabli, postoji sugestija (sugestitrano polje dobije crveni ili zeleni okvir). 
-                    Ukoliko mal stane na cosak table, ili na centar table, igrac moze da izabere da krene precicom (slika 2). 
-                    Ukoliko je baceno -1, igrac ima pravo, da odigra novim malom tako sto ce ga postaviti jedno polje pre (znaci jedno polje levo od) pocetnog polja S. 
+                    Igrac ima slobodu da odigra potez zetonom koji je na tabli, ili da doda novi pritiskom na taster ili preko tastature (A na tastaturi za igraca A, ili D za igraca B).
+                    Zeton pocinje kretanje iz polja S, i krece se u smeru suprotnom u odnosu na kretanje kazljke sata. Zeton se krece po tabli za onoliko polja koliko je baceno. Ukoliko igrac nije siguran gde treba da stane na tabli, postoji sugestija (sugestitrano polje dobije crveni ili zeleni okvir). 
+                    Ukoliko zeton stane na cosak table, ili na centar table, igrac moze da izabere da krene precicom (slika 2). 
+                    Ukoliko je baceno -1, igrac ima pravo, da odigra novim zetonom tako sto ce ga postaviti jedno polje pre (znaci jedno polje levo od) pocetnog polja S. 
 
-                    <figure><img src="Yut_board.svg.png" alt="slika se nazalost nije ucitala">
-                        <br> Slika 2: Cetiri puta kojima moze da se krece mal. </figure>
+                    <figure><img src="Yut_board.svg.png" alt="slika se nazalost nije ucitala" id="slika_2">
+                        <br> Slika 2: Cetiri puta kojima moze da se krece zeton. </figure>
                 
                         <br>
                     
-                    Ako mal stane na polje na kome se nalazi mal istog igraca, taj igrac ima pravo da izabere da se od tada malovi krecu zajedno. Dvoklikom na mal, malovi dobijaju veci broj, i na taj nacin se "grupisu", sto olaksava igracu. 
-                    Ukoliko mal stane na polje sa jednim ili vise malova protivnickog igraca, on ih ,,pojede" i svi protivnicki malovi sa tog polja se sklanjaju sa table. Sklanjanje mala sa table se vrsi desnim klikom na mal. S je takodje polje i kada mal stigne na polje S moze da bude sklonjen protivnickim malom koji je obisao citavu tablu, ali ne malom koji je tek dodat. 
+                    Ako zeton stane na polje na kome se nalazi zeton istog igraca, taj igrac ima pravo da izabere da se od tada zetoni krecu zajedno. Dvoklikom na zeton, zetoni dobijaju veci broj, i na taj nacin se "grupisu", sto olaksava igracu. 
+                    Ukoliko mal stane na polje sa jednim ili vise zetona protivnickog igraca, on ih ,,pojede" i svi protivnicki zetoni sa tog polja se sklanjaju sa table. Sklanjanje mala sa table se vrsi desnim klikom na zeton. S je takodje polje i kada mal stigne na polje S moze da bude sklonjen protivnickim zetonom koji je obisao citavu tablu, ali ne zetonom koji je tek dodat. 
             
                     <br>
             
-                    Igrac osvaja poen kada mal prodje polje S (sto znaci da mal mora da ima dovoljno veliko bacanje da dodje u polja S, i onda da ima barem jos +1 da ga prodje), i taj rezultat upisuje pritiskom na odgovarajuci taster. Nije obavezno da igrac baci tacan broj. Posle toga mal se sklanja sa table desnim klikom. Igrac pobedjuje kada osvoji 4 poena. 
+                    Igrac osvaja poen kada zeton prodje polje S (sto znaci da zeton mora da ima dovoljno veliko bacanje da dodje u polja S, i onda da ima barem jos +1 da ga prodje), i taj rezultat upisuje pritiskom na odgovarajuci taster. Nije obavezno da igrac baci tacan broj. Posle toga zeton se sklanja sa table desnim klikom. Igrac pobedjuje kada osvoji 4 poena. 
             
                     <br>
 
