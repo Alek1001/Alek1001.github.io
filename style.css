@@ -150,6 +150,7 @@ header {
 
 label{
     padding-left: 0.5rem;
+    cursor: pointer;
 }
 
 .podesavanje_kartica {
@@ -162,6 +163,12 @@ label{
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 8;
+    box-shadow: 0.1rem 0.5rem 1rem rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.podesavanje_kartica:hover{
+    box-shadow: 0.1rem 1rem 2rem rgba(0,0,0,0.3);
 }
 
 .kartica_header {
@@ -186,14 +193,40 @@ label{
     width: 12rem;
     height: 4rem;
     background-color: rgb(9, 171, 224);
-    box-shadow: 0.3rem 0.3rem grey;
+    box-shadow: 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.4);
     margin: 1rem;
     cursor: pointer;
+    transition: transform 0.3s;
 }
 
 .dugmePodesavanje:hover {
     background-color: white;
     box-shadow: none;
+    transform: scale(0.9);
+}
+
+.duzina_after:hover::after{
+    content: "0-10 s";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position: absolute;
+    top: 21rem;
+    left: 10rem;
+    background-color: rgb(9, 171, 224);
+    width: auto;
+    padding: 0.7rem;
+}
+
+.duzina_after_2:hover::after{
+    content: "0-10 s";
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    position: absolute;
+    top: 27rem;
+    left: 10rem;
+    background-color: rgb(9, 171, 224);
+    width: auto;
+    padding: 0.7rem;
 }
 
 .igra {
@@ -226,7 +259,7 @@ label{
     opacity: 0.9;
     border-radius: 3rem;
     border: 0.1rem solid black;
-    box-shadow: 0.6rem 0.6rem 0.2rem rgb(67, 69, 90);
+    box-shadow: 0.6rem 0.6rem 1rem rgba(0, 0, 0, 0.5);
     position: relative;
 }
 
@@ -374,7 +407,7 @@ div.polje {
     width: 12rem;
     height: 4rem;
     background-color: deepskyblue;
-    box-shadow: 0.3rem 0.3rem 0.1rem grey;
+    box-shadow: 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.4);
     margin: 1rem;
     cursor: pointer;
     margin-left: 2rem;
@@ -383,7 +416,7 @@ div.polje {
 
 .dugmeMeni:hover {
     background-color: white;
-    transform: scale(1.1);
+    transform: scale(0.9);
     box-shadow: none;
 }
 
@@ -428,14 +461,14 @@ div.polje {
     height: 4rem;
     margin: 1rem;
     color: blue;
-    box-shadow: 0.3rem 0.3rem 0.1rem grey;
+    box-shadow: 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.4);
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .dugmeA:hover {
     background-color: deepskyblue;
-    transform: scale(1.1);
+    transform: scale(0.9);
     box-shadow: none;
 }
 
@@ -469,7 +502,7 @@ div.polje {
     margin: 1rem;
     color: white;
     background: rgb(82, 81, 81);
-    box-shadow: 0.3rem 0.3rem 0.1rem rgb(63, 62, 62);
+    box-shadow: 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.4);
     cursor: pointer;
     transition: all 0.3s;
     border-color: rgb(53, 52, 52);
@@ -477,7 +510,7 @@ div.polje {
 
 .dugmeB:hover {
     background-color: blue;
-    transform: scale(1.1);
+    transform: scale(0.9);
     box-shadow: none;
 }
 
@@ -525,7 +558,7 @@ div.polje {
     padding: 1rem;
     width: 30rem;
     border-radius: 10rem;
-    box-shadow: 0.6rem 0.4rem 0.2rem rgb(179, 179, 219);
+    box-shadow: 0.6rem 0.4rem 0.2rem rgba(179, 179, 219, 0.6);
 }
 
 .statusB {
@@ -540,7 +573,7 @@ div.polje {
     padding: 1rem;
     width: 30rem;
     border-radius: 10rem;
-    box-shadow: 0.6rem 0.4rem 0.2rem rgb(47, 54, 56);
+    box-shadow: 0.6rem 0.4rem 0.2rem rgba(47, 54, 56, 0.6);
 }
 
 .potez {
@@ -553,7 +586,7 @@ div.polje {
     text-align: center;
     width: 35rem;
     border-radius: 10rem;
-    box-shadow: 0.6rem 0.4rem 0.2rem rgb(114, 117, 138);
+    box-shadow: 0.6rem 0.4rem 0.2rem rgba(114, 117, 138, 0.6);
 }
 
 #obavestenje {
