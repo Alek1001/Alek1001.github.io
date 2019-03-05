@@ -24,6 +24,7 @@ class Igra{ //formiranje igre
         this.trajanjeAnimacija=2000; //duzina trajanja animacije bacanja
         this.obavestenje=""; //obavestenje o pobedniku ili o greskama
         this.auto_potez=true; //da li zelite opciju da se potezi zavrsavaju automatski
+        this.auto_bodovi=true; //opcija da se bodovi dodaju automatski kada se obrise zeton koji je stigao do kraja
     }
 }
 
@@ -408,6 +409,7 @@ Igra.prototype.obrisiMal=function(element){
         var ind=that.nadjiMalind(element);
         var t=that.skupMal[ind].value;
         var p=that.skupMal[ind].pripadnost;
+        var poz=that.skupMal[ind].pos;
 
         element.remove();
         if(p=="A"){
@@ -416,8 +418,21 @@ Igra.prototype.obrisiMal=function(element){
         else if(p=="B"){
             that.brojMalB=that.brojMalB+t;
         }
+
+        if(that.auto_bodovi && poz>=29){
+            if(p=="A"){
+                for(var i=0; i<t; i++){
+                   that.dodajA();
+                }
+            }
+            else if(p=="B"){
+                for(var i=0; i<t; i++){
+                    that.dodajB();
+                 }
+            }
+        }
         that.stampa();
-    }
+            }
 }
 
 //funkcija za dupliranje malova
@@ -614,6 +629,18 @@ document.querySelector('.settings').addEventListener('mouseleave',function(){
     var p5=document.querySelector('#auto_zavrsi_potez').checked;
     (p5)? igra.auto_potez=false:igra.auto_potez=true;
     (p5)? document.querySelector('#zavrsen_potez').classList.remove('nestani'):document.querySelector('#zavrsen_potez').classList.add('nestani');
+
+    var p6=document.querySelector('#auto_dodaj_poen').checked;
+    if(p6){
+        igra.auto_bodovi=false;
+        document.querySelector('#dodajA').classList.remove('nestani');
+        document.querySelector('#dodajB').classList.remove('nestani');
+    }
+    else{
+        igra.auto_bodovi=true;
+        document.querySelector('#dodajA').classList.add('nestani');
+        document.querySelector('#dodajB').classList.add('nestani');
+    }
 });
 
 //aktiiranje dodatnih podesavanja
@@ -716,7 +743,7 @@ window.addEventListener('keyup',function(e){
             igra.stampa();
     }
 
-    if (key==13){
+    if (key==13 && !igra.auto_potez){
         igra.zavrsenPotez();
         igra.stampa();
         }
@@ -746,12 +773,12 @@ window.addEventListener('keyup',function(e){
         igra.stampa();
     }
 
-    if (key==49){
+    if (key==49 && !igra.auto_bodovi){
         igra.dodajA();
         igra.stampa();
         }
 
-    if (key==51){
+    if (key==51 && !igra.auto_bodovi){
         igra.dodajB();
         igra.stampa();
         }

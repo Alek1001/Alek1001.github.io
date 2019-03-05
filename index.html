@@ -21,6 +21,7 @@
                     <li><label for="checkHint2"><input type="checkbox" name="Hint" id="checkHint2"> Iskljuci sugestije vezane za zeton?</label></li>
                     <li><label for="anime"><input type="checkbox" name="Anime" id="anime"> Iskljuci graficki prikaz bacanja?</label></li>
                     <li><label for="auto_zavrsi_potez"><input type="checkbox" name="auto_zavrsi_potez" id="auto_zavrsi_potez"> Da li zelite da se potezi zavrsavaju preko dugmeta?</label></li>
+                    <li><label for="auto_dodaj_poen"><input type="checkbox" name="auto_dodaj_poen" id="auto_dodaj_poen"> Da li zelite da se bodovi dodaju preko dugmeta?</label></li>
                 </ul>
                 <p id="dodatna_podesavanja"> Dodatna podesavanja</p> 
             </div> 
@@ -48,18 +49,20 @@
 
 </div>
 
-<div id="kratko_uputstvo" class="podesavanje_kartica hidden">
+<div id="kratko_uputstvo" class="kratko_uputstvo hidden">
         <div class="kartica_header">Kratko uputstvo</div>
-        <div class="opcije">
+        <div class="opcije2">
                 <ol class="nabrajanje">
                         <li>Dodaj zeton, beli za igraca A i tamni za igraca B</li>
-                        <li>Stisni taster Bacaj!</li>
+                        <li>Stisni taster Bacaj! Ako bacis 4 (yut) ili 5 (mo) bacaj ponovo.</li>
                         <li>Prevuci zeton u smeru suprotonom od kazaljke na satu za onoliko polja koliko je baceno.</li>
-                        <li>Ako zeton stane na cosak, imas opciju da krenes precicom <a href="pravila.html#slika_2" target="_blank">(slika 2)</a>.</li>
+                        <li>Ako zeton stane na cosak, kreni precicom <a href="pravila.html#slika_2" target="_blank">(slika 2)</a>.</li>
+                        <li>Ako zeton stane na cosak, imas opciju da krenes precicom <a href="pravila.html#slika_2" target="_blank">(slika 2)</a> (ako je ukljucena opcija da se bodovi dodaju preko dugmeta).</li>
                         <li>Ako zeton stane na svoj zeton, imas opciju da ga udvojis. Dvoklik na jedan zeton, onaj sa vecim brojem, a drugi obrisi desnim klikom!</li>
                         <li>Ako zeton stane na protivnicki zeton, ili vise njih, obrisi ih desnim klikom na njihov zeton.</li>
-                        <li>Kada zeton prodje polje start (S) dodaj sebi jedan poen pritiskom na taster dodaj poen i onda obrisi zeton desnim klikom na njega.</li>
-                        <li>Klikom na taster reset, resetuje se igra. Onda povratka nema.</li>
+                        <li>Kada zeton dodje do polja start(S), klikni desnim klikom na njega do dodas poene.</li>
+                        <li>Kada zeton prodje polje start (S) dodaj sebi jedan poen pritiskom na taster dodaj poen i onda obrisi zeton desnim klikom na njega (ako je ukljucena opcija da se bodovi dodaju preko dugmeta).</li>
+                        <li>Klikom na taster reset, resetuje se igra.</li>
                         <li>U meniju postoje bas kul podesavanja. :)</li>
                     </ol>
         </div> 
@@ -107,7 +110,7 @@
     <div class="meni">
         <div class="meniA">
             <button id="dodajMalA" class="dugmeA">Dodaj zeton</button>
-            <button id="dodajA" class="dugmeA">Dodaj poen</button>
+            <button id="dodajA" class="dugmeA nestani">Dodaj poen</button>
         </div>
 
         <div class="meniC">
@@ -118,7 +121,7 @@
 
         <div class="meniB">
             <button id="dodajMalB" class="dugmeB">Dodaj zeton</button>
-            <button id="dodajB" class="dugmeB">Dodaj poen</button>
+            <button id="dodajB" class="dugmeB nestani">Dodaj poen</button>
         </div>
     </div>
 

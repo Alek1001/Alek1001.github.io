@@ -181,6 +181,24 @@ label{
     box-shadow: 0.1rem 1rem 2rem rgba(0,0,0,0.3);
 }
 
+.kratko_uputstvo {
+    border: 0.25rem solid black;
+    background-color: lightblue;
+    width: 100rem;
+    height: auto;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    box-shadow: 0.1rem 0.5rem 1rem rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.kratko_uputstvo:hover{
+    box-shadow: 0.1rem 1rem 2rem rgba(0,0,0,0.3);
+}
+
 .kartica_header {
     position: relative;
     top: 0rem;
@@ -192,6 +210,10 @@ label{
 
 .opcije {
     padding: 3rem;
+}
+
+.opcije2 {
+    padding: 5rem;
 }
 
 .center {
@@ -708,6 +730,10 @@ figure img {
 
 .veliko_dugme{
     width: 30rem;
+}
+
+.pravila{
+    padding: 5rem;
 }
 
 @media screen and (max-width:1000px) {
