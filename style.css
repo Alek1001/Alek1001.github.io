@@ -103,6 +103,8 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: left;
+    width: 28rem;
     line-height: 2rem;
     font-size: 2rem;
     margin-left: 3rem;
@@ -261,6 +263,20 @@ label{
     border: 0.1rem solid black;
     box-shadow: 0.6rem 0.6rem 1rem rgba(0, 0, 0, 0.5);
     position: relative;
+}
+
+.wraper::before{
+    content: "";
+    width: 67.7rem;
+    height: 67.7rem;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    border-radius: 3rem;
+    opacity:0.5;
+    background-image: url('tabla_yut_nori_2.png');
 }
 
 .gornji_donji {
