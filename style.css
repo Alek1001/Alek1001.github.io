@@ -437,38 +437,38 @@ div.polje {
 }
 
 #potez:hover::after {
-    content: "B ili Space";
+    content: "Na tastaturi: B ili Space";
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
     top: 120%;
     left: 20%;
     background-color: rgb(165, 220, 238);
-    width: auto;
+    width: 15rem;
     padding: 0.7rem;
 }
 
 #zavrsen_potez:hover::after {
-    content: "Enter";
+    content: "Na tastaturi: Enter";
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
     top: 120%;
     left: 35%;
     background-color: rgb(165, 220, 238);
-    width: auto;
+    width: 15rem;
     padding: 0.7rem;
 }
 
 #reset:hover::after {
-    content: "Escepe";
+    content: "Na tastaturi: Escepe";
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
     top: 120%;
     left: 30%;
     background-color: rgb(165, 220, 238);
-    width: auto;
+    width: 15rem;
     padding: 0.7rem;
 }
 
@@ -489,26 +489,26 @@ div.polje {
 }
 
 #dodajMalA:hover::after {
-    content: "A";
+    content: "Na tastaturi: A";
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
     top: 120%;
     left: 45%;
     background-color: rgb(165, 220, 238);
-    width: auto;
+    width: 10rem;
     padding: 0.7rem;
 }
 
 #dodajA:hover::after {
-    content: "1";
+    content: "Na tastaturi: 1";
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
     top: 120%;
     left: 45%;
     background-color: rgb(165, 220, 238);
-    width: auto;
+    width: 10rem;
     padding: 0.7rem;
 }
 
@@ -531,7 +531,7 @@ div.polje {
 }
 
 #dodajMalB:hover::after {
-    content: "D";
+    content: "Na tastaturi: D";
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
@@ -539,12 +539,12 @@ div.polje {
     left: 45%;
     background-color: rgb(47, 92, 107);
     color: white;
-    width: auto;
+    width: 10rem;
     padding: 0.7rem;
 }
 
 #dodajB:hover::after {
-    content: "3";
+    content: "Na tastaturi: 3";
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
@@ -552,7 +552,7 @@ div.polje {
     left: 45%;
     background-color: rgb(47, 92, 107);
     color: white;
-    width: auto;
+    width: 10rem;
     padding: 0.7rem;
 }
 
