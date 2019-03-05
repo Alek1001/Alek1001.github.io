@@ -237,6 +237,7 @@ Igra.prototype.reset=function(){
     this.blokadaZavrsenogPoteza=true;
     this.obavestenje="";
         
+    //Ovim komandama brisemo sve divove koji predstavljaju malove, odnosno zetone.
     var brisani=document.querySelectorAll('div.mal');
     var u=brisani.length;
     for (var i=0;i<u;i++){
@@ -670,8 +671,7 @@ document.querySelector('#zavrsen_potez').onclick=function(){
 }
 
 document.querySelector('#reset').onclick=function(){
-    igra.reset();
-    igra.stampa();
+    document.querySelector('#zelim_reset').classList.toggle('hidden');
 }
 
 document.querySelector('#dodajA').onclick=function(){
@@ -722,8 +722,7 @@ window.addEventListener('keyup',function(e){
         }
 
     if (key==27){
-        igra.reset();
-        igra.stampa();
+        document.querySelector('#zelim_reset').classList.toggle('hidden');
         }
 
     if (key==65){
@@ -757,3 +756,14 @@ window.addEventListener('keyup',function(e){
         igra.stampa();
         }
 });
+
+//Komande za resetovanje igre
+document.querySelector('#yes_reset').onclick=function(){
+    document.querySelector('#zelim_reset').classList.toggle('hidden');
+    igra.reset();
+    igra.stampa();
+}
+
+document.querySelector('#no_reset').onclick=function(){
+    document.querySelector('#zelim_reset').classList.toggle('hidden');
+}
