@@ -47,6 +47,14 @@ html, button {
     font-family: 'Scada', sans-serif;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
+.nestani{
+    display: none;
+}
+
 div {
     font-size: 2.5rem;
 }
@@ -265,17 +273,15 @@ label{
     position: relative;
 }
 
-.wraper::before{
-    content: "";
+.crtez{
     width: 67.7rem;
     height: 67.7rem;
     position: absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
     border-radius: 3rem;
     opacity:0.5;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     background-image: url('tabla_yut_nori_2.png');
 }
 
@@ -663,10 +669,6 @@ figure img {
     font-size: 5rem;
 }
 
-.hidden {
-    visibility: hidden;
-}
-
 .do {
     background-image: url('Do.jpg');
 }
@@ -708,30 +710,30 @@ figure img {
     width: 30rem;
 }
 
-.nestani{
-    display: none;
-}
-
 @media screen and (max-width:1000px) {
     html {
         font-size: 50%;
     }
+    
 }
 
 @media screen and (max-height:930px) {
     html {
         font-size: 50%;
     }
+    
 }
 
 @media screen and (max-width:800px) {
     html {
         font-size: 35%;
     }
+    
 }
 
 @media screen and (max-height:744px) {
     html {
         font-size: 35%;
     }
+    
 }
