@@ -708,6 +708,10 @@ figure img {
     width: 30rem;
 }
 
+.nestani{
+    display: none;
+}
+
 @media screen and (max-width:1000px) {
     html {
         font-size: 50%;

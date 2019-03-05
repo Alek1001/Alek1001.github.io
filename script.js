@@ -19,10 +19,11 @@ class Igra{ //formiranje igre
         this.hint_2=true; //sugestije za igrace iz podesavanja
         this.blokadaMala=true; //blokira se dodavanje pozicije malu, osim ako se ne igra sa njime
         this.blokadaZavrsenogPoteza=true; //blokira se da se zavrsi potez pre nego sto se bace malovi
-        this.anime=false; //graficki prikaz bacanja
+        this.anime=true; //graficki prikaz bacanja
         this.trajanjeHinta=4000; //duzina trjanja sugestije
         this.trajanjeAnimacija=2000; //duzina trajanja animacije bacanja
         this.obavestenje=""; //obavestenje o pobedniku ili o greskama
+        this.auto_potez=true; //da li zelite opciju da se potezi zavrsavaju automatski
     }
 }
 
@@ -235,7 +236,7 @@ Igra.prototype.reset=function(){
     this.blokadaMala=true;
     this.blokadaZavrsenogPoteza=true;
     this.obavestenje="";
-    
+        
     var brisani=document.querySelectorAll('div.mal');
     var u=brisani.length;
     for (var i=0;i<u;i++){
@@ -385,6 +386,11 @@ Igra.prototype.pomerajMal=function(element) {
             else{
                 if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
             }
+
+        if(that.blokadaMala && !that.blokadaZavrsenogPoteza && that.auto_potez){
+            that.zavrsenPotez();
+            that.stampa();
+        }
         document.onmouseup = null;
         document.onmousemove = null;
             }
@@ -424,8 +430,8 @@ Igra.prototype.duplirajMal=function(element){
         var ind=that.nadjiMalind(element);
         var t=that.skupMal[ind].value;
         var p=that.skupMal[ind].pripadnost;
-
-        if(that.naPotezu==p){
+            
+        if(that.naPotezu==p && !that.auto_potez || that.auto_potez){
             that.skupMal[ind].value++;
             element.innerHTML=t+1;
             if(p=="A"){
@@ -435,6 +441,7 @@ Igra.prototype.duplirajMal=function(element){
                 that.brojMalB=that.brojMalB-1;
             }
         }
+        
         that.stampa();
     }
 }
@@ -601,7 +608,11 @@ document.querySelector('.settings').addEventListener('mouseleave',function(){
     (p3)? igra.hint_2=false:igra.hint_2=true;
 
     var p4=document.querySelector('#anime').checked;
-    (p4)? igra.anime=true:igra.anime=false;
+    (p4)? igra.anime=false:igra.anime=true;
+
+    var p5=document.querySelector('#auto_zavrsi_potez').checked;
+    (p5)? igra.auto_potez=false:igra.auto_potez=true;
+    (p5)? document.querySelector('#zavrsen_potez').classList.remove('nestani'):document.querySelector('#zavrsen_potez').classList.add('nestani');
 });
 
 //aktiiranje dodatnih podesavanja
