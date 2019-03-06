@@ -112,7 +112,7 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    width: 28rem;
+    width: 40rem;
     line-height: 2rem;
     font-size: 2rem;
     margin-left: 3rem;
@@ -133,17 +133,17 @@ header {
     cursor: context-menu;
 }
 
-#uputstvo {
+.uputstvo {
     color: black;
     padding-left: 3rem;
     cursor: pointer;
 }
 
-#uputstvo a:link {
+.uputstvo a:link {
     color: black;
 }
 
-#uputstvo a:visited {
+.uputstvo a:visited {
     color: black;
 }
 
