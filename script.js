@@ -250,13 +250,21 @@ Igra.prototype.reset=function(){
 Igra.prototype.dodajA=function(){
     this.scoreA++;
     this.brojMalA--;
-    if(this.scoreA>=4) this.obavestenje="Igrac A je pobedio!";
+    if(this.scoreA>=4){
+        this.obavestenje="Cestitamo! Igrac A je pobedio!";
+        document.querySelector('#pobednik').innerHTML=this.obavestenje;
+        document.querySelector('#pobeda').classList.remove('hidden');
+    }
 }
 
 Igra.prototype.dodajB=function(){
     this.scoreB++;
     this.brojMalB--;
-    if(this.scoreB>=4)  this.obavestenje="Igrac B je pobedio!";
+    if(this.scoreB>=4){  
+        this.obavestenje="Cestitamo! Igrac B je pobedio!";
+        document.querySelector('#pobednik').innerHTML=this.obavestenje;
+        document.querySelector('#pobeda').classList.remove('hidden');
+    }
 }
 
 //Pozivanje mala od strane igraca A i B
@@ -793,4 +801,11 @@ document.querySelector('#yes_reset').onclick=function(){
 
 document.querySelector('#no_reset').onclick=function(){
     document.querySelector('#zelim_reset').classList.toggle('hidden');
+}
+
+//Reset igre posle proglasenja pobednika
+document.querySelector('#posle_pobede').onclick=function(){
+    document.querySelector('#pobeda').classList.add('hidden');
+    igra.reset();
+    igra.stampa();
 }
