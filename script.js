@@ -252,8 +252,11 @@ Igra.prototype.dodajA=function(){
     this.brojMalA--;
     if(this.scoreA>=4){
         this.obavestenje="Cestitamo! Igrac A je pobedio!";
-        document.querySelector('#pobednik').innerHTML=this.obavestenje;
+        document.querySelector('#pobednik').innerHTML=this.obavestenje; //kartica obavestenje pobednik
         document.querySelector('#pobeda').classList.remove('hidden');
+        loop(); //aktiviramo vatromet
+        // start_fireworks();
+        document.querySelector('.fireworks').classList.remove('hidden'); //otkrijemo canvas sa vatrometom
     }
 }
 
@@ -262,8 +265,11 @@ Igra.prototype.dodajB=function(){
     this.brojMalB--;
     if(this.scoreB>=4){  
         this.obavestenje="Cestitamo! Igrac B je pobedio!";
-        document.querySelector('#pobednik').innerHTML=this.obavestenje;
+        document.querySelector('#pobednik').innerHTML=this.obavestenje; //kartica obavestenje pobednik
         document.querySelector('#pobeda').classList.remove('hidden');
+        loop(); //aktiviramo vatromet
+        // start_fireworks();
+        document.querySelector('.fireworks').classList.remove('hidden'); //otkrijemo canvas sa vatrometom
     }
 }
 
@@ -808,4 +814,7 @@ document.querySelector('#posle_pobede').onclick=function(){
     document.querySelector('#pobeda').classList.add('hidden');
     igra.reset();
     igra.stampa();
+    document.querySelector('.fireworks').classList.add('hidden'); //sakrijemo vatormet
+    //trebalo bi da se doda funkcija koja zaustavlja animaciju vatrometa
+    // stop_fireworks();
 }
