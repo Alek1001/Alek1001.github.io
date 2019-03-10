@@ -75,30 +75,6 @@ div.pravila {
     font-size: 2rem;
 }
 
-a:link {
-    color: blue;
-}
-
-a:hover {
-    color: red;
-}
-
-a:active {
-    color: red;
-}
-
-a:visited {
-    color: blue
-}
-
-a.poseban:link {
-    color: blue;
-}
-
-a.poseban:visited {
-    color: blue;
-}
-
 header {
     width: 100%;
     height: 3rem;
@@ -197,9 +173,18 @@ header {
     color: black;
 }
 
-.uputstvo a:visited {
+.uputstvo a:hover {
     color: black;
 }
+
+.uputstvo a:active {
+    color: black;
+}
+
+.uputstvo a:visited {
+    color: black
+}
+
 
 #dodatna_podesavanja {
     color: darkblue;
@@ -236,7 +221,7 @@ label{
     width: 100rem;
     height: auto;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9;
@@ -440,11 +425,11 @@ div.polje {
 }
 
 .malA:hover::after {
-    content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
+    content: "Levi klik-pomeranje. Dupli klik-grupisanje. Desni klik-brisanje/dodavanje poena.";
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
-    top: 100%;
+    top: 110%;
     left: -50%;
     background-color: rgb(170, 228, 243);
     width: 30rem;
@@ -457,11 +442,11 @@ div.polje {
 }
 
 .malB:hover::after {
-    content: "Levi klik-pomeranje. Dupli klik-udvajanje. Desni klik-brisanje.";
+    content: "Levi klik-pomeranje. Dupli klik-grupisanje. Desni klik-brisanje/dodavanje poena.";
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
-    top: 100%;
+    top: 110%;
     left: -50%;
     background-color: rgb(6, 105, 129);
     color: white;
@@ -691,6 +676,12 @@ footer {
     background-color: lightblue;
     height: auto;
     width: 100%;
+   
+}
+
+.bottom_absolute{
+    position: absolute;
+    bottom:0;
 }
 
 figure {
@@ -784,6 +775,27 @@ figure img {
 .pravila{
     padding: 5rem;
 }
+
+.pravila p{
+    text-indent: 2rem;
+}
+
+.pravila a:link {
+    color: blue;
+}
+
+.pravila a:hover {
+    color: red;
+}
+
+.pravila a:active {
+    color: red;
+}
+
+.pravila a:visited {
+    color: blue
+}
+
 
 @media screen and (max-width:1000px) {
     html {

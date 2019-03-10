@@ -17,13 +17,13 @@
        <div id="meni_za_podesavanja">Meni
             <div class="settings">
                 <ul>
-                    <li><label for="praviloMinus1"><input type="checkbox" name="Pravilo-1" id="praviloMinus1"> Da li zelite da igrate sa pravilom -1?</label></li>
-                    <li><label for="checkHint2"><input type="checkbox" name="Hint" id="checkHint2"> Iskljuci sugestije vezane za zeton?</label></li>
-                    <li><label for="anime"><input type="checkbox" name="Anime" id="anime"> Iskljuci graficki prikaz bacanja?</label></li>
-                    <li><label for="auto_zavrsi_potez"><input type="checkbox" name="auto_zavrsi_potez" id="auto_zavrsi_potez"> Da li zelite da se potezi zavrsavaju preko dugmeta?</label></li>
-                    <li><label for="auto_dodaj_poen"><input type="checkbox" name="auto_dodaj_poen" id="auto_dodaj_poen"> Da li zelite da se bodovi dodaju preko dugmeta?</label></li>
+                    <li><label for="praviloMinus1"><input type="checkbox" name="Pravilo-1" id="praviloMinus1"> Da li želite da igrate sa pravilom -1?</label></li>
+                    <li><label for="checkHint2"><input type="checkbox" name="Hint" id="checkHint2"> Isključi sugestije vezane za žeton?</label></li>
+                    <li><label for="anime"><input type="checkbox" name="Anime" id="anime"> Isključi grafički prikaz bacanja?</label></li>
+                    <li><label for="auto_zavrsi_potez"><input type="checkbox" name="auto_zavrsi_potez" id="auto_zavrsi_potez"> Da li želite da se potezi završavaju preko dugmeta?</label></li>
+                    <li><label for="auto_dodaj_poen"><input type="checkbox" name="auto_dodaj_poen" id="auto_dodaj_poen"> Da li želite da se poeni dodaju preko dugmeta?</label></li>
                 </ul>
-                <p id="dodatna_podesavanja"> Dodatna podesavanja</p> 
+                <p id="dodatna_podesavanja"> Dodatna podešavanja</p> 
             </div> 
         </div>
         <div class="uputstvo"><a href="pravila.html" target="_blank">Uputstvo za igru</a></div>
@@ -32,16 +32,16 @@
 </header>
 
 <div id="podesavanje_kartica" class="podesavanje_kartica hidden">
-    <div class="kartica_header">Dodatna podesavanja</div>
+    <div class="kartica_header">Dodatna podešavanja</div>
     <div class="opcije">
         <label for="hintTabla0"><input type="radio" name="hintTabla" value="none" id="hintTabla0">Bez sugestije vezane za tablu</label> <br>
         <label for="hintTabla1"><input type="radio" name="hintTabla" value="opcija0" id="hintTabla1">Sugestija vezana za tablu</label> <br>
         <label for="hintTabla2"><input type="radio" name="hintTabla" value="opcija1" id="hintTabla2">Sugestija vezana za tablu sa trajanjem</label> <br> <br>
-        <label class="duzina_after"><input type="number" id="duzinaSugestije" value="4"> Koliko sekundi zelite da traje sugestija?</label> <br> <br>
-        <label class="duzina_after_2"><input type="number" id="duzinaAnimacije" value="2"> Koliko sekundi zelite da traje prikaz bacanja?</label> <br> <br>
+        <label class="duzina_after"><input type="number" id="duzinaSugestije" value="4"> Koliko sekundi želite da traje sugestija?</label> <br> <br>
+        <label class="duzina_after_2"><input type="number" id="duzinaAnimacije" value="2"> Koliko sekundi želite da traje prikaz bacanja?</label> <br> <br>
     </div> 
     <div class="center">
-            <button id="ocisti_ls" class="dugmePodesavanje veliko_dugme">Ponovo pokazi kratko uputstvo</button>
+            <button id="ocisti_ls" class="dugmePodesavanje veliko_dugme">Ponovo pokaži kratko uputstvo</button>
     </div>
     <br>
     <div class="center">
@@ -53,23 +53,29 @@
 <div id="kratko_uputstvo" class="kratko_uputstvo hidden">
         <div class="kartica_header">Kratko uputstvo</div>
         <div class="opcije2">
-                <ol class="nabrajanje">
-                        <li>Dodaj zeton, beli za igraca A i tamni za igraca B</li>
-                        <li>Stisni taster Bacaj! Ako bacis 4 (yut) ili 5 (mo) bacaj ponovo.</li>
-                        <li>Prevuci zeton u smeru suprotonom od kazaljke na satu za onoliko polja koliko je baceno.</li>
-                        <li>Ako zeton stane na cosak, kreni precicom <a href="pravila.html#slika_2" target="_blank">(slika 2)</a>.</li>
-                        <li>Ako zeton stane na cosak, imas opciju da krenes precicom <a href="pravila.html#slika_2" target="_blank">(slika 2)</a> (ako je ukljucena opcija da se bodovi dodaju preko dugmeta).</li>
-                        <li>Ako zeton stane na svoj zeton, imas opciju da ga udvojis. Dvoklik na jedan zeton, onaj sa vecim brojem, a drugi obrisi desnim klikom!</li>
-                        <li>Ako zeton stane na protivnicki zeton, ili vise njih, obrisi ih desnim klikom na njihov zeton.</li>
-                        <li>Kada zeton dodje do polja start(S), klikni desnim klikom na njega do dodas poene.</li>
-                        <li>Kada zeton prodje polje start (S) dodaj sebi jedan poen pritiskom na taster dodaj poen i onda obrisi zeton desnim klikom na njega (ako je ukljucena opcija da se bodovi dodaju preko dugmeta).</li>
-                        <li>Klikom na taster reset, resetuje se igra.</li>
-                        <li>U meniju postoje bas kul podesavanja. :)</li>
+                    <ol class="nabrajanje">
+                            <li>Igrači A i B igraju naizmenično. Igrač A igra belim, a igrač B tamnim žetonima. Cilj igre je da svi žetoni jednog igrača obiđu čitavu tablu.</li>
+                            <li>Stisni taster Bacaj! Ako baciš 4 (yut) ili 5 (mo) bacaj ponovo <a href="pravila.html#slika_stapova" target="_blank">(slika 1)</a>.</li>
+                            <li>Igrač može da odigram potez žetonom koji se nalazi na tabli ili da doda novi, ako je neki ostao u bazi. 
+                                Dodaj žeton, pritiskom na taster: beli za igrača A i tamni za igrača B.</li>
+                            <li>Prevuci bilo koji svoj žeton na tabli u smeru suprotonom od kazaljke na satu za onoliko polja koliko je bačeno.</li>
+                            <li>Ako žeton stane na ćosak, ili centar table, imas opciju da krenes prečicom <a href="pravila.html#slika_2" target="_blank">(slika 2)</a> </li>
+                            <li>Ako žeton stane na svoj žeton, ili grupu žetona, imas opciju da ga ugrupiš ili dodaš grupi, i onda se grupa žetona kreće zajedno. 
+                                Dvoklik na jedan žeton, obavezno na onaj sa većim brojem, a drugi obriši desnim klikom!</li>
+                            <li>Ako žeton stane na protivnicki žeton, ili grupu njih, vrati ih u bazu ih desnim klikom na njihov(e) žeton(e). 
+                                Ukoliko se nalazite na delu table na kome je bilo koji od
+                                dva igrača dospeo tako što je izabrao da ne ide prečicom, uključite opciju da se poeni dodaju preko dugmeta. 
+                                U suprotnom rizikujete da protivničkom igraču dodelite poen umesto da ga vratite u bazu!</li>
+                            <li>Kada žeton dodje do polja start(S), klikni desnim klikom na njega da dodaš poene i usput ga obrišeš.</li>
+                            <li>Kada žeton prodje polje start (S) dodaj sebi jedan poen pritiskom na taster dodaj poen i onda obriši zeton desnim klikom na njega 
+                                (ako je ukljucena opcija da se bodovi dodaju preko dugmeta).</li>
+                            <li>Igrač pobeđuje kada osvoji 4 poena.</li>
+                            <li>Klikom na taster reset, resetuje se igra.</li>
                     </ol>
         </div> 
         <div class="center">
-                <button id="ne_zavrseno_kratko_uputstvo" class="dugmePodesavanje veliko_dugme">Zelim ponovo da vidim kratko uputstvo!</button>
-            <button id="zavrseno_kratko_uputstvo" class="dugmePodesavanje veliko_dugme">Ne zelim ponovo da vidim kratko uputstvo!</button>
+                <button id="ne_zavrseno_kratko_uputstvo" class="dugmePodesavanje veliko_dugme">Želim ponovo da vidim kratko uputstvo!</button>
+            <button id="zavrseno_kratko_uputstvo" class="dugmePodesavanje veliko_dugme">Ne želim ponovo da vidim kratko uputstvo!</button>
         </div> 
     
     </div>
@@ -77,10 +83,10 @@
 <div id="zelim_reset" class="podesavanje_kartica hidden">
     <div class="kartica_header">Reset igre</div>
     <div class="opcije">
-            Da li zelite da resetujete igru?
+            Da li želite da resetujete igru?
     </div> 
     <div class="center">
-        <button id="yes_reset" class="dugmePodesavanje veliko_dugme">Da, zelim!</button>
+        <button id="yes_reset" class="dugmePodesavanje veliko_dugme">Da, želim!</button>
         <button id="no_reset" class="dugmePodesavanje veliko_dugme">Predomislio sam se!</button>
     </div> 
 </div>
@@ -121,18 +127,18 @@
 
     <div class="meni">
         <div class="meniA">
-            <button id="dodajMalA" class="dugmeA">Dodaj zeton</button>
+            <button id="dodajMalA" class="dugmeA">Dodaj žeton</button>
             <button id="dodajA" class="dugmeA nestani">Dodaj poen</button>
         </div>
 
         <div class="meniC">
             <button id="potez" class="dugmeMeni">Bacaj!</button>
-            <button id="zavrsen_potez" class="dugmeMeni nestani">Zavrsi potez!</button>
+            <button id="zavrsen_potez" class="dugmeMeni nestani">Završi potez!</button>
             <button id="reset" class="dugmeMeni">Reset!</button>
         </div>
 
         <div class="meniB">
-            <button id="dodajMalB" class="dugmeB">Dodaj zeton</button>
+            <button id="dodajMalB" class="dugmeB">Dodaj žeton</button>
             <button id="dodajB" class="dugmeB nestani">Dodaj poen</button>
         </div>
     </div>
@@ -166,7 +172,7 @@
     <div class="fireworks hidden">
         <canvas id="canvas"></canvas>
     </div>
-    <footer>Napravio Aleksandar Petorvic</footer>
+    <footer>Napravio Aleksandar Petorvić</footer>
     <script src="script.js"></script>
     <script src="vatromet.js"></script>
 </body>

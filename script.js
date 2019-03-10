@@ -64,10 +64,10 @@ Igra.prototype.bacanje=function(){
     }
     else{
         if(this.blokadaBacanja) {
-            this.obavestenje="Bacanje je vec obavljeno!"; 
+            this.obavestenje="Bacanje je već obavljeno!"; 
         }
         else if(!this.blokadaMala) {
-            this.obavestenje="Igrac treba da odigra potez sa zetonom!";
+            this.obavestenje="Igrač treba da odigra potez sa žetonom!";
         }
     }
 }
@@ -84,8 +84,8 @@ Igra.prototype.zavrsenPotez=function(){
             this.obavestenje="";
         }
         else{
-            if(!this.blokadaMala) this.obavestenje="Igrac treba da odigra potez sa zetonom!";
-            else if(this.blokadaZavrsenogPoteza) this.obavestenje="Igrac mora da baci i onda da odigra potez sa zetonom!";
+            if(!this.blokadaMala) this.obavestenje="Igrač treba da odigra potez sa žetonom!";
+            else if(this.blokadaZavrsenogPoteza) this.obavestenje="Igrač mora da baci i onda da odigra potez sa žetonom!";
         }
 }
 
@@ -189,14 +189,14 @@ Igra.prototype.stampaTable=function(){
 
 //Stampanje rezultata
 Igra.prototype.stampa=function(){
-    document.querySelector('#naPotezu').innerHTML="Na potezu je igrac "+this.naPotezu;
-    document.querySelector('#rezultatA').innerHTML="Rezultat igraca A je: "+this.scoreA;
-    document.querySelector('#rezultatB').innerHTML="Rezultat igraca B je: "+this.scoreB;
+    document.querySelector('#naPotezu').innerHTML="Na potezu je igrač "+this.naPotezu;
+    document.querySelector('#rezultatA').innerHTML="Rezultat igrača A je: "+this.scoreA;
+    document.querySelector('#rezultatB').innerHTML="Rezultat igrača B je: "+this.scoreB;
     
-    if(this.brojMalA==1) document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" zeton";
-    else document.querySelector('#rezultatA1').innerHTML="Igrac A ima jos: "+this.brojMalA+" zetona";
-    if(this.brojMalB==1) document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" zeton";
-    else document.querySelector('#rezultatB1').innerHTML="Igrac B ima jos: "+this.brojMalB+" zetona";
+    if(this.brojMalA==1) document.querySelector('#rezultatA1').innerHTML="Igrač A ima još: "+this.brojMalA+" žeton";
+    else document.querySelector('#rezultatA1').innerHTML="Igrač A ima još: "+this.brojMalA+" žetona";
+    if(this.brojMalB==1) document.querySelector('#rezultatB1').innerHTML="Igrač B ima još: "+this.brojMalB+" žeton";
+    else document.querySelector('#rezultatB1').innerHTML="Igrač B ima još: "+this.brojMalB+" žetona";
     
     if(igra.naPotezu=="A"){
         document.querySelector('.statusA').classList.add("okvir");
@@ -209,10 +209,10 @@ Igra.prototype.stampa=function(){
     
     if(this.prikaz){
             if (this.zadnjeBacanje<=3){
-            document.querySelector('#bacanje').innerHTML="Zadnje je baceno: "+this.baceno;
+            document.querySelector('#bacanje').innerHTML="Zadnje je bačeno: "+this.baceno;
             }
             else{
-            document.querySelector('#bacanje').innerHTML="Bacaj opet!"+"<br>"+"Zadnje je baceno: "+this.baceno;
+            document.querySelector('#bacanje').innerHTML="Bacaj opet!"+"<br>"+"Zadnje je bačeno: "+this.baceno;
             }
     }
     else{
@@ -251,7 +251,7 @@ Igra.prototype.dodajA=function(){
     this.scoreA++;
     this.brojMalA--;
     if(this.scoreA>=4){
-        this.obavestenje="Cestitamo! Igrac A je pobedio!";
+        this.obavestenje="Čestitamo! Igrač A je pobedio!";
         document.querySelector('#pobednik').innerHTML=this.obavestenje; //kartica obavestenje pobednik
         document.querySelector('#pobeda').classList.remove('hidden');
         loop(); //aktiviramo vatromet
@@ -264,7 +264,7 @@ Igra.prototype.dodajB=function(){
     this.scoreB++;
     this.brojMalB--;
     if(this.scoreB>=4){  
-        this.obavestenje="Cestitamo! Igrac B je pobedio!";
+        this.obavestenje="Čestitamo! Igrač B je pobedio!";
         document.querySelector('#pobednik').innerHTML=this.obavestenje; //kartica obavestenje pobednik
         document.querySelector('#pobeda').classList.remove('hidden');
         loop(); //aktiviramo vatromet
@@ -291,11 +291,11 @@ Igra.prototype.dodajMalA=function(){
                 this.obavestenje="";
         }
         else{
-            this.obavestenje="Igrac A je dodao svih 4 zetona!";
+            this.obavestenje="Igrač A je dodao svih 4 žetona!";
         }
     }
     else{
-        this.obavestenje="Igrac A nije na potezu!";
+        this.obavestenje="Igrač A nije na potezu!";
     }
 }
 
@@ -316,11 +316,11 @@ Igra.prototype.dodajMalB=function(){
             this.obavestenje="";
         }
         else{
-            this.obavestenje="Igrac B je dodao svih 4 zetona!";
+            this.obavestenje="Igrač B je dodao svih 4 žetona!";
         }
     }
     else{
-        this.obavestenje="Igrac B nije na potezu!";
+        this.obavestenje="Igrač B nije na potezu!";
     }
 }
 
