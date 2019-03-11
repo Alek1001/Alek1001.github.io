@@ -476,6 +476,74 @@ Igra.prototype.duplirajMal=function(element){
     }
 }
 
+//predhodne dve metode ukombinovane za meni sa desnim klikom
+
+Igra.prototype.desniMeni=function(element){
+    var that=this; //zato sto prepisujem funkcije
+    var ind=that.nadjiMalind(element);
+    var t=that.skupMal[ind].value;
+    var p=that.skupMal[ind].pripadnost;
+    var poz=that.skupMal[ind].pos;
+
+    element.addEventListener('contextmenu', function(e){
+        e = e || window.event;
+        e.preventDefault();
+
+        document.querySelector('.desni_meni').style.top = ( e.pageY+30) + "px";
+        document.querySelector('.desni_meni').style.left = ( e.pageX+30) + "px";
+
+    document.querySelector('.desni_meni').classList.remove('hidden');
+    });
+
+    document.querySelector('#obrisi').addEventListener('click',function(){
+        
+        element.remove();
+        if(p=="A"){
+            that.brojMalA=that.brojMalA+t;
+        }
+        else if(p=="B"){
+            that.brojMalB=that.brojMalB+t;
+        }
+
+        if(that.auto_bodovi && poz>=29){
+            if(p=="A"){
+                for(var i=0; i<t; i++){
+                that.dodajA();
+                }
+            }
+            else if(p=="B"){
+                for(var i=0; i<t; i++){
+                    that.dodajB();
+                }
+            }
+        }
+        that.stampa();
+        document.querySelector('.desni_meni').classList.add('hidden');  
+    });
+
+    document.querySelector('#grupisi').addEventListener('click',function(){
+        
+        if(that.naPotezu==p && !that.auto_potez || that.auto_potez){
+            that.skupMal[ind].value++;
+            element.innerHTML=t+1;
+            if(p=="A"){
+                that.brojMalA=that.brojMalA-1;
+            }
+            else if(p=="B"){
+                that.brojMalB=that.brojMalB-1;
+            }
+        }
+        that.stampa();
+        document.querySelector('.desni_meni').classList.add('hidden');  
+    });
+
+    document.querySelector('#abort').addEventListener('click',function(){
+        
+        document.querySelector('.desni_meni').classList.add('hidden');
+    });
+        
+}
+
 //Slede dve metode za davanje sugestija vezanih za tablu
 Igra.prototype.hint0=function(){
     var that=this;
@@ -729,19 +797,20 @@ document.querySelector('#dodajMalA').onclick=function(){
     igra.dodajMalA();
     for(let i=0;i<igra.skupMal.length;i++){
             igra.pomerajMal(igra.skupMal[i].doc);
-            igra.obrisiMal(igra.skupMal[i].doc);
-            igra.duplirajMal(igra.skupMal[i].doc);
-            
-    }
+            // igra.obrisiMal(igra.skupMal[i].doc);
+            // igra.duplirajMal(igra.skupMal[i].doc);
+            igra.desniMeni(igra.skupMal[i].doc);
+        }
     igra.stampa();
 }
 
 document.querySelector('#dodajMalB').onclick=function(){
     igra.dodajMalB();
     for(let i=0;i<igra.skupMal.length;i++){
-        igra.pomerajMal(igra.skupMal[i].doc);
-        igra.obrisiMal(igra.skupMal[i].doc);
-        igra.duplirajMal(igra.skupMal[i].doc);
+            igra.pomerajMal(igra.skupMal[i].doc);
+            // igra.obrisiMal(igra.skupMal[i].doc);
+            // igra.duplirajMal(igra.skupMal[i].doc);
+            igra.desniMeni(igra.skupMal[i].doc);
     }
     igra.stampa();
 }
