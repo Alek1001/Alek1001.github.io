@@ -29,11 +29,12 @@ class Igra{ //formiranje igre
 }
 
 class Mal{ //formiranje zetona za igru
-    constructor(pdoc,ppripadnost){
+    constructor(pdoc,ppripadnost,id){
         this.doc=pdoc; //zetonov selektor, tipa document.querySelctor
         this.value=1; //koliko je zetona grupisano
         this.pripadnost=ppripadnost; //igracu A ili B
         this.pos=0; //pozicija na tabli
+        this.id=id;
     }
 }
 
@@ -284,8 +285,17 @@ Igra.prototype.dodajMalA=function(){
                 e.classList.add("ruka");
                 document.querySelector('div.wraper').appendChild(e); //vezan za tablu
                 var t=document.getElementById("id"+this.malID+"");
-                var l=new Mal(t,"A"); //dodavanje mala i kao objekat unutar skripta
+                var l=new Mal(t,"A",this.malID); //dodavanje mala i kao objekat unutar skripta
                 this.skupMal.push(l);
+                
+
+                var f=document.createElement('div');
+                f.setAttribute("id","dm_"+this.malID+"");
+                f.classList.add("desni_meni");
+                f.classList.add("hidden");
+                f.innerHTML='<p  class="deo_desni_meni">Grupiši</p>' +'<p class="deo_desni_meni">Obriši</p>' +'<p class="deo_desni_meni">Ništa</p>';
+                document.body.appendChild(f);
+
                 this.malID++;
                 this.brojMalA--;
                 this.obavestenje="";
@@ -309,11 +319,20 @@ Igra.prototype.dodajMalB=function(){
             e.classList.add("ruka");
             document.querySelector('div.wraper').appendChild(e);
             var t=document.getElementById("id"+this.malID+"");
-            var l=new Mal(t,"B");
+            var l=new Mal(t,"B",this.malID);
             this.skupMal.push(l);
-            this.malID++;
-            this.brojMalB--;
-            this.obavestenje="";
+           
+
+            var f=document.createElement('div');
+                f.setAttribute("id","dm_"+this.malID+"");
+                f.classList.add("desni_meni");
+                f.classList.add("hidden");
+                f.innerHTML='<p  class="deo_desni_meni">Grupiši</p>' +'<p class="deo_desni_meni">Obriši</p>' +'<p class="deo_desni_meni">Ništa</p>';
+                document.body.appendChild(f);
+
+                this.malID++;
+                this.brojMalB--;
+                this.obavestenje="";
         }
         else{
             this.obavestenje="Igrač B je dodao svih 4 žetona!";
@@ -475,74 +494,6 @@ Igra.prototype.duplirajMal=function(element){
         that.stampa();
     }
 }
-
-// //predhodne dve metode ukombinovane za meni sa desnim klikom-ne radi, tj. radi za sve zetone zajedno; trebalo bi napraviti novi meni za desni klik, za svaki zeton posebno.
-
-// Igra.prototype.desniMeni=function(element){
-//     var that=this; //zato sto prepisujem funkcije
-//     var ind=that.nadjiMalind(element);
-//     var t=that.skupMal[ind].value;
-//     var p=that.skupMal[ind].pripadnost;
-//     var poz=that.skupMal[ind].pos;
-
-//     element.addEventListener('contextmenu', function(e){
-//         e = e || window.event;
-//         e.preventDefault();
-
-//         document.querySelector('.desni_meni').style.top = ( e.pageY+30) + "px";
-//         document.querySelector('.desni_meni').style.left = ( e.pageX+30) + "px";
-
-//     document.querySelector('.desni_meni').classList.remove('hidden');
-//     });
-
-//     document.querySelector('#obrisi').addEventListener('click',function(){ //umesto # bi trebalo koristii nth(neki) child, ili klasu
-        
-//         element.remove();
-//         if(p=="A"){
-//             that.brojMalA=that.brojMalA+t;
-//         }
-//         else if(p=="B"){
-//             that.brojMalB=that.brojMalB+t;
-//         }
-
-//         if(that.auto_bodovi && poz>=29){
-//             if(p=="A"){
-//                 for(var i=0; i<t; i++){
-//                 that.dodajA();
-//                 }
-//             }
-//             else if(p=="B"){
-//                 for(var i=0; i<t; i++){
-//                     that.dodajB();
-//                 }
-//             }
-//         }
-//         that.stampa();
-//         document.querySelector('.desni_meni').classList.add('hidden');  
-//     });
-
-//     document.querySelector('#grupisi').addEventListener('click',function(){
-        
-//         if(that.naPotezu==p && !that.auto_potez || that.auto_potez){
-//             that.skupMal[ind].value++;
-//             element.innerHTML=t+1;
-//             if(p=="A"){
-//                 that.brojMalA=that.brojMalA-1;
-//             }
-//             else if(p=="B"){
-//                 that.brojMalB=that.brojMalB-1;
-//             }
-//         }
-//         that.stampa();
-//         document.querySelector('.desni_meni').classList.add('hidden');  
-//     });
-
-//     document.querySelector('#abort').addEventListener('click',function(){
-        
-//         document.querySelector('.desni_meni').classList.add('hidden');
-//     });
-        
-// }
 
 //Slede dve metode za davanje sugestija vezanih za tablu
 Igra.prototype.hint0=function(){
@@ -798,8 +749,7 @@ document.querySelector('#dodajMalA').onclick=function(){
     for(let i=0;i<igra.skupMal.length;i++){
             igra.pomerajMal(igra.skupMal[i].doc);
             igra.obrisiMal(igra.skupMal[i].doc);
-            igra.duplirajMal(igra.skupMal[i].doc);
-            
+            igra.duplirajMal(igra.skupMal[i].doc); 
         }
     igra.stampa();
 }
@@ -810,7 +760,6 @@ document.querySelector('#dodajMalB').onclick=function(){
             igra.pomerajMal(igra.skupMal[i].doc);
             igra.obrisiMal(igra.skupMal[i].doc);
             igra.duplirajMal(igra.skupMal[i].doc);
-            
     }
     igra.stampa();
 }
@@ -841,7 +790,6 @@ window.addEventListener('keyup',function(e){
                 igra.pomerajMal(igra.skupMal[i].doc);
                 igra.obrisiMal(igra.skupMal[i].doc);
                 igra.duplirajMal(igra.skupMal[i].doc);
-                
         }
         igra.stampa();
     }
