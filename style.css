@@ -425,8 +425,8 @@ div.polje {
 }
 
 .malA:hover::after {
-    /* content: "Levi klik-pomeranje. Dupli klik-grupisanje. Desni klik-brisanje/dodavanje poena."; */
-    content: "Desni klik za grupisanje i brisanje.";
+    content: "Levi klik-pomeranje. Dupli klik-grupisanje. Desni klik-brisanje/dodavanje poena.";
+    /* content: "Desni klik za grupisanje i brisanje."; */
     font-size: 1.5rem;
     line-height: 1.5rem;
     position: absolute;
@@ -797,7 +797,7 @@ figure img {
     color: blue
 }
 
-.desni_meni{
+/* .desni_meni{
     position: fixed;
     background-color:  rgb(170, 228, 243);
     cursor: pointer;
@@ -810,7 +810,7 @@ figure img {
 
 .deo_desni_meni:hover{
     background-color: rgb(104, 104, 199);
-}
+} */
 
 
 @media screen and (max-width:1000px) {
