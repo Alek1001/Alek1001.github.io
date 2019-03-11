@@ -287,15 +287,6 @@ Igra.prototype.dodajMalA=function(){
                 var t=document.getElementById("id"+this.malID+"");
                 var l=new Mal(t,"A",this.malID); //dodavanje mala i kao objekat unutar skripta
                 this.skupMal.push(l);
-                
-
-                var f=document.createElement('div');
-                f.setAttribute("id","dm_"+this.malID+"");
-                f.classList.add("desni_meni");
-                f.classList.add("hidden");
-                f.innerHTML='<p  class="deo_desni_meni">Grupiši</p>' +'<p class="deo_desni_meni">Obriši</p>' +'<p class="deo_desni_meni">Ništa</p>';
-                document.body.appendChild(f);
-
                 this.malID++;
                 this.brojMalA--;
                 this.obavestenje="";
@@ -321,18 +312,9 @@ Igra.prototype.dodajMalB=function(){
             var t=document.getElementById("id"+this.malID+"");
             var l=new Mal(t,"B",this.malID);
             this.skupMal.push(l);
-           
-
-            var f=document.createElement('div');
-                f.setAttribute("id","dm_"+this.malID+"");
-                f.classList.add("desni_meni");
-                f.classList.add("hidden");
-                f.innerHTML='<p  class="deo_desni_meni">Grupiši</p>' +'<p class="deo_desni_meni">Obriši</p>' +'<p class="deo_desni_meni">Ništa</p>';
-                document.body.appendChild(f);
-
-                this.malID++;
-                this.brojMalB--;
-                this.obavestenje="";
+            this.malID++;
+            this.brojMalB--;
+            this.obavestenje="";
         }
         else{
             this.obavestenje="Igrač B je dodao svih 4 žetona!";
