@@ -414,70 +414,6 @@ Igra.prototype.pomerajMal=function(element) {
             }
 }
 
-// //funkcija za brisanje mala iz HTML-a
-// Igra.prototype.obrisiMal=function(element){
-//     element.oncontextmenu=obrisi; 
-//     var that=this;
-//     function obrisi(e){
-//         e = e || window.event;
-//         e.preventDefault();
-        
-//         var ind=that.nadjiMalind(element);
-//         var t=that.skupMal[ind].value;
-//         var p=that.skupMal[ind].pripadnost;
-//         var poz=that.skupMal[ind].pos;
-
-//         element.remove();
-//         if(p=="A"){
-//             that.brojMalA=that.brojMalA+t;
-//         }
-//         else if(p=="B"){
-//             that.brojMalB=that.brojMalB+t;
-//         }
-
-//         if(that.auto_bodovi && poz>=29){
-//             if(p=="A"){
-//                 for(var i=0; i<t; i++){
-//                    that.dodajA();
-//                 }
-//             }
-//             else if(p=="B"){
-//                 for(var i=0; i<t; i++){
-//                     that.dodajB();
-//                  }
-//             }
-//         }
-//         that.stampa();
-//             }
-// }
-
-// //funkcija za dupliranje malova
-// Igra.prototype.duplirajMal=function(element){
-//     element.ondblclick=dupliraj; 
-//     var that=this;
-//     function dupliraj(e){
-//         e = e || window.event;
-//         e.preventDefault();
-
-//         var ind=that.nadjiMalind(element);
-//         var t=that.skupMal[ind].value;
-//         var p=that.skupMal[ind].pripadnost;
-            
-//         if(that.naPotezu==p && !that.auto_potez || that.auto_potez){
-//             that.skupMal[ind].value++;
-//             element.innerHTML=t+1;
-//             if(p=="A"){
-//                 that.brojMalA=that.brojMalA-1;
-//             }
-//             else if(p=="B"){
-//                 that.brojMalB=that.brojMalB-1;
-//             }
-//         }
-        
-//         that.stampa();
-//     }
-// }
-
 //Funkcija za pojavljivanje menija na desni klik na zeton
 Igra.prototype.desniKlik=function(element){
     var that=this;
@@ -838,10 +774,8 @@ document.querySelector('#dodajB').onclick=function(){
 document.querySelector('#dodajMalA').onclick=function(){
     igra.dodajMalA();
     for(let i=0;i<igra.skupMal.length;i++){
-            igra.pomerajMal(igra.skupMal[i].doc);
-            // igra.obrisiMal(igra.skupMal[i].doc);
-            // igra.duplirajMal(igra.skupMal[i].doc); 
-            igra.desniKlik(igra.skupMal[i].doc);
+        igra.pomerajMal(igra.skupMal[i].doc);
+        igra.desniKlik(igra.skupMal[i].doc);
         }
     igra.stampa();
 }
@@ -849,10 +783,8 @@ document.querySelector('#dodajMalA').onclick=function(){
 document.querySelector('#dodajMalB').onclick=function(){
     igra.dodajMalB();
     for(let i=0;i<igra.skupMal.length;i++){
-            igra.pomerajMal(igra.skupMal[i].doc);
-            // igra.obrisiMal(igra.skupMal[i].doc);
-            // igra.duplirajMal(igra.skupMal[i].doc);
-            igra.desniKlik(igra.skupMal[i].doc);
+        igra.pomerajMal(igra.skupMal[i].doc);
+        igra.desniKlik(igra.skupMal[i].doc);
     }
     igra.stampa();
 }
@@ -880,10 +812,8 @@ window.addEventListener('keyup',function(e){
     if (key==65){
         igra.dodajMalA();
         for(let i=0;i<igra.skupMal.length;i++){
-                igra.pomerajMal(igra.skupMal[i].doc);
-                // igra.obrisiMal(igra.skupMal[i].doc);
-                // igra.duplirajMal(igra.skupMal[i].doc);
-                igra.desniKlik(igra.skupMal[i].doc);
+            igra.pomerajMal(igra.skupMal[i].doc);
+            igra.desniKlik(igra.skupMal[i].doc);
         }
         igra.stampa();
     }
@@ -892,8 +822,6 @@ window.addEventListener('keyup',function(e){
         igra.dodajMalB();
         for(let i=0;i<igra.skupMal.length;i++){
             igra.pomerajMal(igra.skupMal[i].doc);
-            // igra.obrisiMal(igra.skupMal[i].doc);
-            // igra.duplirajMal(igra.skupMal[i].doc);
             igra.desniKlik(igra.skupMal[i].doc);
         }
         igra.stampa();
