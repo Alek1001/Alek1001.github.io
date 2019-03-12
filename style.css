@@ -77,9 +77,10 @@ div.pravila {
 
 header {
     width: 100%;
-    height: 3rem;
+    height: 5rem;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    padding: 0.5rem;
     background-color: rgb(9, 171, 224);
 }
 
@@ -203,7 +204,7 @@ label{
     width: 80rem;
     height: auto;
     position: absolute;
-    top: 35%;
+    top: 32%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 8;
@@ -221,7 +222,7 @@ label{
     width: 100rem;
     height: auto;
     position: absolute;
-    top: 50%;
+    top: 52.3%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9;
@@ -413,7 +414,7 @@ div.polje {
     height: 6rem;
     text-align: center;
     line-height: 6rem;
-    font-size: 6rem;
+    font-size: 5rem;
     position: absolute;
     top: 60rem;
 }
@@ -711,6 +712,7 @@ figure img {
 
 .okvirZ{
     border: 0.5rem solid rgb(73, 252, 73);
+    border-radius: 50%;
 }
 
 .animacija {
@@ -800,7 +802,7 @@ figure img {
     color: blue
 }
 
-.desni_meni{
+.desni_meni {
     position: fixed;
     background-color:  rgb(170, 228, 243);
     cursor: pointer;
@@ -809,10 +811,25 @@ figure img {
     z-index:10000;
     padding: 0.3rem;
     font-size: 2.2rem;
+    box-shadow: 0.1rem 0.3rem 0.6rem rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s;
+}
+
+.desni_meni:hover {
+    box-shadow: 0.1rem 0.6rem 1.2rem rgba(0, 0, 0, 0.5);
+}
+
+.deo_desni_meni{
+    border-bottom: 0.1rem solid black;
+}
+
+.deo_desni_meni:last-of-type{
+    border-bottom: none;
 }
 
 .deo_desni_meni:hover{
     background-color: rgb(104, 104, 199);
+    color: white;
 }
 
 @media screen and (max-width:1000px) {
