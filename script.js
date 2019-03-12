@@ -348,7 +348,6 @@ Igra.prototype.pomerajMal=function(element) {
     function klik_na_mis(e) {
         e = e || window.event;
         e.preventDefault();
-        //   console.log("onmouse down");
         // pozicija misa na pocetku:
         element.classList.remove("ruka");
         element.classList.add("vuci_rukom");
