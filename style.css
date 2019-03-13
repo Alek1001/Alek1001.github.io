@@ -456,10 +456,13 @@ div.polje {
 
 .ruka{
     cursor: grab;
+    transition: box-shadow 0.5s;
 }
 
 .vuci_rukom{
     cursor: grabbing;
+    box-shadow: 0.1rem 1rem 2rem rgba(0, 0, 0, 0.8);
+    transition: box-shadow 0.5s;
 }
 
 .meni {
