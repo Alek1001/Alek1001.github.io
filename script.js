@@ -6,7 +6,7 @@ class Igra{ //formiranje igre
         this.scoreA=0; //broj malova koji su stigli do kraja za A
         this.scoreB=0; //broj malova koji su stigli do kraja za B
         this.zadnjeBacanje=0; //zadnje bacanje jut stapova
-        this.malID=0; //osiuranje da svaki mal ima jedinstven id
+        // this.malID=0; //osiuranje da svaki mal ima jedinstven id
         this.skupMal=[]; //niz objekata malova
         this.baceno=[]; //niz bacenih jotova od strane jednog igraca
         this.blokadaBacanja=false; //Da li igrac ima pravo da baca stapove?
@@ -27,6 +27,176 @@ class Igra{ //formiranje igre
         this.auto_bodovi=true; //opcija da se bodovi dodaju automatski kada se obrise zeton koji je stigao do kraja
         this.obelezeni_mal=""; //meni desni klik
     }
+    //
+    pomerajDiv(divV){
+        let pom=false;
+         let xp=0,yp=0,x=0,y=0;
+
+        divV.addEventListener('mousedown',function(e){
+            e = e || window.event;
+                e.preventDefault();
+                xp=e.clientX;
+                yp=e.clientY;
+                pom=true;
+        })
+
+        divV.addEventListener('mousemove',function(e){
+            if(pom){
+                e = e || window.event;
+                e.preventDefault();
+
+                x=xp-e.clientX;
+                y=yp-e.clientY;
+                xp=e.clientX;
+                yp=e.clientY;
+
+                //offset se odnosi na daljinu od samog elemnta
+                divV.style.left=(divV.offsetLeft-x)+"px";
+                divV.style.top=(divV.offsetTop-y)+"px";
+            }
+        })
+
+        divV.addEventListener('mouseup',function(e){
+            if(pom){
+                pom=false;
+            }
+        })
+    }
+    //samo za Hintove i za animaciju ruke kod pomeranja
+    operacijeMal(element){
+        let that=this;
+        element.addEventListener('mousedown',function(e){
+            e = e || window.event;
+        e.preventDefault();
+        // pozicija misa na pocetku:
+        element.classList.remove("ruka");
+        element.classList.add("vuci_rukom");
+        let ind=that.nadjiMalind(element);
+        let h=that.skupMal[ind].pos;
+        if(h>=29) h=0; //trenutno
+        let p=that.skupMal[ind].pripadnost;
+        if(p==that.naPotezu) {
+                var t=that.kretanje(h,that.zadnjeBacanje);
+                if(t>=29) t=0; //buduce
+                if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvir2");
+                if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
+            }
+            else{
+                if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
+            }
+
+        })
+
+        element.addEventListener('mouseup',function(e){
+            element.classList.remove("vuci_rukom");
+            element.classList.add("ruka");
+                var ind=that.nadjiMalind(element);
+                var p=that.skupMal[ind].pripadnost;
+                var h=that.skupMal[ind].pos;
+                if(h>=29) h=0; //trenutno
+                    if(p==that.naPotezu){
+                        var t=that.kretanje(h,that.zadnjeBacanje);
+                        if (!that.blokadaMala) that.skupMal[ind].pos=t;
+                        if(t>=29) t=0; //buduce
+                        if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.remove("okvir2");
+                        if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
+                    that.blokadaMala=true;
+                    }
+                    else{
+                        if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
+                    }
+
+                if(that.blokadaMala && !that.blokadaZavrsenogPoteza && that.auto_potez){
+                    that.zavrsenPotez();
+                    that.stampa();
+                }
+        })
+        
+    }
+    //
+    dodajMal(igrac){
+                //igrac moze biti A ili B
+                if(this.naPotezu == igrac){
+                    if((this.naPotezu == "A" && this.brojMalA>0)||(this.naPotezu == "B" && this.brojMalB>0)){
+                        let e=document.createElement('div');
+                        (igrac=="A")? e.className="mal malA ruka":e.className="mal malB ruka";
+                            let l=new Mal(e,igrac); //dodavanje mala i kao objekat unutar skripta
+                            this.skupMal.push(l);
+                        (igrac=="A")? this.brojMalA--:this.brojMalB--;
+                            this.obavestenje="";
+                            this.pomerajDiv(e);
+                            this.operacijeMal(e);
+                            this.desniKlik(e);
+                        document.querySelector('div.wraper').appendChild(e); //vezan za tablu   
+                    }
+                    else{
+                        this.obavestenje=`Igrač ${igrac} je dodao svih 4 žetona!`;
+                    }
+                }
+                else{
+                    this.obavestenje=`Igrač ${igrac} nije na potezu!`;
+                }
+                this.stampa();
+            }
+    //
+    nadjiMalind(element){
+        return this.skupMal.findIndex(e=>e.doc==element);
+    }
+    //
+    grupisi(k=1){
+        //k je koliko zetona treba da se doda ili da se skine; za grupisi (), za ungrupisi (-1)
+        var that=this; //that zato sto sam prepisivao funkcije koje su bile pod window event listener-om
+        var element=that.obelezeni_mal;
+        var ind=that.nadjiMalind(element);
+            var t=that.skupMal[ind].value;
+            var p=that.skupMal[ind].pripadnost;
+            let l=t+k;
+                
+            if(that.naPotezu==p && !that.auto_potez || that.auto_potez && l>0){ //l>0 da bi iskljucio slucajeve da neko ungrupise kada je 1
+                that.skupMal[ind].value=l;
+                (l>1)? element.innerHTML=l:element.innerHTML="";
+                if(p=="A"){
+                    that.brojMalA=that.brojMalA-k;
+                }
+                else if(p=="B"){
+                    that.brojMalB=that.brojMalB-k;
+                }
+            }
+            that.nista();
+            that.stampa();
+    }
+    //Funkcija za sakrivanje menija na desni klik na zeton
+    nista(){
+        if(this.obelezeni_mal!=""){
+            var qs=document.querySelector(".desni_meni");
+            var element=this.obelezeni_mal;
+            qs.classList.add('hidden');
+            element.classList.remove('okvirZ');
+            this.obelezeni_mal="";
+        }
+    }
+    //Resetovanje rezultata
+    reset(){
+        this.naPotezu="A";
+        this.scoreA=0;
+        this.scoreB=0;
+        this.zadnjeBacanje=0;
+        // this.malID=0;
+        this.skupMal=[];
+        this.baceno=[];
+        this.blokadaBacanja=false;
+        this.prikaz=false;
+        this.brojMalA=4;
+        this.brojMalB=4;
+        this.blokadaMala=true;
+        this.blokadaZavrsenogPoteza=true;
+        this.obavestenje="";
+        this.obelezeni_mal="";
+            
+        //Ovim komandama brisemo sve divove koji predstavljaju malove, odnosno zetone.
+        [...document.querySelectorAll('div.mal')].map(e=>e.remove());
+    }
+    //
 }
 
 class Mal{ //formiranje zetona za igru
@@ -38,31 +208,7 @@ class Mal{ //formiranje zetona za igru
     }
 }
 
-//Resetovanje rezultata
-Igra.prototype.reset=function(){
-    this.naPotezu="A";
-    this.scoreA=0;
-    this.scoreB=0;
-    this.zadnjeBacanje=0;
-    this.malID=0;
-    this.skupMal=[];
-    this.baceno=[];
-    this.blokadaBacanja=false;
-    this.prikaz=false;
-    this.brojMalA=4;
-    this.brojMalB=4;
-    this.blokadaMala=true;
-    this.blokadaZavrsenogPoteza=true;
-    this.obavestenje="";
-    this.obelezeni_mal="";
-        
-    //Ovim komandama brisemo sve divove koji predstavljaju malove, odnosno zetone.
-    var brisani=document.querySelectorAll('div.mal');
-    var u=brisani.length;
-    for (var i=0;i<u;i++){
-        document.querySelector('div.mal').remove();
-    };
-}
+
 
 //Bacaju se 4 Jut stapa.
 Igra.prototype.bacanje=function(){
@@ -275,143 +421,6 @@ Igra.prototype.dodajB=function(){
     }
 }
 
-//Pozivanje mala od strane igraca A i B
-Igra.prototype.dodajMalA=function(){
-    if(this.naPotezu == "A"){
-            if(this.brojMalA>0){  
-                var e=document.createElement('div'); //kreiranje mal-a kao novi div
-                e.setAttribute("id","id"+this.malID+"");
-                e.classList.add("malA");
-                e.classList.add("mal");
-                e.classList.add("ruka");
-                document.querySelector('div.wraper').appendChild(e); //vezan za tablu
-                var t=document.getElementById("id"+this.malID+"");
-                var l=new Mal(t,"A"); //dodavanje mala i kao objekat unutar skripta
-                this.skupMal.push(l);
-                this.malID++;
-                this.brojMalA--;
-                this.obavestenje="";
-        }
-        else{
-            this.obavestenje="Igrač A je dodao svih 4 žetona!";
-        }
-    }
-    else{
-        this.obavestenje="Igrač A nije na potezu!";
-    }
-}
-
-Igra.prototype.dodajMalB=function(){
-    if(this.naPotezu == "B"){
-        if(this.brojMalB>0){
-            var e=document.createElement('div');
-            e.setAttribute("id","id"+this.malID+"");
-            e.classList.add("malB");
-            e.classList.add("mal");
-            e.classList.add("ruka");
-            document.querySelector('div.wraper').appendChild(e);
-            var t=document.getElementById("id"+this.malID+"");
-            var l=new Mal(t,"B");
-            this.skupMal.push(l);
-            this.malID++;
-            this.brojMalB--;
-            this.obavestenje="";
-        }
-        else{
-            this.obavestenje="Igrač B je dodao svih 4 žetona!";
-        }
-    }
-    else{
-        this.obavestenje="Igrač B nije na potezu!";
-    }
-}
-
-//trazenje mala u nizu malova u zavisnosti od doc.selektora; selektor je jedinstven pa sluzi i kao ime
-Igra.prototype.nadjiMalind=function(doc){
-    var l=this.skupMal.length;
-    for(let i=0;i<l;i++){
-        if(this.skupMal[i].doc==doc) return i;
-    }
-}
-
-//funkcija za pomeranje mala po tabli i dodavanje pozicije
-Igra.prototype.pomerajMal=function(element) {
-    
-    var p1 = 0, 
-        p2 = 0, 
-        p3 = 0, 
-        p4 = 0,
-        that=this;
-        
-    element.onmousedown = klik_na_mis;
-
-    function klik_na_mis(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // pozicija misa na pocetku:
-        element.classList.remove("ruka");
-        element.classList.add("vuci_rukom");
-        p3 = e.clientX;
-        p4 = e.clientY;
-        var ind=that.nadjiMalind(element);
-        var h=that.skupMal[ind].pos;
-        if(h>=29) h=0; //trenutno
-        var p=that.skupMal[ind].pripadnost;
-        if(p==that.naPotezu) {
-                var t=that.kretanje(h,that.zadnjeBacanje);
-                if(t>=29) t=0; //buduce
-                if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvir2");
-                if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
-            }
-            else{
-                if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.add("okvir2");
-            }
-        document.onmouseup = pustanje_misa;
-        // pozovi funkciju kada se mis pomera:
-        document.onmousemove = pomeraj;
-    }
-
-    function pomeraj(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // izracunaj novu poziciju misa:
-        p1 = p3 - e.clientX;
-        p2 = p4 - e.clientY;
-        p3 = e.clientX;
-        p4 = e.clientY;
-        // postavi novu poziciju elementa:
-        element.style.top = (element.offsetTop - p2) + "px";
-        element.style.left = (element.offsetLeft - p1) + "px";
-    }
-
-    function pustanje_misa() {
-      /* zavrsi operaciju prevlacenja:*/
-      element.classList.remove("vuci_rukom");
-      element.classList.add("ruka");
-        var ind=that.nadjiMalind(element);
-        var p=that.skupMal[ind].pripadnost;
-        var h=that.skupMal[ind].pos;
-        if(h>=29) h=0; //trenutno
-            if(p==that.naPotezu){
-                var t=that.kretanje(h,that.zadnjeBacanje);
-                if (!that.blokadaMala) that.skupMal[ind].pos=t;
-                if(t>=29) t=0; //buduce
-                if(that.hint_2 && !that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.remove("okvir2");
-                if(that.hint_2 && that.blokadaMala) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
-            that.blokadaMala=true;
-            }
-            else{
-                if(that.hint_2) document.querySelector("div.polje[data-imePolja='"+h+"']").classList.remove("okvir2");
-            }
-
-        if(that.blokadaMala && !that.blokadaZavrsenogPoteza && that.auto_potez){
-            that.zavrsenPotez();
-            that.stampa();
-        }
-        document.onmouseup = null;
-        document.onmousemove = null;
-            }
-}
 
 //Funkcija za pojavljivanje menija na desni klik na zeton
 Igra.prototype.desniKlik=function(element){
@@ -419,72 +428,13 @@ Igra.prototype.desniKlik=function(element){
     element.addEventListener('contextmenu', function(e){
                 e = e || window.event;
                 e.preventDefault();
-                
                 that.obelezeni_mal=element;
                 var qs=document.querySelector(".desni_meni");
-                qs.style.top = ( e.pageY+30) + "px";
-                qs.style.left = ( e.pageX+30) + "px";
+                qs.style.top = ( e.pageY+10) + "px";
+                qs.style.left = ( e.pageX+10) + "px";
                 qs.classList.remove('hidden');
                 element.classList.add('okvirZ');
     });             
-}
-
-//Funkcija za sakrivanje menija na desni klik na zeton
-Igra.prototype.nista=function(){
-    var qs=document.querySelector(".desni_meni");
-    var element=this.obelezeni_mal;
-    qs.classList.add('hidden');
-    element.classList.remove('okvirZ');
-    this.obelezeni_mal="";
-    
-}
-
-//Funkcija za grupisanje zetona
-Igra.prototype.grupisi=function(){
-    var that=this; //that zato sto sam prepisivao funkcije koje su bile pod window event listener-om
-    var element=that.obelezeni_mal;
-    var ind=that.nadjiMalind(element);
-        var t=that.skupMal[ind].value;
-        var p=that.skupMal[ind].pripadnost;
-            
-        if(that.naPotezu==p && !that.auto_potez || that.auto_potez){
-            that.skupMal[ind].value++;
-            element.innerHTML=t+1;
-            if(p=="A"){
-                that.brojMalA=that.brojMalA-1;
-            }
-            else if(p=="B"){
-                that.brojMalB=that.brojMalB-1;
-            }
-        }
-        that.nista();
-        that.stampa();
-}
-
-//Funkcija za razgrupisanje zetona
-Igra.prototype.ungrupisi=function(){
-    var that=this; //that zato sto sam prepisivao funkcije koje su bile pod window event listener-om
-    var element=that.obelezeni_mal;
-    var ind=that.nadjiMalind(element);
-        var t=that.skupMal[ind].value;
-        var p=that.skupMal[ind].pripadnost;
-         if(t>1){
-            if(that.naPotezu==p && !that.auto_potez || that.auto_potez){
-                that.skupMal[ind].value--;
-                if(t>2)
-                element.innerHTML=t-1;
-                else
-                element.innerHTML="";
-                if(p=="A"){
-                    that.brojMalA=that.brojMalA+1;
-                }
-                else if(p=="B"){
-                    that.brojMalB=that.brojMalB+1;
-                }
-            }
-        }    
-        that.nista();
-        that.stampa();
 }
 
 
@@ -496,6 +446,7 @@ Igra.prototype.ukloni=function(){
         var t=that.skupMal[ind].value;
         var p=that.skupMal[ind].pripadnost;
         var poz=that.skupMal[ind].pos;
+    this.skupMal.splice(ind,1);
 
         element.remove();
         if(p=="A"){
@@ -771,21 +722,11 @@ document.querySelector('#dodajB').onclick=function(){
 }
 
 document.querySelector('#dodajMalA').onclick=function(){
-    igra.dodajMalA();
-    for(let i=0;i<igra.skupMal.length;i++){
-        igra.pomerajMal(igra.skupMal[i].doc);
-        igra.desniKlik(igra.skupMal[i].doc);
-        }
-    igra.stampa();
+    igra.dodajMal("A");
 }
 
 document.querySelector('#dodajMalB').onclick=function(){
-    igra.dodajMalB();
-    for(let i=0;i<igra.skupMal.length;i++){
-        igra.pomerajMal(igra.skupMal[i].doc);
-        igra.desniKlik(igra.skupMal[i].doc);
-    }
-    igra.stampa();
+    igra.dodajMal("B");
 }
 
 //Kako bi igra mogla da se igra i preko tastature. Space za odigraj i Enter za reset. 
@@ -809,21 +750,12 @@ window.addEventListener('keyup',function(e){
         }
 
     if (key==65){
-        igra.dodajMalA();
-        for(let i=0;i<igra.skupMal.length;i++){
-            igra.pomerajMal(igra.skupMal[i].doc);
-            igra.desniKlik(igra.skupMal[i].doc);
-        }
-        igra.stampa();
+        igra.dodajMal("A");
+        
     }
 
     if (key==68){
-        igra.dodajMalB();
-        for(let i=0;i<igra.skupMal.length;i++){
-            igra.pomerajMal(igra.skupMal[i].doc);
-            igra.desniKlik(igra.skupMal[i].doc);
-        }
-        igra.stampa();
+        igra.dodajMal("B");
     }
 
     if (key==49 && !igra.auto_bodovi){
@@ -859,18 +791,19 @@ document.querySelector('#posle_pobede').onclick=function(){
 }
 
 //pozivamo funkcije menija desnog klika
-document.querySelector('#abort').addEventListener('click',function(){
-    igra.nista();
-})
 
 document.querySelector('#grupisi').addEventListener('click',function(){
     igra.grupisi();
 })
 
 document.querySelector('#ungrupisi').addEventListener('click',function(){
-    igra.ungrupisi();
+    igra.grupisi(-1);
 })
 
 document.querySelector('#obrisi').addEventListener('click',function(){
     igra.ukloni();
+})
+
+window.addEventListener('click', function(){
+    igra.nista();
 })
