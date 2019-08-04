@@ -28,38 +28,30 @@ class Igra{ //formiranje igre
         this.obelezeni_mal=""; //meni desni klik
     }
     //
-    pomerajDiv(divV){
+    pomerajDiv(div){
         let pom=false;
-         let xp=0,yp=0,x=0,y=0;
+         let xp=0,yp=0;
 
-        divV.addEventListener('mousedown',function(e){
+        div.addEventListener('mousedown',function(e){
             e = e || window.event;
                 e.preventDefault();
-                xp=e.clientX;
-                yp=e.clientY;
+                //offset se odnosi na daljinu od samog elemnta,xp,yp su razlike izmedju tacke hvatanja misom i ivice objekta koji se hvata
+                xp=e.pageX-div.offsetLeft;
+                yp=e.pageY-div.offsetTop;
                 pom=true;
         })
 
-        divV.addEventListener('mousemove',function(e){
+        div.addEventListener('mousemove',function(e){
             if(pom){
                 e = e || window.event;
                 e.preventDefault();
-
-                x=xp-e.clientX;
-                y=yp-e.clientY;
-                xp=e.clientX;
-                yp=e.clientY;
-
-                //offset se odnosi na daljinu od samog elemnta
-                divV.style.left=(divV.offsetLeft-x)+"px";
-                divV.style.top=(divV.offsetTop-y)+"px";
+                div.style.left=(e.pageX-xp)+"px";
+                div.style.top=(e.pageY-yp)+"px";
             }
         })
 
-        divV.addEventListener('mouseup',function(e){
-            if(pom){
-                pom=false;
-            }
+        div.addEventListener('mouseup',function(){
+            if(pom) pom=false;
         })
     }
     //samo za Hintove i za animaciju ruke kod pomeranja
