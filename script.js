@@ -6,7 +6,6 @@ class Igra{ //formiranje igre
         this.scoreA=0; //broj malova koji su stigli do kraja za A
         this.scoreB=0; //broj malova koji su stigli do kraja za B
         this.zadnjeBacanje=0; //zadnje bacanje jut stapova
-        // this.malID=0; //osiuranje da svaki mal ima jedinstven id
         this.skupMal=[]; //niz objekata malova
         this.baceno=[]; //niz bacenih jotova od strane jednog igraca
         this.blokadaBacanja=false; //Da li igrac ima pravo da baca stapove?
@@ -27,6 +26,164 @@ class Igra{ //formiranje igre
         this.auto_bodovi=true; //opcija da se bodovi dodaju automatski kada se obrise zeton koji je stigao do kraja
         this.obelezeni_mal=""; //meni desni klik
     }
+
+    //Izgled table
+    stampaTable(){
+        //Stampanje izgleda polja start
+        document.querySelector("div.polje[data-imePolja='"+0+"']").innerHTML="S";
+        document.querySelector("div.polje[data-imePolja='"+0+"']").classList.add("poljeN");
+
+        //Sampanje ostalih polja
+        for(let i=1;i<=28;i++){
+            document.querySelector("div.polje[data-imePolja='"+i+"']").innerHTML=" ";    
+            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN");
+
+            if(i==5) {
+                document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("poljeN");
+                document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN2");
+            }
+
+            if(i==10) {
+                document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("poljeN");
+                document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN2");
+            }
+
+            if(i==15) {
+                document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("poljeN");
+                document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN2");
+            }
+
+            if(i==22) {
+                document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("poljeN");
+                document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN2");
+            }
+        }
+    }
+
+    //Stampanje rezultata
+    stampa(){
+        document.querySelector('#naPotezu').innerHTML="Na potezu je igrač "+this.naPotezu;
+        document.querySelector('#rezultatA').innerHTML="Rezultat igrača A je: "+this.scoreA;
+        document.querySelector('#rezultatB').innerHTML="Rezultat igrača B je: "+this.scoreB;
+        
+        if(this.brojMalA==1) document.querySelector('#rezultatA1').innerHTML="Igrač A ima još: "+this.brojMalA+" žeton";
+        else document.querySelector('#rezultatA1').innerHTML="Igrač A ima još: "+this.brojMalA+" žetona";
+        if(this.brojMalB==1) document.querySelector('#rezultatB1').innerHTML="Igrač B ima još: "+this.brojMalB+" žeton";
+        else document.querySelector('#rezultatB1').innerHTML="Igrač B ima još: "+this.brojMalB+" žetona";
+        
+        if(igra.naPotezu=="A"){
+            document.querySelector('.statusA').classList.add("okvir");
+            document.querySelector('.statusB').classList.remove("okvir");
+        }
+        else {
+            document.querySelector('.statusB').classList.add("okvir");
+            document.querySelector('.statusA').classList.remove("okvir");
+        }
+        
+        if(this.prikaz){
+                if (this.zadnjeBacanje<=3){
+                document.querySelector('#bacanje').innerHTML="Zadnje je bačeno: "+this.baceno;
+                }
+                else{
+                document.querySelector('#bacanje').innerHTML="Bacaj opet!"+"<br>"+"Zadnje je bačeno: "+this.baceno;
+                }
+        }
+        else{
+            document.querySelector('#bacanje').innerHTML="";
+        }
+        document.querySelector('#obavestenje').innerHTML=this.obavestenje;
+    }
+
+    //Resetovanje rezultata
+    reset(){
+        this.naPotezu="A";
+        this.scoreA=0;
+        this.scoreB=0;
+        this.zadnjeBacanje=0;
+        this.skupMal=[];
+        this.baceno=[];
+        this.blokadaBacanja=false;
+        this.prikaz=false;
+        this.brojMalA=4;
+        this.brojMalB=4;
+        this.blokadaMala=true;
+        this.blokadaZavrsenogPoteza=true;
+        this.obavestenje="";
+        this.obelezeni_mal="";
+            
+        //Ovim komandama brisemo sve divove koji predstavljaju malove, odnosno zetone.
+        [...document.querySelectorAll('div.mal')].map(e=>e.remove());
+
+        this.stampa();
+    }
+
+    //Bacaju se 4 Jut stapa.
+    bacanje(){
+        if(!this.blokadaBacanja && this.blokadaMala){
+            this.obavestenje="";
+            var q,t,
+                s="",
+                br=0;
+            for (let i=1;i<=4;i++){
+                    q=Math.random();
+                    (q<=0.46)? t=0:t=1;
+                    br+=t;
+                    s+=t;
+            }
+            if (br==0) br=5;
+            if (s=="1000" && this.pravilo_minus_1==true) br=-1; //-1 specijalno pravilo
+            this.zadnjeBacanje=br;
+            this.prikaz=true;
+            this.blokadaMala=false;
+            this.baceno.push(this.zadnjeBacanje);
+            if(this.anime) this.animeBacanje(); //animacija bacanja
+            if(this.zadnjeBacanje<=3){
+            this.blokadaBacanja=true;
+            this.blokadaZavrsenogPoteza=false;
+                }
+        }
+        else{
+            if(this.blokadaBacanja) {
+                this.obavestenje="Bacanje je već obavljeno!"; 
+            }
+            else if(!this.blokadaMala) {
+                this.obavestenje="Igrač treba da odigra potez sa žetonom!";
+            }
+        }
+        this.stampa();
+    }
+
+    //
+    dodajMal(igrac){
+        //igrac moze biti "A" ili "B"
+        if(this.naPotezu == igrac){
+            if((this.naPotezu == "A" && this.brojMalA>0)||(this.naPotezu == "B" && this.brojMalB>0)){
+                let e=document.createElement('div');
+                (igrac=="A")? e.className="mal malA ruka":e.className="mal malB ruka";
+                let l={
+                        doc:e,
+                        pripadnost:igrac,
+                        value:1,
+                        pos:0,
+                    }
+                    this.skupMal.push(l);
+                (igrac=="A")? this.brojMalA--:this.brojMalB--;
+                    this.obavestenje="";
+                    this.pomerajDiv(e);
+                    this.operacijeMal(e);
+                    this.desniKlik(e);
+                document.querySelector('div.wraper').appendChild(e); //vezan za tablu   
+            }
+            else{
+                this.obavestenje=`Igrač ${igrac} je dodao svih 4 žetona!`;
+            }
+        }
+        else{
+            this.obavestenje=`Igrač ${igrac} nije na potezu!`;
+        }
+        this.stampa();
+    }
+
     //
     pomerajDiv(div){
         let pom=false;
@@ -54,6 +211,207 @@ class Igra{ //formiranje igre
             if(pom) pom=false;
         })
     }
+    
+    //
+    nadjiMalind(element){
+        return this.skupMal.findIndex(e=>e.doc==element);
+    }
+
+    //Funkcija za pojavljivanje menija na desni klik na zeton
+    desniKlik(element){
+        var that=this;
+        element.addEventListener('contextmenu', function(e){
+                    e = e || window.event;
+                    e.preventDefault();
+                    that.obelezeni_mal=element;
+                    var qs=document.querySelector(".desni_meni");
+                    qs.style.top = ( e.pageY+10) + "px";
+                    qs.style.left = ( e.pageX+10) + "px";
+                    qs.classList.remove('hidden');
+                    element.classList.add('okvirZ');
+        });             
+    }
+
+    //Funkicja za uklanjanje zetona iz HTML-a
+    ukloni(){
+        var that=this; //that zato sto sam prepisivao funkcije koje su bile pod window event listener-om
+        var element=that.obelezeni_mal;
+        var ind=that.nadjiMalind(element);
+            var t=that.skupMal[ind].value;
+            var p=that.skupMal[ind].pripadnost;
+            var poz=that.skupMal[ind].pos;
+        this.skupMal.splice(ind,1);
+
+            element.remove();
+            if(p=="A"){
+                that.brojMalA=that.brojMalA+t;
+            }
+            else if(p=="B"){
+                that.brojMalB=that.brojMalB+t;
+            }
+
+            if(that.auto_bodovi && poz>=29){
+                if(p=="A"){
+                    for(var i=0; i<t; i++){
+                    that.dodaj("A");
+                    }
+                }
+                else if(p=="B"){
+                    for(var i=0; i<t; i++){
+                        that.dodaj("B");
+                    }
+                }
+            }
+            that.nista();
+            that.stampa();
+    }
+        //
+        grupisi(k=1){
+            //k je koliko zetona treba da se doda ili da se skine; za grupisi (), za ungrupisi (-1)
+            var that=this; //that zato sto sam prepisivao funkcije koje su bile pod window event listener-om
+            var element=that.obelezeni_mal;
+            var ind=that.nadjiMalind(element);
+                var t=that.skupMal[ind].value;
+                var p=that.skupMal[ind].pripadnost;
+                let l=t+k;
+                    
+                if(that.naPotezu==p && !that.auto_potez || that.auto_potez && l>0){ //l>0 da bi iskljucio slucajeve da neko ungrupise kada je 1
+                    that.skupMal[ind].value=l;
+                    (l>1)? element.innerHTML=l:element.innerHTML="";
+                    if(p=="A"){
+                        that.brojMalA=that.brojMalA-k;
+                    }
+                    else if(p=="B"){
+                        that.brojMalB=that.brojMalB-k;
+                    }
+                }
+                that.nista();
+                that.stampa();
+        }
+    //Funkcija za sakrivanje menija na desni klik na zeton
+    nista(){
+        if(this.obelezeni_mal!=""){
+            var qs=document.querySelector(".desni_meni");
+            var element=this.obelezeni_mal;
+            qs.classList.add('hidden');
+            element.classList.remove('okvirZ');
+            this.obelezeni_mal="";
+        }
+    }
+
+    //funkcija za promenu poteza igraca
+    zavrsenPotez(){
+            if(this.blokadaMala && !this.blokadaZavrsenogPoteza){
+                if(this.naPotezu=="A") this.naPotezu="B";
+                else   this.naPotezu="A";
+                this.blokadaBacanja=false;
+                this.prikaz=false;
+                this.baceno=[];
+                this.blokadaZavrsenogPoteza=true;
+                this.obavestenje="";
+            }
+            else{
+                if(!this.blokadaMala) this.obavestenje="Igrač treba da odigra potez sa žetonom!";
+                else if(this.blokadaZavrsenogPoteza) this.obavestenje="Igrač mora da baci i onda da odigra potez sa žetonom!";
+            }
+            this.stampa();
+    }
+
+    //dodavanje poena
+    dodaj(igrac){
+        let that=this;
+        if(igrac=="A"){
+            this.scoreA++;
+            this.brojMalA--;
+            if(this.scoreA>=4){
+                pobeda(igrac);
+            }
+        }
+        else if(igrac=="B"){
+            this.scoreB++;
+            this.brojMalB--;
+            if(this.scoreB>=4){
+                pobeda(igrac);
+            } 
+        }
+        function pobeda(igrac){
+            that.obavestenje=`Čestitamo! Igrač ${igrac} je pobedio!`;
+            document.querySelector('#pobednik').innerHTML=that.obavestenje; //kartica obavestenje pobednik
+            document.querySelector('#pobeda').classList.remove('hidden');
+            loop(); //aktiviramo vatromet
+            // start_fireworks();
+            document.querySelector('.fireworks').classList.remove('hidden'); //otkrijemo canvas sa vatrometom
+        }
+        this.stampa();
+    }
+
+    //Sledece metode sluze da se igracima olaksa i ulepsa igra uz pomoc animacija
+    
+    //U zavisnosti od bacenih Jut stapova, Mal se krece po tabli na sledeci nacin:
+    kretanje(predhodno,bacanje){
+        let sledece=predhodno;
+            if(bacanje>0){
+                if (predhodno<5) sledece=predhodno+bacanje;
+                else if (predhodno==5){
+                    if (bacanje<3) sledece=predhodno+bacanje+5;
+                    else sledece=predhodno+bacanje+7;
+                } 
+                else if (predhodno>5 && predhodno<10){
+                    if(predhodno+bacanje<11) sledece=predhodno+bacanje;
+                    else sledece=predhodno+bacanje+7;
+                }
+                else if(predhodno==10){
+                    if (bacanje<4) sledece=predhodno+bacanje+2;
+                    else sledece=predhodno+bacanje+13;
+                }
+                else if(predhodno==11){
+                    if(bacanje==1) sledece=12;
+                    else if(bacanje == 2) sledece=15;
+                    else if(bacanje >=3 && bacanje <5) sledece=predhodno+bacanje+2;
+                    else sledece=predhodno+bacanje+6;
+                }
+                else if(predhodno==12){
+                    if(bacanje < 4) sledece=predhodno+bacanje+2;
+                    else sledece=predhodno+bacanje+6;
+                }
+                else if(predhodno==13 || predhodno==14){
+                    if(predhodno+bacanje<16) sledece=predhodno+bacanje;
+                    else sledece=predhodno+bacanje+11;
+                }
+                else if(predhodno==15){
+                    if(predhodno+bacanje+11<29) sledece=predhodno+bacanje+11;
+                    else sledece=29;
+                }
+                else if(predhodno==16){
+                    if(bacanje==1) sledece=17;
+                    else sledece=predhodno+bacanje+4;
+                }
+                else if(predhodno==17) sledece=predhodno+bacanje+4;
+                else if(predhodno>17 && predhodno<27){
+                    if(predhodno+bacanje<27) sledece=predhodno+bacanje;
+                    else sledece=29;
+                    }
+                else if(predhodno>=27)
+                    if(predhodno+bacanje<=28) sledece=predhodno+bacanje;
+                    else sledece=29;
+            }
+
+            else if(bacanje==0){sledece=predhodno}
+
+            else if(bacanje==-1){
+                if (predhodno == 0) sledece=26;
+                else if(predhodno==11) sledece=5;
+                else if(predhodno==13) sledece=10;
+                else if(predhodno ==15) sledece=14;
+                else if(predhodno == 18) sledece=10;
+                else if(predhodno == 27) sledece=15;
+                else{
+                    sledece=predhodno-1;
+                }
+            }
+        return sledece;
+    }
+
     //samo za Hintove i za animaciju ruke kod pomeranja
     operacijeMal(element){
         let that=this;
@@ -105,477 +463,120 @@ class Igra{ //formiranje igre
         })
         
     }
-    //
-    dodajMal(igrac){
-                //igrac moze biti A ili B
-                if(this.naPotezu == igrac){
-                    if((this.naPotezu == "A" && this.brojMalA>0)||(this.naPotezu == "B" && this.brojMalB>0)){
-                        let e=document.createElement('div');
-                        (igrac=="A")? e.className="mal malA ruka":e.className="mal malB ruka";
-                            let l=new Mal(e,igrac); //dodavanje mala i kao objekat unutar skripta
-                            this.skupMal.push(l);
-                        (igrac=="A")? this.brojMalA--:this.brojMalB--;
-                            this.obavestenje="";
-                            this.pomerajDiv(e);
-                            this.operacijeMal(e);
-                            this.desniKlik(e);
-                        document.querySelector('div.wraper').appendChild(e); //vezan za tablu   
-                    }
-                    else{
-                        this.obavestenje=`Igrač ${igrac} je dodao svih 4 žetona!`;
-                    }
-                }
-                else{
-                    this.obavestenje=`Igrač ${igrac} nije na potezu!`;
-                }
-                this.stampa();
-            }
-    //
-    nadjiMalind(element){
-        return this.skupMal.findIndex(e=>e.doc==element);
-    }
-    //
-    grupisi(k=1){
-        //k je koliko zetona treba da se doda ili da se skine; za grupisi (), za ungrupisi (-1)
-        var that=this; //that zato sto sam prepisivao funkcije koje su bile pod window event listener-om
-        var element=that.obelezeni_mal;
-        var ind=that.nadjiMalind(element);
-            var t=that.skupMal[ind].value;
-            var p=that.skupMal[ind].pripadnost;
-            let l=t+k;
+    
+    //Slede dve metode za davanje sugestija vezanih za tablu
+    hint0(){
+        var that=this;
+        for(let i=0;i<=28;i++){
+                document.querySelector("div.polje[data-imePolja='"+i+"']").addEventListener('mouseenter',function(){
                 
-            if(that.naPotezu==p && !that.auto_potez || that.auto_potez && l>0){ //l>0 da bi iskljucio slucajeve da neko ungrupise kada je 1
-                that.skupMal[ind].value=l;
-                (l>1)? element.innerHTML=l:element.innerHTML="";
-                if(p=="A"){
-                    that.brojMalA=that.brojMalA-k;
-                }
-                else if(p=="B"){
-                    that.brojMalB=that.brojMalB-k;
-                }
-            }
-            that.nista();
-            that.stampa();
-    }
-    //Funkcija za sakrivanje menija na desni klik na zeton
-    nista(){
-        if(this.obelezeni_mal!=""){
-            var qs=document.querySelector(".desni_meni");
-            var element=this.obelezeni_mal;
-            qs.classList.add('hidden');
-            element.classList.remove('okvirZ');
-            this.obelezeni_mal="";
-        }
-    }
-    //Resetovanje rezultata
-    reset(){
-        this.naPotezu="A";
-        this.scoreA=0;
-        this.scoreB=0;
-        this.zadnjeBacanje=0;
-        // this.malID=0;
-        this.skupMal=[];
-        this.baceno=[];
-        this.blokadaBacanja=false;
-        this.prikaz=false;
-        this.brojMalA=4;
-        this.brojMalB=4;
-        this.blokadaMala=true;
-        this.blokadaZavrsenogPoteza=true;
-        this.obavestenje="";
-        this.obelezeni_mal="";
-            
-        //Ovim komandama brisemo sve divove koji predstavljaju malove, odnosno zetone.
-        [...document.querySelectorAll('div.mal')].map(e=>e.remove());
-    }
-    //
-}
-
-class Mal{ //formiranje zetona za igru
-    constructor(pdoc,ppripadnost){
-        this.doc=pdoc; //zetonov selektor, tipa document.querySelctor
-        this.value=1; //koliko je zetona grupisano
-        this.pripadnost=ppripadnost; //igracu A ili B
-        this.pos=0; //pozicija na tabli
-    }
-}
-
-
-
-//Bacaju se 4 Jut stapa.
-Igra.prototype.bacanje=function(){
-    if(!this.blokadaBacanja && this.blokadaMala){
-        this.obavestenje="";
-        var q,t,
-            s="",
-            br=0;
-        for (let i=1;i<=4;i++){
-                q=Math.random();
-                (q<=0.46)? t=0:t=1;
-                br+=t;
-                s+=t;
-        }
-        if (br==0) br=5;
-        if (s=="1000" && this.pravilo_minus_1==true) br=-1; //-1 specijalno pravilo
-        this.zadnjeBacanje=br;
-        this.prikaz=true;
-        this.blokadaMala=false;
-        this.baceno.push(this.zadnjeBacanje);
-        if(this.anime) this.animeBacanje(); //animacija bacanja
-        if(this.zadnjeBacanje<=3){
-        this.blokadaBacanja=true;
-        this.blokadaZavrsenogPoteza=false;
-            }
-    }
-    else{
-        if(this.blokadaBacanja) {
-            this.obavestenje="Bacanje je već obavljeno!"; 
-        }
-        else if(!this.blokadaMala) {
-            this.obavestenje="Igrač treba da odigra potez sa žetonom!";
-        }
-    }
-}
-
-//funkcija za promenu poteza igraca
-Igra.prototype.zavrsenPotez=function(){
-        if(this.blokadaMala && !this.blokadaZavrsenogPoteza){
-            if(this.naPotezu=="A") this.naPotezu="B";
-            else   this.naPotezu="A";
-            this.blokadaBacanja=false;
-            this.prikaz=false;
-            this.baceno=[];
-            this.blokadaZavrsenogPoteza=true;
-            this.obavestenje="";
-        }
-        else{
-            if(!this.blokadaMala) this.obavestenje="Igrač treba da odigra potez sa žetonom!";
-            else if(this.blokadaZavrsenogPoteza) this.obavestenje="Igrač mora da baci i onda da odigra potez sa žetonom!";
-        }
-}
-
-//U zavisnosti od bacenih Jut stapova, Mal se krece po tabli na sledeci nacin:
-Igra.prototype.kretanje=function(predhodno,bacanje){
-    var sledece;
-        if(bacanje>0){
-            if (predhodno<5) sledece=predhodno+bacanje;
-            else if (predhodno==5){
-                if (bacanje<3) sledece=predhodno+bacanje+5;
-                else sledece=predhodno+bacanje+7;
+                    var t=that.kretanje(i,that.zadnjeBacanje);
+                    if(t>=29) t=0;
+                    if(that.hint_0) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvirT");     
+                });
             } 
-            else if (predhodno>5 && predhodno<10){
-                if(predhodno+bacanje<11) sledece=predhodno+bacanje;
-                else sledece=predhodno+bacanje+7;
-            }
-            else if(predhodno==10){
-                if (bacanje<4) sledece=predhodno+bacanje+2;
-                else sledece=predhodno+bacanje+13;
-            }
-            else if(predhodno==11){
-                if(bacanje==1) sledece=12;
-                else if(bacanje == 2) sledece=15;
-                else if(bacanje >=3 && bacanje <5) sledece=predhodno+bacanje+2;
-                else sledece=predhodno+bacanje+6;
-            }
-            else if(predhodno==12){
-                if(bacanje < 4) sledece=predhodno+bacanje+2;
-                else sledece=predhodno+bacanje+6;
-            }
-            else if(predhodno==13 || predhodno==14){
-                if(predhodno+bacanje<16) sledece=predhodno+bacanje;
-                else sledece=predhodno+bacanje+11;
-            }
-            else if(predhodno==15){
-                if(predhodno+bacanje+11<29) sledece=predhodno+bacanje+11;
-                else sledece=29;
-            }
-            else if(predhodno==16){
-                if(bacanje==1) sledece=17;
-                else sledece=predhodno+bacanje+4;
-            }
-            else if(predhodno==17) sledece=predhodno+bacanje+4;
-            else if(predhodno>17 && predhodno<27){
-                if(predhodno+bacanje<27) sledece=predhodno+bacanje;
-                else sledece=29;
-                }
-            else if(predhodno>=27)
-                if(predhodno+bacanje<=28) sledece=predhodno+bacanje;
-                else sledece=29;
-        }
-
-        else if(bacanje==0){sledece=predhodno}
-
-        else if(bacanje==-1){
-            if (predhodno == 0) sledece=26;
-            else if(predhodno==11) sledece=5;
-            else if(predhodno==13) sledece=10;
-            else if(predhodno ==15) sledece=14;
-            else if(predhodno == 18) sledece=10;
-            else if(predhodno == 27) sledece=15;
-            else{
-                sledece=predhodno-1;
-            }
-        }
-    return sledece;
-}
-
-//Izgled table
-Igra.prototype.stampaTable=function(){
-    //Stampanje izgleda polja start
-    document.querySelector("div.polje[data-imePolja='"+0+"']").innerHTML="S";
-    document.querySelector("div.polje[data-imePolja='"+0+"']").classList.add("poljeN");
-
-    //Sampanje ostalih polja
-    for(i=1;i<=28;i++){
-        document.querySelector("div.polje[data-imePolja='"+i+"']").innerHTML=" ";    
-        document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN");
-
-        if(i==5) {
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("poljeN");
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN2");
-        }
-
-        if(i==10) {
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("poljeN");
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN2");
-        }
-
-        if(i==15) {
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("poljeN");
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN2");
-        }
-
-        if(i==22) {
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("poljeN");
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.add("poljeN2");
-        }
+        
+            for(let i=0;i<=28;i++){
+                document.querySelector("div.polje[data-imePolja='"+i+"']").addEventListener('mouseleave',function(){
+                    for(let i=0;i<=28;i++){
+                        document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("okvirT");
+                    }
+                });
+            } 
     }
-}
 
-//Stampanje rezultata
-Igra.prototype.stampa=function(){
-    document.querySelector('#naPotezu').innerHTML="Na potezu je igrač "+this.naPotezu;
-    document.querySelector('#rezultatA').innerHTML="Rezultat igrača A je: "+this.scoreA;
-    document.querySelector('#rezultatB').innerHTML="Rezultat igrača B je: "+this.scoreB;
-    
-    if(this.brojMalA==1) document.querySelector('#rezultatA1').innerHTML="Igrač A ima još: "+this.brojMalA+" žeton";
-    else document.querySelector('#rezultatA1').innerHTML="Igrač A ima još: "+this.brojMalA+" žetona";
-    if(this.brojMalB==1) document.querySelector('#rezultatB1').innerHTML="Igrač B ima još: "+this.brojMalB+" žeton";
-    else document.querySelector('#rezultatB1').innerHTML="Igrač B ima još: "+this.brojMalB+" žetona";
-    
-    if(igra.naPotezu=="A"){
-        document.querySelector('.statusA').classList.add("okvir");
-        document.querySelector('.statusB').classList.remove("okvir");
-    }
-    else {
-        document.querySelector('.statusB').classList.add("okvir");
-        document.querySelector('.statusA').classList.remove("okvir");
-    }
-    
-    if(this.prikaz){
-            if (this.zadnjeBacanje<=3){
-            document.querySelector('#bacanje').innerHTML="Zadnje je bačeno: "+this.baceno;
-            }
-            else{
-            document.querySelector('#bacanje').innerHTML="Bacaj opet!"+"<br>"+"Zadnje je bačeno: "+this.baceno;
-            }
-    }
-    else{
-        document.querySelector('#bacanje').innerHTML="";
-    }
-    document.querySelector('#obavestenje').innerHTML=this.obavestenje;
-}
-
-//Dodavanje poena A i B
-Igra.prototype.dodajA=function(){
-    this.scoreA++;
-    this.brojMalA--;
-    if(this.scoreA>=4){
-        this.obavestenje="Čestitamo! Igrač A je pobedio!";
-        document.querySelector('#pobednik').innerHTML=this.obavestenje; //kartica obavestenje pobednik
-        document.querySelector('#pobeda').classList.remove('hidden');
-        loop(); //aktiviramo vatromet
-        // start_fireworks();
-        document.querySelector('.fireworks').classList.remove('hidden'); //otkrijemo canvas sa vatrometom
-    }
-}
-
-Igra.prototype.dodajB=function(){
-    this.scoreB++;
-    this.brojMalB--;
-    if(this.scoreB>=4){  
-        this.obavestenje="Čestitamo! Igrač B je pobedio!";
-        document.querySelector('#pobednik').innerHTML=this.obavestenje; //kartica obavestenje pobednik
-        document.querySelector('#pobeda').classList.remove('hidden');
-        loop(); //aktiviramo vatromet
-        // start_fireworks();
-        document.querySelector('.fireworks').classList.remove('hidden'); //otkrijemo canvas sa vatrometom
-    }
-}
-
-
-//Funkcija za pojavljivanje menija na desni klik na zeton
-Igra.prototype.desniKlik=function(element){
-    var that=this;
-    element.addEventListener('contextmenu', function(e){
-                e = e || window.event;
-                e.preventDefault();
-                that.obelezeni_mal=element;
-                var qs=document.querySelector(".desni_meni");
-                qs.style.top = ( e.pageY+10) + "px";
-                qs.style.left = ( e.pageX+10) + "px";
-                qs.classList.remove('hidden');
-                element.classList.add('okvirZ');
-    });             
-}
-
-
-//Funkicja za uklanjanje zetona iz HTML-a
-Igra.prototype.ukloni=function(){
-    var that=this; //that zato sto sam prepisivao funkcije koje su bile pod window event listener-om
-    var element=that.obelezeni_mal;
-    var ind=that.nadjiMalind(element);
-        var t=that.skupMal[ind].value;
-        var p=that.skupMal[ind].pripadnost;
-        var poz=that.skupMal[ind].pos;
-    this.skupMal.splice(ind,1);
-
-        element.remove();
-        if(p=="A"){
-            that.brojMalA=that.brojMalA+t;
-        }
-        else if(p=="B"){
-            that.brojMalB=that.brojMalB+t;
-        }
-
-        if(that.auto_bodovi && poz>=29){
-            if(p=="A"){
-                for(var i=0; i<t; i++){
-                   that.dodajA();
-                }
-            }
-            else if(p=="B"){
-                for(var i=0; i<t; i++){
-                    that.dodajB();
-                 }
+    hint1(){
+        var that=this;
+        function ocistiHint(){
+            for(let i=0;i<=28;i++){
+                document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("okvirTT");
             }
         }
-        that.nista();
-        that.stampa();
-}
 
-//Slede dve metode za davanje sugestija vezanih za tablu
-Igra.prototype.hint0=function(){
-    var that=this;
-    for(let i=0;i<=28;i++){
+        for(let i=0;i<=28;i++){
             document.querySelector("div.polje[data-imePolja='"+i+"']").addEventListener('mouseenter',function(){
             
                 var t=that.kretanje(i,that.zadnjeBacanje);
                 if(t>=29) t=0;
-                if(that.hint_0) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvirT");     
+
+                if(that.hint_1) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvirTT");
+
+                setTimeout(function(){
+                    ocistiHint()}, that.trajanjeHinta); 
             });
         } 
-    
-        for(let i=0;i<=28;i++){
-            document.querySelector("div.polje[data-imePolja='"+i+"']").addEventListener('mouseleave',function(){
-                for(let i=0;i<=28;i++){
-                    document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("okvirT");
-                }
-            });
-        } 
-}
 
-Igra.prototype.hint1=function(){
-    var that=this;
-    function ocistiHint(){
-        for(let i=0;i<=28;i++){
-            document.querySelector("div.polje[data-imePolja='"+i+"']").classList.remove("okvirTT");
-        }
-    }
-
-    for(let i=0;i<=28;i++){
-        document.querySelector("div.polje[data-imePolja='"+i+"']").addEventListener('mouseenter',function(){
-        
-            var t=that.kretanje(i,that.zadnjeBacanje);
-            if(t>=29) t=0;
-
-            if(that.hint_1) document.querySelector("div.polje[data-imePolja='"+t+"']").classList.add("okvirTT");
-
-            setTimeout(function(){
-                ocistiHint()}, that.trajanjeHinta); 
+        window.addEventListener('mouseup',function(){
+            ocistiHint();
         });
-    } 
-
-    window.addEventListener('mouseup',function(){
-        ocistiHint();
-    });
-}
-
-Igra.prototype.animeBacanje=function(){
-    if(this.zadnjeBacanje==1 && this.anime==true){
-        document.querySelector('.animacija').classList.remove('hidden');
-        document.querySelector('.animacija').classList.add('do');
-        document.querySelector('#korejski').innerHTML="do";
-        setTimeout(function(){
-            document.querySelector('.animacija').classList.remove('do');
-            document.querySelector('.animacija').classList.add('hidden');
-            document.querySelector('#korejski').innerHTML="";
-        },this.trajanjeAnimacija);
     }
 
-    else if(this.zadnjeBacanje==2 && this.anime==true){
-        document.querySelector('.animacija').classList.remove('hidden');
-        document.querySelector('.animacija').classList.add('ge');
-        document.querySelector('#korejski').innerHTML="ge";
-        setTimeout(function(){
-            document.querySelector('.animacija').classList.remove('ge');
-            document.querySelector('.animacija').classList.add('hidden');
-            document.querySelector('#korejski').innerHTML="";
-        },this.trajanjeAnimacija);
-    }
+    animeBacanje(){
+        if(this.zadnjeBacanje==1 && this.anime==true){
+            document.querySelector('.animacija').classList.remove('hidden');
+            document.querySelector('.animacija').classList.add('do');
+            document.querySelector('#korejski').innerHTML="do";
+            setTimeout(function(){
+                document.querySelector('.animacija').classList.remove('do');
+                document.querySelector('.animacija').classList.add('hidden');
+                document.querySelector('#korejski').innerHTML="";
+            },this.trajanjeAnimacija);
+        }
 
-    else if(this.zadnjeBacanje==3 && this.anime==true){
-        document.querySelector('.animacija').classList.remove('hidden');
-        document.querySelector('.animacija').classList.add('geol');
-        document.querySelector('#korejski').innerHTML="geol";
-        setTimeout(function(){
-            document.querySelector('.animacija').classList.remove('geol');
-            document.querySelector('.animacija').classList.add('hidden');
-            document.querySelector('#korejski').innerHTML="";
-        },this.trajanjeAnimacija);
-    }
+        else if(this.zadnjeBacanje==2 && this.anime==true){
+            document.querySelector('.animacija').classList.remove('hidden');
+            document.querySelector('.animacija').classList.add('ge');
+            document.querySelector('#korejski').innerHTML="ge";
+            setTimeout(function(){
+                document.querySelector('.animacija').classList.remove('ge');
+                document.querySelector('.animacija').classList.add('hidden');
+                document.querySelector('#korejski').innerHTML="";
+            },this.trajanjeAnimacija);
+        }
 
-    else if(this.zadnjeBacanje==4 && this.anime==true){
-        document.querySelector('.animacija').classList.remove('hidden');
-        document.querySelector('.animacija').classList.add('yut');
-        document.querySelector('#korejski').innerHTML="yut";
-        setTimeout(function(){
-            document.querySelector('.animacija').classList.remove('yut');
-            document.querySelector('.animacija').classList.add('hidden');
-            document.querySelector('#korejski').innerHTML="";
-        },this.trajanjeAnimacija);
-    }
+        else if(this.zadnjeBacanje==3 && this.anime==true){
+            document.querySelector('.animacija').classList.remove('hidden');
+            document.querySelector('.animacija').classList.add('geol');
+            document.querySelector('#korejski').innerHTML="geol";
+            setTimeout(function(){
+                document.querySelector('.animacija').classList.remove('geol');
+                document.querySelector('.animacija').classList.add('hidden');
+                document.querySelector('#korejski').innerHTML="";
+            },this.trajanjeAnimacija);
+        }
 
-    else if(this.zadnjeBacanje==5 && this.anime==true){
-        document.querySelector('.animacija').classList.remove('hidden');
-        document.querySelector('.animacija').classList.add('mo');
-        document.querySelector('#korejski').innerHTML="mo";
-        setTimeout(function(){
-            document.querySelector('.animacija').classList.remove('mo');
-            document.querySelector('.animacija').classList.add('hidden');
-            document.querySelector('#korejski').innerHTML="";
-        },this.trajanjeAnimacija);
-    }
+        else if(this.zadnjeBacanje==4 && this.anime==true){
+            document.querySelector('.animacija').classList.remove('hidden');
+            document.querySelector('.animacija').classList.add('yut');
+            document.querySelector('#korejski').innerHTML="yut";
+            setTimeout(function(){
+                document.querySelector('.animacija').classList.remove('yut');
+                document.querySelector('.animacija').classList.add('hidden');
+                document.querySelector('#korejski').innerHTML="";
+            },this.trajanjeAnimacija);
+        }
 
-    else if(this.zadnjeBacanje==-1 && this.anime==true){
-        document.querySelector('.animacija').classList.remove('hidden');
-        document.querySelector('.animacija').classList.add('back');
-        document.querySelector('#korejski').innerHTML="backdo";
-        setTimeout(function(){
-            document.querySelector('.animacija').classList.remove('back');
-            document.querySelector('.animacija').classList.add('hidden');
-            document.querySelector('#korejski').innerHTML="";
-        },this.trajanjeAnimacija);
+        else if(this.zadnjeBacanje==5 && this.anime==true){
+            document.querySelector('.animacija').classList.remove('hidden');
+            document.querySelector('.animacija').classList.add('mo');
+            document.querySelector('#korejski').innerHTML="mo";
+            setTimeout(function(){
+                document.querySelector('.animacija').classList.remove('mo');
+                document.querySelector('.animacija').classList.add('hidden');
+                document.querySelector('#korejski').innerHTML="";
+            },this.trajanjeAnimacija);
+        }
+
+        else if(this.zadnjeBacanje==-1 && this.anime==true){
+            document.querySelector('.animacija').classList.remove('hidden');
+            document.querySelector('.animacija').classList.add('back');
+            document.querySelector('#korejski').innerHTML="backdo";
+            setTimeout(function(){
+                document.querySelector('.animacija').classList.remove('back');
+                document.querySelector('.animacija').classList.add('hidden');
+                document.querySelector('#korejski').innerHTML="";
+            },this.trajanjeAnimacija);
+        }
     }
 }
 
@@ -691,12 +692,10 @@ igra.hint1();
 //povezivanje funkcija sa tasterima
 document.querySelector('#potez').onclick=function(){
     igra.bacanje();
-    igra.stampa();
 }
 
 document.querySelector('#zavrsen_potez').onclick=function(){
     igra.zavrsenPotez();
-    igra.stampa();
 }
 
 document.querySelector('#reset').onclick=function(){
@@ -704,13 +703,11 @@ document.querySelector('#reset').onclick=function(){
 }
 
 document.querySelector('#dodajA').onclick=function(){
-    igra.dodajA();
-    igra.stampa();
+    igra.dodaj("A");
 }
 
 document.querySelector('#dodajB').onclick=function(){
-    igra.dodajB();
-    igra.stampa();
+    igra.dodaj("B");
 }
 
 document.querySelector('#dodajMalA').onclick=function(){
@@ -729,12 +726,10 @@ window.addEventListener('keyup',function(e){
     e.preventDefault();
     if (key==66 || key==32){
             igra.bacanje();
-            igra.stampa();
     }
 
     if (key==13 && !igra.auto_potez){
         igra.zavrsenPotez();
-        igra.stampa();
         }
 
     if (key==27){
@@ -751,13 +746,11 @@ window.addEventListener('keyup',function(e){
     }
 
     if (key==49 && !igra.auto_bodovi){
-        igra.dodajA();
-        igra.stampa();
+        igra.dodaj("A");
         }
 
     if (key==51 && !igra.auto_bodovi){
-        igra.dodajB();
-        igra.stampa();
+        igra.dodaj("B");
         }
 });
 
@@ -765,7 +758,6 @@ window.addEventListener('keyup',function(e){
 document.querySelector('#yes_reset').onclick=function(){
     document.querySelector('#zelim_reset').classList.toggle('hidden');
     igra.reset();
-    igra.stampa();
 }
 
 document.querySelector('#no_reset').onclick=function(){
@@ -776,7 +768,6 @@ document.querySelector('#no_reset').onclick=function(){
 document.querySelector('#posle_pobede').onclick=function(){
     document.querySelector('#pobeda').classList.add('hidden');
     igra.reset();
-    igra.stampa();
     document.querySelector('.fireworks').classList.add('hidden'); //sakrijemo vatormet
     //trebalo bi da se doda funkcija koja zaustavlja animaciju vatrometa
     // stop_fireworks();
