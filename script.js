@@ -251,14 +251,10 @@ class Igra{ //formiranje igre
 
             if(that.auto_bodovi && poz>=29){
                 if(p=="A"){
-                    for(var i=0; i<t; i++){
-                    that.dodaj("A");
-                    }
+                    that.dodaj("A",t);
                 }
                 else if(p=="B"){
-                    for(var i=0; i<t; i++){
-                        that.dodaj("B");
-                    }
+                    that.dodaj("B",t);
                 }
             }
             that.nista();
@@ -317,18 +313,19 @@ class Igra{ //formiranje igre
     }
 
     //dodavanje poena
-    dodaj(igrac){
+    dodaj(igrac,k=1){
+        //k je koliko poena da se doda
         let that=this;
         if(igrac=="A"){
-            this.scoreA++;
-            this.brojMalA--;
+            this.scoreA+=k;
+            this.brojMalA-=k;
             if(this.scoreA>=4){
                 pobeda(igrac);
             }
         }
         else if(igrac=="B"){
-            this.scoreB++;
-            this.brojMalB--;
+            this.scoreB+=k;
+            this.brojMalB-=K;
             if(this.scoreB>=4){
                 pobeda(igrac);
             } 
