@@ -192,7 +192,6 @@ class Igra{ //formiranje igre
         div.addEventListener('mousedown',function(e){
             e = e || window.event;
                 e.preventDefault();
-                //offset se odnosi na daljinu od samog elemnta,xp,yp su razlike izmedju tacke hvatanja misom i ivice objekta koji se hvata
                 xp=e.pageX-div.offsetLeft;
                 yp=e.pageY-div.offsetTop;
                 pom=true;
